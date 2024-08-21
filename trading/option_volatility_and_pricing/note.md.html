@@ -1,3 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 60em 1fr;
+		font-size: 120%;
+	}
+	.row [class*="col"] {
+	}
+	.row .col-right {
+	}
+	.row .col-center {
+		padding-left: 2em;
+		padding-right: 2em;
+		border-left: 1px solid #F0F0F0;
+		border-right: 1px solid #F0F0F0;
+  		height: 100%;
+	}
+</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col-left">
+		</div>
+		<div class="col-center">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
 <h1 id="1-financial-contracts">1 Financial Contracts</h1>
 
 <ul>
@@ -293,19 +331,19 @@ F = [C[d] x (1 + r[d] x t)] / [C[f] x (1 + r[f] x t)]
 
 <p>Long call position value:</p>
 
-<p><img src="imgs/fig4_1.png" alt="fig4_1" style="width:70%;"/></p>
+<p><img src="imgs/fig4_1.png" alt="fig4_1" style="width:70%;" loading="lazy"/></p>
 
 <p>Short call position value:</p>
 
-<p><img src="imgs/fig4_2.png" alt="fig4_2" style="width:70%;"/></p>
+<p><img src="imgs/fig4_2.png" alt="fig4_2" style="width:70%;" loading="lazy"/></p>
 
 <p>Long put position value:</p>
 
-<p><img src="imgs/fig4_3.png" alt="fig4_3" style="width:70%;"/></p>
+<p><img src="imgs/fig4_3.png" alt="fig4_3" style="width:70%;" loading="lazy"/></p>
 
 <p>Short put position value:</p>
 
-<p><img src="imgs/fig4_4.png" alt="fig4_4" style="width:70%;"/></p>
+<p><img src="imgs/fig4_4.png" alt="fig4_4" style="width:70%;" loading="lazy"/></p>
 
 <ul>
 <li>Option buyer: limited risk (option price) and unlimited profit potential.</li>
@@ -314,21 +352,21 @@ F = [C[d] x (1 + r[d] x t)] / [C[f] x (1 + r[f] x t)]
 
 <p>Long call and long put at the same exercise price position value (the parity graph is identical to long two calls and short an underlying position):</p>
 
-<p><img src="imgs/fig4_5.png" alt="fig4_5" style="width:70%;"/></p>
+<p><img src="imgs/fig4_5.png" alt="fig4_5" style="width:70%;" loading="lazy"/></p>
 
 <p>Long call and short put at the same exercise price position value (the parity graph is identical to a long underlying position):</p>
 
-<p><img src="imgs/fig4_8.png" alt="fig4_8" style="width:70%;"/></p>
+<p><img src="imgs/fig4_8.png" alt="fig4_8" style="width:70%;" loading="lazy"/></p>
 
 <h2 id="expiration-profit-and-loss">Expiration Profit and Loss</h2>
 
 <p>Long 100 call (at price 3.50) position value:</p>
 
-<p><img src="imgs/fig4_10.png" alt="fig4_10" style="width:70%;"/></p>
+<p><img src="imgs/fig4_10.png" alt="fig4_10" style="width:70%;" loading="lazy"/></p>
 
 <p>Short put 95 (at price 2.25) position value:</p>
 
-<p><img src="imgs/fig4_11.png" alt="fig4_11" style="width:70%;"/></p>
+<p><img src="imgs/fig4_11.png" alt="fig4_11" style="width:70%;" loading="lazy"/></p>
 
 <h1 id="5-theoretical-pricing-models">5 Theoretical Pricing Models</h1>
 
@@ -523,7 +561,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 | -3% every three months | -11.47% |</li>
 <li>Volatility can also be compounded at different intervals. The Black-Scholes model is a continuous-time model. The model assumes that volatility is compounded continuously, just as if the price changes in the underlying contract, are taking place continuously but at an annual rate corresponding to the volatility associated with the contract.</li>
 <li>When the percent price changes are <strong><em>normally distributed</em></strong>, the continuous compounding of these price changes will result in a <strong><em>lognormal distribution</em></strong> of the prices at expiration.
-<img src="imgs/fig6_7.png" alt="fig6_7" style="width:70%;"/></li>
+<img src="imgs/fig6_7.png" alt="fig6_7" style="width:70%;" loading="lazy"/></li>
 <li>Continuous rates of return can be calculated using exponential function: e^x</li>
 </ul>
 
@@ -721,8 +759,8 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <ul>
 <li>At expiration, an option is worth exactly its intrinsic value.</li>
 <li>Prior to expiration, the theoretical value of an option is a curve that will approach intrinsic value as the option goes very deeply into the money or very far out of the money.
-<img src="imgs/fig7_4.png" alt="fig7_4" style="width:70%;"/>
-<img src="imgs/fig7_5.png" alt="fig7_5" style="width:70%;"/></li>
+<img src="imgs/fig7_4.png" alt="fig7_4" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig7_5.png" alt="fig7_5" style="width:70%;" loading="lazy"/></li>
 <li>The delta of a call at any given underlying price is the slope of the graph - the rate of change in the option&rsquo;s value with respect to movement in the underlying contract.
 
 <ul>
@@ -773,7 +811,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <li>The delta falls by the amount of the gamma when the underlying falls.</li>
 </ul>
 
-<p><img src="imgs/fig7_6.png" alt="fig7_6" style="width:70%;"/></p></li>
+<p><img src="imgs/fig7_6.png" alt="fig7_6" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Calls and puts with the same exercise price and time to expiration have the same gamma values (always positive).</p></li>
 
@@ -798,8 +836,8 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>As time passes, the time-value portion gradually disappears until, at expiration, the option is worth exactly its intrinsic value.</p>
 
-<p><img src="imgs/fig7_7.png" alt="fig7_7" style="width:70%;"/>
-<img src="imgs/fig7_8.png" alt="fig7_8" style="width:70%;"/></p></li>
+<p><img src="imgs/fig7_7.png" alt="fig7_7" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig7_8.png" alt="fig7_8" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Often expressed as negative number.</p></li>
 
@@ -851,7 +889,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>The implied volatility for a position is the volatility that must occur over the life of a position such that it breaks even.</p>
 
-<p><img src="imgs/fig7_15.png" alt="fig7_15" style="width:70%;"/></p></li>
+<p><img src="imgs/fig7_15.png" alt="fig7_15" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h1 id="8-dynamic-hedging">8 Dynamic Hedging</h1>
@@ -896,7 +934,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>Complete cashflow calculation:</p>
 
-<p><img src="imgs/fig8_1.png" alt="fig8_1" style="width:70%;"/></p></li>
+<p><img src="imgs/fig8_1.png" alt="fig8_1" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Loss on option&rsquo;s value, but profits are made through position adjustments.</p></li>
 </ul></li>
@@ -955,7 +993,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>In high volatility market, out-of-the-money call has a greater likelihood of going into the money, while an in-the-money call has a greater likelihood of going out of the money (so both delta move toward 50).</p>
 
-<p><img src="imgs/fig9_1.png" alt="fig9_1" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_1.png" alt="fig9_1" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Delta depends on volatility, which is an unknown factor. Using implied volatility to calculate delta is only possible approach.</p></li>
 </ul></li>
@@ -969,17 +1007,17 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>Less time reduces the likelihood of large price changes.</p>
 
-<p><img src="imgs/fig9_2.png" alt="fig9_2" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_2.png" alt="fig9_2" style="width:70%;" loading="lazy"/></p></li>
 </ul></li>
 
 <li><p>The effects of volatility and time on put deltas are similar, except the range is between -100 and 0.</p>
 
-<p><img src="imgs/fig9_3.png" alt="fig9_3" style="width:70%;"/>
-<img src="imgs/fig9_4.png" alt="fig9_4" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_3.png" alt="fig9_3" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig9_4.png" alt="fig9_4" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Look at the effect in another way, as time passes or volatility declines, delta values move very quickly toward either 0 for out-of-the-money calls or 100 for in-the-money options.</p>
 
-<p><img src="imgs/fig9_5.png" alt="fig9_5" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_5.png" alt="fig9_5" style="width:70%;" loading="lazy"/></p></li>
 </ul></li>
 
 <li><p>Names for these high-order sensitivities:</p>
@@ -993,8 +1031,8 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>Vanna and charm are at peaks (delta move more quickly toward/away from 50) at 20, 80 (for calls) and -80, -20 (for puts).</p>
 
-<p><img src="imgs/fig9_6.png" alt="fig9_6" style="width:70%;"/>
-<img src="imgs/fig9_7.png" alt="fig9_7" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_6.png" alt="fig9_6" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig9_7.png" alt="fig9_7" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="theta">Theta</h2>
@@ -1012,7 +1050,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <li>An at-the-money option at a higher underlying price has a greater theta value than an at-the-money option with lower underlying price.</li>
 </ul>
 
-<p><img src="imgs/fig9_8.png" alt="fig9_8" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_8.png" alt="fig9_8" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Theoretical value and theta of an option as time passes:</p>
 
@@ -1022,8 +1060,8 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <li>These characteristics apply to both calls and puts.</li>
 </ul>
 
-<p><img src="imgs/fig9_9.png" alt="fig9_9" style="width:70%;"/>
-<img src="imgs/fig9_10.png" alt="fig9_10" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_9.png" alt="fig9_9" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig9_10.png" alt="fig9_10" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Theta value as volatility changes:</p>
 
@@ -1038,7 +1076,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 </ul></li>
 </ul>
 
-<p><img src="imgs/fig9_11.png" alt="fig9_11" style="width:70%;"/></p>
+<p><img src="imgs/fig9_11.png" alt="fig9_11" style="width:70%;" loading="lazy"/></p>
 
 <ul>
 <li><p>At-the-money volatility is proportional to volatility, which is proportional to the square root of time.</p>
@@ -1062,7 +1100,7 @@ Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
 <li>Vanna, which is the sensitivity of delta to a change in volatility, can also refer to the sensitivity of the vega to a change in the underlying price.</li>
 </ul>
 
-<p><img src="imgs/fig9_12.png" alt="fig9_12" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_12.png" alt="fig9_12" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Theoretical value and vega as volatility changes:</p>
 
@@ -1077,8 +1115,8 @@ Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
 <li>The sensitivity of vega to a change in volatility is sometimes referred to as <strong><em>volga</em></strong> or <strong><em>vomma</em></strong>.</li>
 </ul>
 
-<p><img src="imgs/fig9_13.png" alt="fig9_13" style="width:70%;"/>
-<img src="imgs/fig9_14.png" alt="fig9_14" style="width:70%;"/></p></li>
+<p><img src="imgs/fig9_13.png" alt="fig9_13" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig9_14.png" alt="fig9_14" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Vega falls as time passes.</p>
 
@@ -1209,8 +1247,8 @@ Lambda = Delta x (S / TV)
 <li>Use a ratio straddle if calls and puts delta are not equal.</li>
 </ul>
 
-<p><img src="imgs/fig11_1.png" alt="fig11_1" style="width:70%;"/>
-<img src="imgs/fig11_2.png" alt="fig11_2" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_1.png" alt="fig11_1" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_2.png" alt="fig11_2" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="strangle">Strangle</h2>
@@ -1230,8 +1268,8 @@ Lambda = Delta x (S / TV)
 <li>Short strangle: -gamma/+theta/-vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_3.png" alt="fig11_3" style="width:70%;"/>
-<img src="imgs/fig11_4.png" alt="fig11_4" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_3.png" alt="fig11_3" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_4.png" alt="fig11_4" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="butterfly">Butterfly</h2>
@@ -1259,8 +1297,8 @@ Lambda = Delta x (S / TV)
 <li>If option is european style, both March 90/100/110 call butterfly and March 90/100/110 put butterfly trade at the same price. If not, there is a arbitrage opportunity.</li>
 </ul>
 
-<p><img src="imgs/fig11_5.png" alt="fig11_5" style="width:70%;"/>
-<img src="imgs/fig11_6.png" alt="fig11_6" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_5.png" alt="fig11_5" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_6.png" alt="fig11_6" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="condor">Condor</h2>
@@ -1280,8 +1318,8 @@ Lambda = Delta x (S / TV)
 <li>Short condor: +gamma/-theta/+vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_7.png" alt="fig11_7" style="width:70%;"/>
-<img src="imgs/fig11_8.png" alt="fig11_8" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_7.png" alt="fig11_7" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_8.png" alt="fig11_8" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="ratio-spread">Ratio Spread</h2>
@@ -1298,8 +1336,8 @@ Lambda = Delta x (S / TV)
 
 <li><p>Put ratio spread: more puts are purchased than sold, prefers downward movement in the underlying contract.</p>
 
-<p><img src="imgs/fig11_10.png" alt="fig11_10" style="width:70%;"/>
-<img src="imgs/fig11_11.png" alt="fig11_11" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_10.png" alt="fig11_10" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_11.png" alt="fig11_11" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Backspread: more options are purchased than sold.</p>
 
@@ -1313,8 +1351,8 @@ Lambda = Delta x (S / TV)
 <li>-gamma/+theta/-vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_12.png" alt="fig11_12" style="width:70%;"/>
-<img src="imgs/fig11_13.png" alt="fig11_13" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_12.png" alt="fig11_12" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_13.png" alt="fig11_13" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="calendar-spread">Calendar Spread</h2>
@@ -1330,10 +1368,10 @@ Lambda = Delta x (S / TV)
 
 <li><p>All options must be the same type and expire at the same time, with exercise prices most often chosen so that the entire position is delta neutral.</p>
 
-<p><img src="imgs/fig11_14.png" alt="fig11_14" style="width:70%;"/>
-<img src="imgs/fig11_15.png" alt="fig11_15" style="width:70%;"/>
-<img src="imgs/fig11_16.png" alt="fig11_16" style="width:70%;"/>
-<img src="imgs/fig11_17.png" alt="fig11_17" style="width:70%;"/></p></li>
+<p><img src="imgs/fig11_14.png" alt="fig11_14" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_15.png" alt="fig11_15" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_16.png" alt="fig11_16" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_17.png" alt="fig11_17" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="time-butterfly">Time Butterfly</h2>
@@ -1345,8 +1383,8 @@ Lambda = Delta x (S / TV)
 
 <h2 id="characteristics-summary">Characteristics Summary</h2>
 
-<p><img src="imgs/fig11_9.png" alt="fig11_9" style="width:70%;"/>
-<img src="imgs/fig11_18.png" alt="fig11_18" style="width:70%;"/></p>
+<p><img src="imgs/fig11_9.png" alt="fig11_9" style="width:70%;" loading="lazy"/>
+<img src="imgs/fig11_18.png" alt="fig11_18" style="width:70%;" loading="lazy"/></p>
 
 <h2 id="adjustments">Adjustments</h2>
 
@@ -1497,3 +1535,13 @@ Lambda = Delta x (S / TV)
 <li>The risk that implied volatility changes.</li>
 </ul></li>
 </ul>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>
