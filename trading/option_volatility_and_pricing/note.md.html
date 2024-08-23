@@ -9,16 +9,19 @@
 		grid-template-columns: 1fr 60em 1fr;
 		font-size: 120%;
 	}
-	.row [class*="col"] {
+	.row .top-center {
 	}
-	.row .col-right {
-	}
-	.row .col-center {
+	.row .mid-center {
+		padding-top: 2em;
 		padding-left: 2em;
 		padding-right: 2em;
 		border-left: 1px solid #F0F0F0;
 		border-right: 1px solid #F0F0F0;
+		border-bottom: 1px solid #F0F0F0;
   		height: 100%;
+		min-height: 50em;
+	}
+	.row .bottom-center {
 	}
 </style>
 </head>
@@ -26,17 +29,17 @@
 	<div class="row">
 		<div class="col-left">
 		</div>
-		<div class="col-center">
-			<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
-  <meta charset="utf-8">
-</head>
-<body>
-
-<h1 id="1-financial-contracts">1 Financial Contracts</h1>
+		<div class="top-center">
+			
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-left">
+		</div>
+		<div class="mid-center">
+			<h1 id="1-financial-contracts">1 Financial Contracts</h1>
 
 <ul>
 <li>Forward contract: the parties agree on the terms now, but the actual exchange of money for goods does not take place util some later date, the maturity or expiration date.</li>
@@ -92,10 +95,10 @@
 </ul>
 
 <h1 id="2-forward-pricing">2 Forward Pricing</h1>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>forward price = current cash price + cost of buying now - benefits of buying now
 </code></pre>
-
+</div>
 <p>Basis: the difference between the cash price and the forward price. Usually a negative number.</p>
 
 <table>
@@ -135,7 +138,7 @@
 </table>
 
 <h2 id="physical-commodities">Physical Commodities</h2>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>C = commodity price
 t = time to maturity of the forward contract
 r = interest rate
@@ -144,20 +147,20 @@ i = annual insurace costs per commodity unit
 
 forward price F = C x (1 + r x t) + (s x t) + (i x t)
 </code></pre>
-
+</div>
 <ul>
 <li><p>Contango (normal): long-term future contracts trade at a premium to short-term contracts.</p></li>
 
 <li><p>Backward (in backwardation): cash price is greater than a future price.</p></li>
 
 <li><p>Convenience yield: the premium to obtain the commodity right away. A sudden demand could surge the commodity price. Cash price can be inferred from future price using the forward price formula. If the cash price in the market is higher than the inferred cash price, the extra is the convenience yield.</p>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>C = (F - (s + i) x t) / (1 + r x t)
-</code></pre></li>
+</code></pre></div></li>
 </ul>
 
 <h2 id="stock">Stock</h2>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>S = stock price
 t = time to maturity of the forward contract
 r = interest rate over the life of the forward contract
@@ -168,9 +171,9 @@ r[i] = the applicable interest rate (forward rate) from each dividend payment to
 F = S + (S x r x t) - [d[1] x (1 + r[1] x t[1])] - ... - [d[n] x (1 + r[n] x t[n])]
     S x (1+ r x t) - SUM[d[i] x (1 + r[i] x t[i])]
 </code></pre>
-
+</div>
 <h2 id="bonds-and-notes">Bonds and Notes</h2>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>B = bond price
 t = time to maturity of the forward contract
 r = interest rate over the life of the forward contract
@@ -180,9 +183,9 @@ r[i] = applicable interest rate from each coupon payment to maturity
 
 F = B x (1 + r x t) - SUM[c[i] x (1 + r[i] x t[i])]
 </code></pre>
-
+</div>
 <h2 id="foreign-currencies">Foreign Currencies</h2>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>C[d] = domestic currency
 r[d] = domestic interest rate
 C[f] = foreign currency
@@ -193,7 +196,7 @@ S = C[d] / C[f] = spot exchange rate
 F = [C[d] x (1 + r[d] x t)] / [C[f] x (1 + r[f] x t)]
   = S x (1 + r[d] x t) / (1 + r[f] x t)
 </code></pre>
-
+</div>
 <h2 id="stock-and-futures-options">Stock and Futures Options</h2>
 
 <p>Two most common classes of exchange traded options. Value of the option depends on forward price for the stock or futures. <em>Forward price for a futures contract is the futures price</em>.</p>
@@ -524,17 +527,17 @@ F = [C[d] x (1 + r[d] x t)] / [C[f] x (1 + r[f] x t)]
 <li><p>Volatility is always expressed as an annualized number just like interest rate.</p></li>
 
 <li><p>Volatility if proportional to the square root of time:</p>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>volatility[t] = volatility[annual] x t ^ 0.5
-</code></pre></li>
+</code></pre></div></li>
 
 <li><p>If we consider only trading days, there are about 256 trading days per year:</p>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>volatility[daily] = volatility[annual] x (1/256) ^ 0.5
                   = volatility[annual] / 16
 volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
                   = volatility[annual] / 7.2
-</code></pre></li>
+</code></pre></div></li>
 </ul>
 
 <h2 id="volatility-and-observed-price-changes">Volatility and Observed Price Changes</h2>
@@ -1080,11 +1083,11 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <ul>
 <li><p>At-the-money volatility is proportional to volatility, which is proportional to the square root of time.</p>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>TV[t] = option's theoretical value at time t (in days to expiration)
 TV[t-1] = TV[t] x [(t-1) / t] ^ 0.5
 Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
-</code></pre></li>
+</code></pre></div></li>
 </ul></li>
 </ul>
 
@@ -1161,21 +1164,21 @@ Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
 
 <ul>
 <li><p>Lambda measures option&rsquo;s value change in percentage terms for a given percentage change in the underlying price. (Delta measures option&rsquo;s value change for a given point value change in the underlying price.)</p>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>S = underlying price
 TV = theoretical value
 Lambda = Delta x (S / TV)
-</code></pre></li>
+</code></pre></div></li>
 
 <li><p>Often referred to as option&rsquo;s <strong><em>leverage value</em></strong>.</p></li>
 </ul>
 
 <h2 id="summary">Summary</h2>
-
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>&lt;img src=&quot;imgs/fig9_25.png&quot; alt=&quot;fig9_25&quot; style=&quot;width:70%;&quot;/&gt;
 &lt;img src=&quot;imgs/fig9_26.png&quot; alt=&quot;fig9_26&quot; style=&quot;width:70%;&quot;/&gt;
 </code></pre>
-
+</div>
 <h1 id="10-introduction-to-spreading">10 Introduction to Spreading</h1>
 
 <ul>
@@ -1536,9 +1539,20 @@ Lambda = Delta x (S / TV)
 </ul></li>
 </ul>
 
-</body>
-</html>
-
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-left">
+		</div>
+		<div class="bottom-center">
+			
+	<div style="text-align: center;">
+		<span style="font-size: 80%;">Generated by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+	</div>
 		</div>
 		<div class="col-right">
 		</div>
