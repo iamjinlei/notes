@@ -21,30 +21,75 @@
 		padding-right: 2em;
 		border-left: 1px solid #F0F0F0;
 		border-right: 1px solid #F0F0F0;
-		border: 1px solid #FF0000;
   		height: 100%;
 		min-height: 50em;
 	}
 	.row .main-left {
-		border: 1px solid #FF0000;
 	}
 	.row .footer {
 		margin-top: 4em;
 	}
-</style>
-<style>
 	
-	.toc {
+	
+	
+.toc {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
 	float: right;
-	top: 5em;
+	top: 10em;
 	margin-right: 2em;
-	}
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
 	
 </style>
 </head>
 <body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+console.log(btn.innerHTML);
+console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+	</script>
 	<div class="row">
 		<div class="col-left">
 		</div>
@@ -58,14 +103,32 @@
 		<div class="col-left">
 		</div>
 		<div class="navi">
-			
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a></span>
 		</div>
 		<div class="col-right">
 		</div>
 	</div>
 	<div class="row">
 		<div class="main-left">
-			<div class="toc"><ul class="toc_ul_0"><li class="toc_li_0"><a href="#1-financial-contracts">1 Financial Contracts</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#buying-and-selling">Buying and Selling</a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#long-and-short">Long and Short</a></li></ul><li class="toc_li_1"><a href="#notional-value-or-nominal-value">Notional Value or Nominal Value</a></li><li class="toc_li_1"><a href="#settlement-procedures">Settlement Procedures</a></li></ul><li class="toc_li_0"><a href="#2-forward-pricing">2 Forward Pricing</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#physical-commodities">Physical Commodities</a></li><li class="toc_li_1"><a href="#stock">Stock</a></li><li class="toc_li_1"><a href="#bonds-and-notes">Bonds and Notes</a></li><li class="toc_li_1"><a href="#foreign-currencies">Foreign Currencies</a></li><li class="toc_li_1"><a href="#stock-and-futures-options">Stock and Futures Options</a></li><li class="toc_li_1"><a href="#dividends">Dividends</a></li><li class="toc_li_1"><a href="#short-sales">Short Sales</a></li></ul><li class="toc_li_0"><a href="#3-contract-specifications-and-option-terminology">3 Contract Specifications and Option Terminology</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#contract-specifications">Contract Specifications</a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#type">Type</a></li><li class="toc_li_2"><a href="#underlying">Underlying</a></li><li class="toc_li_2"><a href="#exercise-price-or-strike-price">Exercise Price or Strike Price</a></li><li class="toc_li_2"><a href="#exercise-and-assignment">Exercise and Assignment</a></li><li class="toc_li_2"><a href="#settlement">Settlement</a></li><li class="toc_li_2"><a href="#exercise-style">Exercise Style</a></li></ul><li class="toc_li_1"><a href="#option-price-components">Option Price Components</a></li><li class="toc_li_1"><a href="#option-margining">Option Margining</a></li></ul><li class="toc_li_0"><a href="#4-expiration-profit-and-loss">4 Expiration Profit and Loss</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#parity-graphs">Parity Graphs</a></li><li class="toc_li_1"><a href="#expiration-profit-and-loss">Expiration Profit and Loss</a></li></ul><li class="toc_li_0"><a href="#5-theoretical-pricing-models">5 Theoretical Pricing Models</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#the-importance-of-probability">The Importance of Probability</a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#expected-value-and-theoretical-value">Expected Value and Theoretical Value</a></li></ul><li class="toc_li_1"><a href="#a-simple-approach">A Simple Approach</a></li><li class="toc_li_1"><a href="#the-black-scholes-model">The Black-Scholes Model</a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#model-input-1-exercise-price">Model Input 1: Exercise Price</a></li><li class="toc_li_2"><a href="#model-input-2-time-to-expiration">Model Input 2: Time to Expiration</a></li><li class="toc_li_2"><a href="#model-input-3-underlying-price">Model Input 3: Underlying Price</a></li><li class="toc_li_2"><a href="#model-input-4-interest-rates">Model Input 4: Interest Rates</a></li><li class="toc_li_2"><a href="#model-input-5-volatility">Model Input 5: Volatility</a></li></ul></ul><li class="toc_li_0"><a href="#6-volatility">6 Volatility</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#random-walks-and-normal-distributions">Random Walks and Normal Distributions</a></li><li class="toc_li_1"><a href="#mean-and-standard-deviation">Mean and Standard Deviation</a></li><li class="toc_li_1"><a href="#scaling-volatility-for-time">Scaling Volatility for Time</a></li><li class="toc_li_1"><a href="#volatility-and-observed-price-changes">Volatility and Observed Price Changes</a></li><li class="toc_li_1"><a href="#lognormal-distributions">Lognormal Distributions</a></li><li class="toc_li_1"><a href="#interpreting-volatility-data">Interpreting Volatility Data</a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#realized-volatility">Realized Volatility</a></li><li class="toc_li_2"><a href="#implied-volatility">Implied Volatility</a></li></ul></ul><li class="toc_li_0"><a href="#7-risk-measurement-i">7 Risk Measurement I</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#"></a></li><ul class="toc_ul_2"><li class="toc_li_2"><a href="#rate-of-change">Rate of Change</a></li><li class="toc_li_2"><a href="#hedge-ratio">Hedge Ratio</a></li><li class="toc_li_2"><a href="#theoretical-or-equivalent-underlying-position">Theoretical or Equivalent Underlying Position</a></li><li class="toc_li_2"><a href="#probability">Probability</a></li></ul><li class="toc_li_1"><a href="#the-vega">The Vega</a></li><li class="toc_li_1"><a href="#the-rho">The Rho</a></li><li class="toc_li_1"><a href="#interpreting-the-risk-measures">Interpreting the Risk Measures</a></li></ul><li class="toc_li_0"><a href="#8-dynamic-hedging">8 Dynamic Hedging</a></li><li class="toc_li_0"><a href="#9-risk-measurement-ii">9 Risk Measurement II</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#delta">Delta</a></li><li class="toc_li_1"><a href="#theta">Theta</a></li><li class="toc_li_1"><a href="#vega">Vega</a></li><li class="toc_li_1"><a href="#gamma">Gamma</a></li><li class="toc_li_1"><a href="#summary">Summary</a></li></ul><li class="toc_li_0"><a href="#10-introduction-to-spreading">10 Introduction to Spreading</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#option-spreads">Option Spreads</a></li></ul><li class="toc_li_0"><a href="#11-volatility-spreads">11 Volatility Spreads</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#straddle">Straddle</a></li><li class="toc_li_1"><a href="#strangle">Strangle</a></li><li class="toc_li_1"><a href="#butterfly">Butterfly</a></li><li class="toc_li_1"><a href="#condor">Condor</a></li><li class="toc_li_1"><a href="#ratio-spread">Ratio Spread</a></li><li class="toc_li_1"><a href="#calendar-spread">Calendar Spread</a></li><li class="toc_li_1"><a href="#christmas-tree">Christmas Tree</a></li><li class="toc_li_1"><a href="#time-butterfly">Time Butterfly</a></li><li class="toc_li_1"><a href="#characteristics-summary">Characteristics Summary</a></li><li class="toc_li_1"><a href="#adjustments">Adjustments</a></li></ul><li class="toc_li_0"><a href="#12-bull-and-bear-spreads">12 Bull and Bear Spreads</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#naked-positions">Naked Positions</a></li><li class="toc_li_1"><a href="#bull-and-bear-ratio-spreads">Bull and Bear Ratio Spreads</a></li><li class="toc_li_1"><a href="#bull-and-bear-butterfly-and-calendar-spreads">Bull and Bear Butterfly and Calendar Spreads</a></li><li class="toc_li_1"><a href="#vertical-spreads">Vertical Spreads</a></li></ul><li class="toc_li_0"><a href="#13-risk-considerations">13 Risk Considerations</a></li><ul class="toc_ul_1"><li class="toc_li_1"><a href="#volatility-risk">Volatility Risk</a></li></ul></ul></div>
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#1-financial-contracts">1 Financial Contracts</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#buying-and-selling">Buying and Selling</a><button id="toc0.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#long-and-short">Long and Short</a></li></ul></div><li class="toc1_li"><a href="#notional-value-or-nominal-value">Notional Value or Nominal Value</a></li><li class="toc1_li"><a href="#settlement-procedures">Settlement Procedures</a></li></ul></div><li class="toc0_li"><a href="#2-forward-pricing">2 Forward Pricing</a><button id="toc1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc1_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#physical-commodities">Physical Commodities</a></li><li class="toc1_li"><a href="#stock">Stock</a></li><li class="toc1_li"><a href="#bonds-and-notes">Bonds and Notes</a></li><li class="toc1_li"><a href="#foreign-currencies">Foreign Currencies</a></li><li class="toc1_li"><a href="#stock-and-futures-options">Stock and Futures Options</a></li><li class="toc1_li"><a href="#dividends">Dividends</a></li><li class="toc1_li"><a href="#short-sales">Short Sales</a></li></ul></div><li class="toc0_li"><a href="#3-contract-specifications-and-option-terminology">3 Contract Specifications and Option Terminology</a><button id="toc2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc2_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#contract-specifications">Contract Specifications</a><button id="toc2.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc2.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#type">Type</a></li><li class="toc2_li"><a href="#underlying">Underlying</a></li><li class="toc2_li"><a href="#exercise-price-or-strike-price">Exercise Price or Strike Price</a></li><li class="toc2_li"><a href="#exercise-and-assignment">Exercise and Assignment</a></li><li class="toc2_li"><a href="#settlement">Settlement</a></li><li class="toc2_li"><a href="#exercise-style">Exercise Style</a></li></ul></div><li class="toc1_li"><a href="#option-price-components">Option Price Components</a></li><li class="toc1_li"><a href="#option-margining">Option Margining</a></li></ul></div><li class="toc0_li"><a href="#4-expiration-profit-and-loss">4 Expiration Profit and Loss</a><button id="toc3_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc3_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#parity-graphs">Parity Graphs</a></li><li class="toc1_li"><a href="#expiration-profit-and-loss">Expiration Profit and Loss</a></li></ul></div><li class="toc0_li"><a href="#5-theoretical-pricing-models">5 Theoretical Pricing Models</a><button id="toc4_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc4_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#the-importance-of-probability">The Importance of Probability</a><button id="toc4.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc4.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#expected-value-and-theoretical-value">Expected Value and Theoretical Value</a></li></ul></div><li class="toc1_li"><a href="#a-simple-approach">A Simple Approach</a></li><li class="toc1_li"><a href="#the-black-scholes-model">The Black-Scholes Model</a><button id="toc4.2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc4.2_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#model-input-1-exercise-price">Model Input 1: Exercise Price</a></li><li class="toc2_li"><a href="#model-input-2-time-to-expiration">Model Input 2: Time to Expiration</a></li><li class="toc2_li"><a href="#model-input-3-underlying-price">Model Input 3: Underlying Price</a></li><li class="toc2_li"><a href="#model-input-4-interest-rates">Model Input 4: Interest Rates</a></li><li class="toc2_li"><a href="#model-input-5-volatility">Model Input 5: Volatility</a></li></ul></div></ul></div><li class="toc0_li"><a href="#6-volatility">6 Volatility</a><button id="toc5_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc5_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#random-walks-and-normal-distributions">Random Walks and Normal Distributions</a></li><li class="toc1_li"><a href="#mean-and-standard-deviation">Mean and Standard Deviation</a></li><li class="toc1_li"><a href="#scaling-volatility-for-time">Scaling Volatility for Time</a></li><li class="toc1_li"><a href="#volatility-and-observed-price-changes">Volatility and Observed Price Changes</a></li><li class="toc1_li"><a href="#lognormal-distributions">Lognormal Distributions</a></li><li class="toc1_li"><a href="#interpreting-volatility-data">Interpreting Volatility Data</a><button id="toc5.5_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc5.5_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#realized-volatility">Realized Volatility</a></li><li class="toc2_li"><a href="#implied-volatility">Implied Volatility</a></li></ul></div></ul></div><li class="toc0_li"><a href="#7-risk-measurement-i">7 Risk Measurement I</a><button id="toc6_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc6_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#"></a><button id="toc6.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc6.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#rate-of-change">Rate of Change</a></li><li class="toc2_li"><a href="#hedge-ratio">Hedge Ratio</a></li><li class="toc2_li"><a href="#theoretical-or-equivalent-underlying-position">Theoretical or Equivalent Underlying Position</a></li><li class="toc2_li"><a href="#probability">Probability</a></li></ul></div><li class="toc1_li"><a href="#the-vega">The Vega</a></li><li class="toc1_li"><a href="#the-rho">The Rho</a></li><li class="toc1_li"><a href="#interpreting-the-risk-measures">Interpreting the Risk Measures</a></li></ul></div><li class="toc0_li"><a href="#8-dynamic-hedging">8 Dynamic Hedging</a></li><li class="toc0_li"><a href="#9-risk-measurement-ii">9 Risk Measurement II</a><button id="toc8_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc8_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#delta">Delta</a></li><li class="toc1_li"><a href="#theta">Theta</a></li><li class="toc1_li"><a href="#vega">Vega</a></li><li class="toc1_li"><a href="#gamma">Gamma</a></li><li class="toc1_li"><a href="#summary">Summary</a></li></ul></div><li class="toc0_li"><a href="#10-introduction-to-spreading">10 Introduction to Spreading</a><button id="toc9_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc9_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#option-spreads">Option Spreads</a></li></ul></div><li class="toc0_li"><a href="#11-volatility-spreads">11 Volatility Spreads</a><button id="toc10_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc10_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#straddle">Straddle</a></li><li class="toc1_li"><a href="#strangle">Strangle</a></li><li class="toc1_li"><a href="#butterfly">Butterfly</a></li><li class="toc1_li"><a href="#condor">Condor</a></li><li class="toc1_li"><a href="#ratio-spread">Ratio Spread</a></li><li class="toc1_li"><a href="#calendar-spread">Calendar Spread</a></li><li class="toc1_li"><a href="#christmas-tree">Christmas Tree</a></li><li class="toc1_li"><a href="#time-butterfly">Time Butterfly</a></li><li class="toc1_li"><a href="#characteristics-summary">Characteristics Summary</a></li><li class="toc1_li"><a href="#adjustments">Adjustments</a></li></ul></div><li class="toc0_li"><a href="#12-bull-and-bear-spreads">12 Bull and Bear Spreads</a><button id="toc11_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc11_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#naked-positions">Naked Positions</a></li><li class="toc1_li"><a href="#bull-and-bear-ratio-spreads">Bull and Bear Ratio Spreads</a></li><li class="toc1_li"><a href="#bull-and-bear-butterfly-and-calendar-spreads">Bull and Bear Butterfly and Calendar Spreads</a></li><li class="toc1_li"><a href="#vertical-spreads">Vertical Spreads</a></li></ul></div><li class="toc0_li"><a href="#13-risk-considerations">13 Risk Considerations</a><button id="toc12_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc12_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#volatility-risk">Volatility Risk</a></li></ul></div></ul></div>
 		</div>
 		<div class="main">
 			<h1 id="1-financial-contracts">1 Financial Contracts</h1>
