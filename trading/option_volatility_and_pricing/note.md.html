@@ -20,25 +20,30 @@
 		font-size: 60%;
 	}
 }
-	.row .header {
-		padding-bottom: 4em;
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
 	}
-	.row .navi {
-		padding-left: 2em;
-		padding-right: 2em;
+	.row.header.nonempty {
+		padding-bottom: 1em;
 	}
-	.row .main {
-		padding-left: 2em;
-		padding-right: 2em;
-		border-left: 1px solid #F0F0F0;
-		border-right: 1px solid #F0F0F0;
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
   		height: 100%;
 		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
 	}
-	.row .main-left {
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
 	}
-	.row .footer {
-		margin-top: 4em;
+	.row.footer {
 	}
 	
 	
@@ -101,26 +106,26 @@ console.log(id.replace("tgl", "div"));
 		
 		
 	</script>
-	<div class="row">
-		<div class="col-left">
-		</div>
-		<div class="header">
-			<div style="width:100%;height:2em;"></div>
-		</div>
-		<div class="col-right">
-		</div>
+
+	
+	<div class="row header empty">
 	</div>
-	<div class="row">
+	
+
+	
+	<div class="row nav nonempty">
 		<div class="col-left">
 		</div>
-		<div class="navi">
+		<div class="col-middle">
 			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a></span>
 		</div>
 		<div class="col-right">
 		</div>
 	</div>
-	<div class="row">
-		<div class="main-left">
+	
+
+	<div class="row main">
+		<div class="col-left">
 			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#1-financial-contracts">1 Financial Contracts</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#buying-and-selling">Buying and Selling</a><button id="toc0.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc0.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#long-and-short">Long and Short</a></li></ul></div><li class="toc1_li"><a href="#notional-value-or-nominal-value">Notional Value or Nominal Value</a></li><li class="toc1_li"><a href="#settlement-procedures">Settlement Procedures</a></li></ul></div><li class="toc0_li"><a href="#2-forward-pricing">2 Forward Pricing</a><button id="toc1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
@@ -141,8 +146,17 @@ console.log(id.replace("tgl", "div"));
 				<div id="toc11_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#naked-positions">Naked Positions</a></li><li class="toc1_li"><a href="#bull-and-bear-ratio-spreads">Bull and Bear Ratio Spreads</a></li><li class="toc1_li"><a href="#bull-and-bear-butterfly-and-calendar-spreads">Bull and Bear Butterfly and Calendar Spreads</a></li><li class="toc1_li"><a href="#vertical-spreads">Vertical Spreads</a></li></ul></div><li class="toc0_li"><a href="#13-risk-considerations">13 Risk Considerations</a><button id="toc12_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc12_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#volatility-risk">Volatility Risk</a></li></ul></div></ul></div>
 		</div>
-		<div class="main">
-			<h1 id="1-financial-contracts">1 Financial Contracts</h1>
+		<div class="col-middle">
+			<p>
+<div style="width:100%;margin-bottom:100px;border-bottom: 2px solid #A9A9A9;display:grid;grid-template-columns: 1fr 2fr;">
+	<span><a href="https://www.amazon.com/Option-Volatility-Pricing-Strategies-Techniques/dp/0071818774"><img src="imgs/cover.jpg" style="width:100%"></a></span>
+	<span style="padding-left:40px;">
+		<div style="font-size:2em;font-weight: bold;">Option Volatility and Pricing (2nd Edition)</div>
+		<div style="font-size:1.2em;margin-top:5px;">作者: Sheldon Natenberg</div>
+	</span>
+</div></p>
+
+<h1 id="1-financial-contracts">1 Financial Contracts</h1>
 
 <ul>
 <li>Forward contract: the parties agree on the terms now, but the actual exchange of money for goods does not take place util some later date, the maturity or expiration date.</li>
@@ -653,22 +667,27 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <h2 id="lognormal-distributions">Lognormal Distributions</h2>
 
 <ul>
-<li>As interest is paid more frequently, the total yield on the investment increases.
+<li><p>As interest is paid more frequently, the total yield on the investment increases.
 | Rate of Payment | Total Yield |
 |-|-|
 | 12% once a year | 12.00% |
 | 6% twice a year | 12.36% |
-| 3% every three months | 12.55% |</li>
-<li>In the case of a negative interest rate, as losses are compounded more frequently, the smaller the total loss.
+| 3% every three months | 12.55% |</p></li>
+
+<li><p>In the case of a negative interest rate, as losses are compounded more frequently, the smaller the total loss.
 | Rate of Payment | Total Yield |
 |-|-|
 | -12% once a year | -12.00% |
 | -6% twice a year | -11.64% |
-| -3% every three months | -11.47% |</li>
-<li>Volatility can also be compounded at different intervals. The Black-Scholes model is a continuous-time model. The model assumes that volatility is compounded continuously, just as if the price changes in the underlying contract, are taking place continuously but at an annual rate corresponding to the volatility associated with the contract.</li>
-<li>When the percent price changes are <strong><em>normally distributed</em></strong>, the continuous compounding of these price changes will result in a <strong><em>lognormal distribution</em></strong> of the prices at expiration.
-<img src="imgs/fig6_7.png" alt="fig6_7" style="width:70%;" loading="lazy"/></li>
-<li>Continuous rates of return can be calculated using exponential function: e^x</li>
+| -3% every three months | -11.47% |</p></li>
+
+<li><p>Volatility can also be compounded at different intervals. The Black-Scholes model is a continuous-time model. The model assumes that volatility is compounded continuously, just as if the price changes in the underlying contract, are taking place continuously but at an annual rate corresponding to the volatility associated with the contract.</p></li>
+
+<li><p>When the percent price changes are <strong><em>normally distributed</em></strong>, the continuous compounding of these price changes will result in a <strong><em>lognormal distribution</em></strong> of the prices at expiration.</p>
+
+<p><img src="imgs/fig6_7.png" alt="fig6_7" style="width:70%;" loading="lazy"/></p></li>
+
+<li><p>Continuous rates of return can be calculated using exponential function: e^x</p></li>
 </ul>
 
 <h2 id="interpreting-volatility-data">Interpreting Volatility Data</h2>
@@ -863,16 +882,21 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <h3 id="rate-of-change">Rate of Change</h3>
 
 <ul>
-<li>At expiration, an option is worth exactly its intrinsic value.</li>
-<li>Prior to expiration, the theoretical value of an option is a curve that will approach intrinsic value as the option goes very deeply into the money or very far out of the money.
-<img src="imgs/fig7_4.png" alt="fig7_4" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig7_5.png" alt="fig7_5" style="width:70%;" loading="lazy"/></li>
-<li>The delta of a call at any given underlying price is the slope of the graph - the rate of change in the option&rsquo;s value with respect to movement in the underlying contract.
+<li><p>At expiration, an option is worth exactly its intrinsic value.</p></li>
+
+<li><p>Prior to expiration, the theoretical value of an option is a curve that will approach intrinsic value as the option goes very deeply into the money or very far out of the money.</p>
+
+<p><img src="imgs/fig7_4.png" alt="fig7_4" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig7_5.png" alt="fig7_5" style="width:70%;" loading="lazy"/></p></li>
+
+<li><p>The delta of a call at any given underlying price is the slope of the graph - the rate of change in the option&rsquo;s value with respect to movement in the underlying contract.</p>
 
 <ul>
 <li>A convention is to express delta values as a whole number by drop the decimal point (e.g. slope 1.00 equals delta 100).</li>
 </ul></li>
-<li>Assuming all other market conditions remain unchanged:
+
+<li><p>Assuming all other market conditions remain unchanged:</p>
 
 <ul>
 <li>A call option can never gain or lose value more quickly than the underlying contract, nor can it move in the opposite direction of the underlying market. The delta is in range (0, 100).</li>
@@ -942,8 +966,9 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>As time passes, the time-value portion gradually disappears until, at expiration, the option is worth exactly its intrinsic value.</p>
 
-<p><img src="imgs/fig7_7.png" alt="fig7_7" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig7_8.png" alt="fig7_8" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig7_7.png" alt="fig7_7" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig7_8.png" alt="fig7_8" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Often expressed as negative number.</p></li>
 
@@ -1118,8 +1143,9 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>The effects of volatility and time on put deltas are similar, except the range is between -100 and 0.</p>
 
-<p><img src="imgs/fig9_3.png" alt="fig9_3" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig9_4.png" alt="fig9_4" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig9_3.png" alt="fig9_3" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig9_4.png" alt="fig9_4" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Look at the effect in another way, as time passes or volatility declines, delta values move very quickly toward either 0 for out-of-the-money calls or 100 for in-the-money options.</p>
 
@@ -1137,8 +1163,9 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <li><p>Vanna and charm are at peaks (delta move more quickly toward/away from 50) at 20, 80 (for calls) and -80, -20 (for puts).</p>
 
-<p><img src="imgs/fig9_6.png" alt="fig9_6" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig9_7.png" alt="fig9_7" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig9_6.png" alt="fig9_6" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig9_7.png" alt="fig9_7" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="theta">Theta</h2>
@@ -1166,8 +1193,9 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <li>These characteristics apply to both calls and puts.</li>
 </ul>
 
-<p><img src="imgs/fig9_9.png" alt="fig9_9" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig9_10.png" alt="fig9_10" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig9_9.png" alt="fig9_9" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig9_10.png" alt="fig9_10" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Theta value as volatility changes:</p>
 
@@ -1221,8 +1249,9 @@ Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
 <li>The sensitivity of vega to a change in volatility is sometimes referred to as <strong><em>volga</em></strong> or <strong><em>vomma</em></strong>.</li>
 </ul>
 
-<p><img src="imgs/fig9_13.png" alt="fig9_13" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig9_14.png" alt="fig9_14" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig9_13.png" alt="fig9_13" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig9_14.png" alt="fig9_14" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Vega falls as time passes.</p>
 
@@ -1279,6 +1308,7 @@ Lambda = Delta x (S / TV)
 <h2 id="summary">Summary</h2>
 <div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
 <pre><code>&lt;img src=&quot;imgs/fig9_25.png&quot; alt=&quot;fig9_25&quot; style=&quot;width:70%;&quot;/&gt;
+
 &lt;img src=&quot;imgs/fig9_26.png&quot; alt=&quot;fig9_26&quot; style=&quot;width:70%;&quot;/&gt;
 </code></pre>
 </div>
@@ -1353,8 +1383,9 @@ Lambda = Delta x (S / TV)
 <li>Use a ratio straddle if calls and puts delta are not equal.</li>
 </ul>
 
-<p><img src="imgs/fig11_1.png" alt="fig11_1" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_2.png" alt="fig11_2" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_1.png" alt="fig11_1" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_2.png" alt="fig11_2" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="strangle">Strangle</h2>
@@ -1374,8 +1405,9 @@ Lambda = Delta x (S / TV)
 <li>Short strangle: -gamma/+theta/-vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_3.png" alt="fig11_3" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_4.png" alt="fig11_4" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_3.png" alt="fig11_3" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_4.png" alt="fig11_4" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="butterfly">Butterfly</h2>
@@ -1403,8 +1435,9 @@ Lambda = Delta x (S / TV)
 <li>If option is european style, both March 90/100/110 call butterfly and March 90/100/110 put butterfly trade at the same price. If not, there is a arbitrage opportunity.</li>
 </ul>
 
-<p><img src="imgs/fig11_5.png" alt="fig11_5" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_6.png" alt="fig11_6" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_5.png" alt="fig11_5" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_6.png" alt="fig11_6" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="condor">Condor</h2>
@@ -1424,8 +1457,9 @@ Lambda = Delta x (S / TV)
 <li>Short condor: +gamma/-theta/+vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_7.png" alt="fig11_7" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_8.png" alt="fig11_8" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_7.png" alt="fig11_7" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_8.png" alt="fig11_8" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="ratio-spread">Ratio Spread</h2>
@@ -1442,8 +1476,9 @@ Lambda = Delta x (S / TV)
 
 <li><p>Put ratio spread: more puts are purchased than sold, prefers downward movement in the underlying contract.</p>
 
-<p><img src="imgs/fig11_10.png" alt="fig11_10" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_11.png" alt="fig11_11" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_10.png" alt="fig11_10" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_11.png" alt="fig11_11" style="width:70%;" loading="lazy"/></p></li>
 
 <li><p>Backspread: more options are purchased than sold.</p>
 
@@ -1457,8 +1492,9 @@ Lambda = Delta x (S / TV)
 <li>-gamma/+theta/-vega.</li>
 </ul>
 
-<p><img src="imgs/fig11_12.png" alt="fig11_12" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_13.png" alt="fig11_13" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_12.png" alt="fig11_12" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_13.png" alt="fig11_13" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="calendar-spread">Calendar Spread</h2>
@@ -1474,10 +1510,13 @@ Lambda = Delta x (S / TV)
 
 <li><p>All options must be the same type and expire at the same time, with exercise prices most often chosen so that the entire position is delta neutral.</p>
 
-<p><img src="imgs/fig11_14.png" alt="fig11_14" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_15.png" alt="fig11_15" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_16.png" alt="fig11_16" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_17.png" alt="fig11_17" style="width:70%;" loading="lazy"/></p></li>
+<p><img src="imgs/fig11_14.png" alt="fig11_14" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_15.png" alt="fig11_15" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_16.png" alt="fig11_16" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_17.png" alt="fig11_17" style="width:70%;" loading="lazy"/></p></li>
 </ul>
 
 <h2 id="time-butterfly">Time Butterfly</h2>
@@ -1489,8 +1528,9 @@ Lambda = Delta x (S / TV)
 
 <h2 id="characteristics-summary">Characteristics Summary</h2>
 
-<p><img src="imgs/fig11_9.png" alt="fig11_9" style="width:70%;" loading="lazy"/>
-<img src="imgs/fig11_18.png" alt="fig11_18" style="width:70%;" loading="lazy"/></p>
+<p><img src="imgs/fig11_9.png" alt="fig11_9" style="width:70%;" loading="lazy"/></p>
+
+<p><img src="imgs/fig11_18.png" alt="fig11_18" style="width:70%;" loading="lazy"/></p>
 
 <h2 id="adjustments">Adjustments</h2>
 
@@ -1643,16 +1683,17 @@ Lambda = Delta x (S / TV)
 </ul>
 
 		</div>
-		<div class="main-right">
+		<div class="col-right">
 		</div>
 	</div>
-	<div class="row">
+
+	<div class="row footer">
 		<div class="col-left">
 		</div>
-		<div class="footer">
+		<div class="col-middle">
 			
 	<div style="max-width:fit-content;margin-inline:auto;">
-		<span style="font-size: 80%;">Generated from markdown by
+		<span style="font-size: 0.8em;">Generated from markdown by
 		<a href="https://github.com/iamjinlei/proteus">proteus</a>
 		</span>
 		</div>

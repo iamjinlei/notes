@@ -20,25 +20,30 @@
 		font-size: 60%;
 	}
 }
-	.row .header {
-		padding-bottom: 4em;
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
 	}
-	.row .navi {
-		padding-left: 2em;
-		padding-right: 2em;
+	.row.header.nonempty {
+		padding-bottom: 1em;
 	}
-	.row .main {
-		padding-left: 2em;
-		padding-right: 2em;
-		border-left: 1px solid #F0F0F0;
-		border-right: 1px solid #F0F0F0;
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
   		height: 100%;
 		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
 	}
-	.row .main-left {
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
 	}
-	.row .footer {
-		margin-top: 4em;
+	.row.footer {
 	}
 	
 	
@@ -101,26 +106,26 @@ console.log(id.replace("tgl", "div"));
 		
 		
 	</script>
-	<div class="row">
-		<div class="col-left">
-		</div>
-		<div class="header">
-			<div style="width:100%;height:2em;"></div>
-		</div>
-		<div class="col-right">
-		</div>
+
+	
+	<div class="row header empty">
 	</div>
-	<div class="row">
+	
+
+	
+	<div class="row nav nonempty">
 		<div class="col-left">
 		</div>
-		<div class="navi">
+		<div class="col-middle">
 			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a></span>
 		</div>
 		<div class="col-right">
 		</div>
 	</div>
-	<div class="row">
-		<div class="main-left">
+	
+
+	<div class="row main">
+		<div class="col-left">
 			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#1-拓跋鲜卑">1 拓跋鲜卑</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#南迁时代">南迁时代</a></li><li class="toc1_li"><a href="#拓跋力微">拓跋力微</a></li><li class="toc1_li"><a href="#鲜卑王子">鲜卑王子</a></li></ul></div><li class="toc0_li"><a href="#2-代国风云">2 代国风云</a><button id="toc1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc1_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#雄风重振">雄风重振</a></li><li class="toc1_li"><a href="#封代立国">封代立国</a></li><li class="toc1_li"><a href="#国生内乱">国生内乱</a></li><li class="toc1_li"><a href="#铁弗大患">铁弗大患</a></li><li class="toc1_li"><a href="#风云突变">风云突变</a></li></ul></div><li class="toc0_li"><a href="#3-魏巍大国">3 魏巍大国</a><button id="toc2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
@@ -130,13 +135,13 @@ console.log(id.replace("tgl", "div"));
 				<div id="toc5_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#致命弱点">致命弱点</a></li><li class="toc1_li"><a href="#祸临宗室">祸临宗室</a></li><li class="toc1_li"><a href="#钟离之战">钟离之战</a></li><li class="toc1_li"><a href="#后妃当国">后妃当国</a></li><li class="toc1_li"><a href="#惊天之乱">惊天之乱</a></li></ul></div><li class="toc0_li"><a href="#7-天下布武">7 天下布武</a><button id="toc6_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
 				<div id="toc6_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#河阴之变">河阴之变</a></li><li class="toc1_li"><a href="#权臣当道-一">权臣当道（一）</a></li><li class="toc1_li"><a href="#权臣当道-二">权臣当道（二）</a></li></ul></div></ul></div>
 		</div>
-		<div class="main">
+		<div class="col-middle">
 			<p>
-<div style="width:100%;margin-top:50px;margin-bottom:100px;border-bottom: 2px solid #A9A9A9;display:grid;grid-template-columns: 1fr 2fr;">
+<div style="width:100%;margin-bottom:100px;border-bottom: 2px solid #A9A9A9;display:grid;grid-template-columns: 1fr 2fr;">
 	<span><a href="https://book.douban.com/subject/36271782/"><img src="imgs/cover.jpg" style="width:100%"></a></span>
 	<span style="padding-left:40px;">
-		<div style="font-size:3em;font-weight: bold;">神奇的北魏</div>
-		<div style="font-size:1.4em;margin-top:5px;">作者: 张小泱</div>
+		<div style="font-size:2em;font-weight: bold;">神奇的北魏</div>
+		<div style="font-size:1.2em;margin-top:5px;">作者: 张小泱</div>
 	</span>
 </div></p>
 
@@ -1561,16 +1566,17 @@ console.log(id.replace("tgl", "div"));
 </ul>
 
 		</div>
-		<div class="main-right">
+		<div class="col-right">
 		</div>
 	</div>
-	<div class="row">
+
+	<div class="row footer">
 		<div class="col-left">
 		</div>
-		<div class="footer">
+		<div class="col-middle">
 			
 	<div style="max-width:fit-content;margin-inline:auto;">
-		<span style="font-size: 80%;">Generated from markdown by
+		<span style="font-size: 0.8em;">Generated from markdown by
 		<a href="https://github.com/iamjinlei/proteus">proteus</a>
 		</span>
 		</div>
