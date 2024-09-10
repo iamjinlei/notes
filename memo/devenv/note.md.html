@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/memo/devenv/note.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#tmux">TMux</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#installation">Installation</a></li></ul></div><li class="toc0_li"><a href="#vim">Vim</a></li><li class="toc0_li"><a href="#ssh">.ssh</a></li></ul></div>
+		</div>
+		<div class="col-middle">
+			<h1 id="tmux">TMux</h1>
+
+<h2 id="installation">Installation</h2>
+
+<ul>
+<li><p><a href="https://github.com/tmux/tmux/wiki/Installing">TMux</a></p></li>
+
+<li><p>Setup all-in-one <a href="https://github.com/gpakosz/.tmux">config</a></p>
+
+<p><img style="width:100%;" loading="lazy" src="https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif" alt="powerline_demo" /></p></li>
+
+<li><p>Change separator setting in .tmux.conf.local to use arrow</p>
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<pre><code># status left/right sections separators
+#tmux_conf_theme_left_separator_main=&quot;&quot;
+#tmux_conf_theme_left_separator_sub=&quot;|&quot;
+#tmux_conf_theme_right_separator_main=&quot;&quot;
+#tmux_conf_theme_right_separator_sub=&quot;|&quot;
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+</code></pre></div></li>
+
+<li><p>Add custom key bindings in <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>user customizations</code></span> section in .tmux.conf.local</p>
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<pre><code>bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'V' send -X select-line
+bind-key -T copy-mode-vi 'r' send -X rectangle-toggle
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel &quot;reattach-to-user-namespace pbcopy&quot;
+bind | split-window -h
+bind - split-window -v
+bind p previous-window # select previous window
+bind n next-window     # select next window
+unbind '&quot;'
+unbind %
+</code></pre></div></li>
+
+<li><p>Install <a href="https://github.com/ryanoasis/nerd-fonts">nerd-fonts</a> if symbols are not showing properly</p></li>
+</ul>
+
+<h2 id="use-caps-lock-key-to-send-tmux-prefix">Use <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Caps Lock</code></span> key to send TMux prefix</h2>
+
+<ul>
+<li><p>Go to <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>System Settings</code></span> -&gt; <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Keyboard</code></span> -&gt; <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Keyboard Shortcuts</code></span></p></li>
+
+<li><p>In <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Modifier Keys</code></span> tab, set <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Caps Lock</code></span> Key to <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>No Action</code></span></p></li>
+
+<li><p>Remap <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Caps Lock</code></span> key to function key <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>F20</code></span> (captured as hex code 0x10) using <a href="https://karabiner-elements.pqrs.org/">Karabiner</a></p>
+
+<p><img style="width:100%;" loading="lazy" src="imgs/karabiner.png" alt="karabiner.png" /></p></li>
+
+<li><p>Open iTerm2 <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Setting</code></span> -&gt; <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Keys</code></span>, in the <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Key Bindings</code></span> tab, add a mapping from <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Hex Code 0x10</code></span> to <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>Send Hex Codes: 0x02</code></span></p>
+
+<p><img style="width:100%;" loading="lazy" src="imgs/iterm2_keybindings.png" alt="iterm2_keybindins.png" /></p></li>
+</ul>
+
+<h1 id="vim">Vim</h1>
+
+<ul>
+<li><p>Install runtime path manager <a href="https://github.com/tpope/vim-pathogen">Pathogen</a></p></li>
+
+<li><p>Install <a href="https://github.com/tpope/vim-sensible">vim-sensible</a></p></li>
+
+<li><p>Install <a href="https://github.com/altercation/vim-colors-solarized">vim-colors-solarized</a></p></li>
+
+<li><p>Install <a href="https://github.com/fatih/vim-go">vim-go</a></p></li>
+
+<li><p>Update <span style="padding-left:0.3em;padding-right:0.3em;background-color:#F0F0F0;"><code>.vimrc</code></span></p></li>
+</ul>
+<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<pre><code>execute pathogen#infect()
+
+&quot; last position
+if has(&quot;autocmd&quot;)
+    au BufReadPost * if line(&quot;'\&quot;&quot;) &gt; 0 &amp;&amp; line(&quot;'\&quot;&quot;) &lt;= line(&quot;$&quot;) | exe &quot;normal! g`\&quot;&quot; | endif
+endif
+
+set re=0
+&quot; solarized color
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+autocmd BufWritePre *.* :%s/\s\+$//e
+
+&quot;python
+&quot;let g:python3_host_prog=&quot;/usr/local/bin/python3&quot;
+&quot;let g:autoformat_verbosemode=1
+&quot;au BufWrite *.py :Autoformat
+
+&quot;golang
+autocmd FileType go noremap tl :GoDef&lt;CR&gt;
+autocmd FileType go noremap th &lt;C-o&gt;
+autocmd FileType go noremap tk :GoDoc&lt;CR&gt;
+autocmd FileType go noremap &lt;leader&gt;b :GoBuild&lt;CR&gt;
+autocmd FileType go noremap &lt;leader&gt;r :GoRun&lt;CR&gt;
+autocmd FileType go noremap &lt;C-k&gt;&lt;C-k&gt; &lt;C-x&gt;&lt;C-p&gt;
+
+let g:go_gopls_enabled = 1
+let g:go_gopls_options = ['-remote=auto']
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
+&quot;let g:go_def_mode='guru'
+&quot;let g:go_gocode_propose_source=0
+let g:go_code_completion_enabled = 1
+
+let g:go_metalinter_enabled = []
+
+&quot;let g:go_metalinter_command = 'golangci-lint'
+&quot;let g:go_metalinter_command = 'golint'
+let g:go_metalinter_autosave = 1
+&quot;let g:go_metalinter_autosave_enabled = ['vet','revive','errcheck','staticcheck','unused','varcheck']
+let g:go_metalinter_autosave_enabled = []
+let g:go_rename_command = 'gopls'
+
+filetype plugin indent on
+set hlsearch
+set nu
+set cursorline
+set paste
+&quot; show existing tab with 4 spaces width
+set tabstop=4
+&quot; &quot; when indenting with '&gt;', use 4 spaces width
+set shiftwidth=4
+&quot; &quot; On pressing tab, insert 4 spaces
+set expandtab
+
+set viminfo='20,&lt;1000
+</code></pre>
+</div>
+<h1 id="ssh">.ssh</h1>
+
+<p>It is ok to copy over .ssh folders with existing private and public keys</p>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>
