@@ -51,38 +51,6 @@
 	
 	
 	
-.toc {
-	position: -webkit-sticky; /* Safari */
-	position: sticky;
-	float: right;
-	top: 10em;
-	margin-right: 2em;
-}
-.toc a {
-	text-decoration: none;
-	color: #000000;
-}
-.toc0_ul {
-	list-style-type: none;
-	font-size: 1.2em;
-}
-.toc1_ul {
-	list-style-type: none;
-	font-size: 0.9em;
-}
-.toc2_ul {
-	list-style-type: none;
-	font-size: 0.9em;
-}
-.toc_tgl {
-  	background-color: transparent;
-	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
-	padding-left: 0.8em;
-	font-size: 0.8em;
-	border: none;
-	cursor: pointer;
-}
-
 	
 	
 	
@@ -93,20 +61,6 @@
 		
 		
 		
-function toc_tgl(id) {
-	var btn = document.getElementById(id);
-	var c = document.getElementById(id.replace("tgl", "div"));
-	console.log(btn.innerHTML);
-	console.log(id.replace("tgl", "div"));
-	if (btn.innerHTML === "[+]") {
-	   btn.innerHTML = "[-]";
-	   c.style.display = "inline";
-	} else {
-	   btn.innerHTML = "[+]";
-	   c.style.display = "none";
-	}
-}
-
 		
 		
 		
@@ -131,8 +85,7 @@ function toc_tgl(id) {
 
 	<div class="row main">
 		<div class="col-left">
-			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#tmux">TMux</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#installation">Installation</a></li></ul></div><li class="toc0_li"><a href="#vim">Vim</a></li><li class="toc0_li"><a href="#ssh">.ssh</a></li></ul></div>
+			
 		</div>
 		<div class="col-middle">
 			<h1 id="tmux">TMux</h1>

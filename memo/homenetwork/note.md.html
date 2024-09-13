@@ -3,7 +3,7 @@
 <html>
 <head>
 
-<link rel="canonical" href="https://unnote.xyz/index.html"/>
+<link rel="canonical" href="https://unnote.xyz/memo/homenetwork/note.md.html"/>
 
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
@@ -67,19 +67,19 @@
 	</script>
 
 	
-	<div class="row header nonempty">
-		<div class="col-left">
-		</div>
-		<div class="col-middle">
-			<img src="assets/banner_1280.jpg" style="width:100%;height:10em;object-fit:cover;">
-		</div>
-		<div class="col-right">
-		</div>
+	<div class="row header empty">
 	</div>
 	
 
 	
-	<div class="row nav empty">
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a></span>
+		</div>
+		<div class="col-right">
+		</div>
 	</div>
 	
 
@@ -88,35 +88,22 @@
 			
 		</div>
 		<div class="col-middle">
-			<h1 id="notes">Notes</h1>
+			<h1 id="home-network-setup">Home Network Setup</h1>
 
-<h2 id="history">History</h2>
+<p><img style="width:100%;" loading="lazy" src="imgs/default_bypass.png" alt="default_bypass.png" /></p>
 
-<p><a href="history/神奇的北魏/note.md.html">神奇的北魏</a></p>
+<p>The chart shows a setup where the traffic goes to the main router by default.
+IP, subnet mask and DNS are assigned by the main router through DHCP.
+No config is required on the client end.</p>
 
-<h2 id="culture">Culture</h2>
+<p>The main router dials and connects to the Internet.
+This is the most common and simple home network setup case.</p>
 
-<p><a href="culture/佛教知识/note.md.html">佛教知识</a></p>
+<p>If, on a special occasion, you want to direct traffic to go through the secondary router before accessing the Internet.
+A manual TCP/IP and DNS setup can be used to override the default DHCP setting.
+As shown in the chart, client2 always uses the auxiliary router as its gateway.</p>
 
-<h2 id="trading">Trading</h2>
-
-<p><a href="trading/option_volatility_and_pricing/note.md.html">Option Volatility and Pricing</a></p>
-
-<h2 id="memo">Memo</h2>
-
-<p><a href="memo//devenv/note.md.html">Dev Environment Setup</a></p>
-
-<p><a href="memo//homenetwork/note.md.html">Home Network Environment Setup</a></p>
-
-<h3 id="note-color-systems">Note Color Systems</h3>
-
-<ul>
-<li><span id="e099aa23b8a608b9897c" style="background-color:#FF7792;">人名 a</span>红色</li>
-<li><span  style="background-color:#AEFF77;">待定 b</span>颜色</li>
-<li><span  style="background-color:#77C9FF;">待定 c</span>颜色</li>
-<li><span  style="background-color:#FFFF77;">待定 d</span>颜色</li>
-<li><span  style="background-color:#FFAE77;">待定 e</span>颜色</li>
-</ul>
+<p>This is useful when you want the secondary router to handle special processing for specific devices but provide default and fast Internet access for the rest of the devices.</p>
 
 		</div>
 		<div class="col-right">
