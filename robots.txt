@@ -1,3 +1,2 @@
-Sitemap: https://unnote.xyz/sitemap.xml
 User-agent: *
 Allow: /
