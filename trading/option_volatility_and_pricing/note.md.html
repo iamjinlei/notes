@@ -85,6 +85,26 @@
 
 	
 	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
 	
 </style>
 </head>
@@ -152,7 +172,16 @@ function toc_tgl(id) {
 				<div id="toc12_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#volatility-risk">Volatility Risk</a></li></ul></div></ul></div>
 		</div>
 		<div class="col-middle">
-			<p>
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<p>
 <div style="width:100%;margin-bottom:100px;border-bottom: 2px solid #A9A9A9;display:grid;grid-template-columns: 1fr 2fr;">
 	<span><a href="https://www.amazon.com/Option-Volatility-Pricing-Strategies-Techniques/dp/0071818774"><img src="imgs/cover.jpg" style="width:100%"></a></span>
 	<span style="padding-left:40px;">
@@ -230,7 +259,7 @@ function toc_tgl(id) {
 </ul>
 
 <h1 id="2-forward-pricing">2 Forward Pricing</h1>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>forward price = current cash price + cost of buying now - benefits of buying now
 </code></pre>
 </div>
@@ -239,41 +268,41 @@ function toc_tgl(id) {
 <table>
 <thead>
 <tr>
-<th>Instrument</th>
-<th>Cost of Buying Now</th>
-<th>Benefits of Buying Now</th>
+<th align="left">Instrument</th>
+<th align="left">Cost of Buying Now</th>
+<th align="left">Benefits of Buying Now</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>Physical commodity</td>
-<td>Interest on cash price, storage costs, insurace costs</td>
-<td>Convenience yield</td>
+<td align="left">Physical commodity</td>
+<td align="left">Interest on cash price, storage costs, insurace costs</td>
+<td align="left">Convenience yield</td>
 </tr>
 
 <tr>
-<td>Stock</td>
-<td>Interest on stock price</td>
-<td>Dividends, interests on dividends</td>
+<td align="left">Stock</td>
+<td align="left">Interest on stock price</td>
+<td align="left">Dividends, interests on dividends</td>
 </tr>
 
 <tr>
-<td>Bonds and notes</td>
-<td>Interest on bond or note price</td>
-<td>Coupon payments, interest on coupon payments</td>
+<td align="left">Bonds and notes</td>
+<td align="left">Interest on bond or note price</td>
+<td align="left">Coupon payments, interest on coupon payments</td>
 </tr>
 
 <tr>
-<td>Foreign currency</td>
-<td>Interest cost of borrowing the demestic currency</td>
-<td>Interest earned on the foreign currency</td>
+<td align="left">Foreign currency</td>
+<td align="left">Interest cost of borrowing the demestic currency</td>
+<td align="left">Interest earned on the foreign currency</td>
 </tr>
 </tbody>
 </table>
 
 <h2 id="physical-commodities">Physical Commodities</h2>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>C = commodity price
 t = time to maturity of the forward contract
 r = interest rate
@@ -289,13 +318,13 @@ forward price F = C x (1 + r x t) + (s x t) + (i x t)
 <li><p>Backward (in backwardation): cash price is greater than a future price.</p></li>
 
 <li><p>Convenience yield: the premium to obtain the commodity right away. A sudden demand could surge the commodity price. Cash price can be inferred from future price using the forward price formula. If the cash price in the market is higher than the inferred cash price, the extra is the convenience yield.</p>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>C = (F - (s + i) x t) / (1 + r x t)
 </code></pre></div></li>
 </ul>
 
 <h2 id="stock">Stock</h2>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>S = stock price
 t = time to maturity of the forward contract
 r = interest rate over the life of the forward contract
@@ -308,7 +337,7 @@ F = S + (S x r x t) - [d[1] x (1 + r[1] x t[1])] - ... - [d[n] x (1 + r[n] x t[n
 </code></pre>
 </div>
 <h2 id="bonds-and-notes">Bonds and Notes</h2>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>B = bond price
 t = time to maturity of the forward contract
 r = interest rate over the life of the forward contract
@@ -320,7 +349,7 @@ F = B x (1 + r x t) - SUM[c[i] x (1 + r[i] x t[i])]
 </code></pre>
 </div>
 <h2 id="foreign-currencies">Foreign Currencies</h2>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>C[d] = domestic currency
 r[d] = domestic interest rate
 C[f] = foreign currency
@@ -717,12 +746,12 @@ F = [C[d] x (1 + r[d] x t)] / [C[f] x (1 + r[f] x t)]
 <li><p>Volatility is always expressed as an annualized number just like interest rate.</p></li>
 
 <li><p>Volatility if proportional to the square root of time:</p>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>volatility[t] = volatility[annual] x t ^ 0.5
 </code></pre></div></li>
 
 <li><p>If we consider only trading days, there are about 256 trading days per year:</p>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>volatility[daily] = volatility[annual] x (1/256) ^ 0.5
                   = volatility[annual] / 16
 volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
@@ -746,25 +775,25 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>Rate of Payment</th>
-<th>Total Yield</th>
+<th align="left">Rate of Payment</th>
+<th align="left">Total Yield</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>12% once a year</td>
-<td>12.00%</td>
+<td align="left">12% once a year</td>
+<td align="left">12.00%</td>
 </tr>
 
 <tr>
-<td>6% twice a year</td>
-<td>12.36%</td>
+<td align="left">6% twice a year</td>
+<td align="left">12.36%</td>
 </tr>
 
 <tr>
-<td>3% every three months</td>
-<td>12.55%</td>
+<td align="left">3% every three months</td>
+<td align="left">12.55%</td>
 </tr>
 </tbody>
 </table>
@@ -775,25 +804,25 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>Rate of Payment</th>
-<th>Total Yield</th>
+<th align="left">Rate of Payment</th>
+<th align="left">Total Yield</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>-12% once a year</td>
-<td>-12.00%</td>
+<td align="left">-12% once a year</td>
+<td align="left">-12.00%</td>
 </tr>
 
 <tr>
-<td>-6% twice a year</td>
-<td>-11.64%</td>
+<td align="left">-6% twice a year</td>
+<td align="left">-11.64%</td>
 </tr>
 
 <tr>
-<td>-3% every three months</td>
-<td>-11.47%</td>
+<td align="left">-3% every three months</td>
+<td align="left">-11.47%</td>
 </tr>
 </tbody>
 </table>
@@ -834,23 +863,23 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>History</th>
-<th>Future</th>
-<th>Current</th>
+<th align="left">History</th>
+<th align="left">Future</th>
+<th align="left">Current</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>Historical price</td>
-<td>Forecast price</td>
-<td>Current price</td>
+<td align="left">Historical price</td>
+<td align="left">Forecast price</td>
+<td align="left">Current price</td>
 </tr>
 
 <tr>
-<td>Historical volatility</td>
-<td>Forecast volatility</td>
-<td>Implied volatility</td>
+<td align="left">Historical volatility</td>
+<td align="left">Forecast volatility</td>
+<td align="left">Implied volatility</td>
 </tr>
 </tbody>
 </table>
@@ -863,23 +892,23 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>Option</th>
-<th>Price</th>
-<th>Implied Volatility</th>
+<th align="left">Option</th>
+<th align="left">Price</th>
+<th align="left">Implied Volatility</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>100 call</td>
-<td>5.40</td>
-<td>27.51%</td>
+<td align="left">100 call</td>
+<td align="left">5.40</td>
+<td align="left">27.51%</td>
 </tr>
 
 <tr>
-<td>105 call</td>
-<td>3.60</td>
-<td>28.50%</td>
+<td align="left">105 call</td>
+<td align="left">3.60</td>
+<td align="left">28.50%</td>
 </tr>
 </tbody>
 </table>
@@ -920,41 +949,41 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>If&hellip;</th>
-<th>Call values will&hellip;</th>
-<th>Put values will&hellip;</th>
+<th align="left">If&hellip;</th>
+<th align="left">Call values will&hellip;</th>
+<th align="left">Put values will&hellip;</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>The price of the underlying contract rises</td>
-<td>rise</td>
-<td>fall</td>
+<td align="left">The price of the underlying contract rises</td>
+<td align="left">rise</td>
+<td align="left">fall</td>
 </tr>
 
 <tr>
-<td>The price of the underlying contract falls</td>
-<td>fall</td>
-<td>rise</td>
+<td align="left">The price of the underlying contract falls</td>
+<td align="left">fall</td>
+<td align="left">rise</td>
 </tr>
 
 <tr>
-<td>Volatility rises</td>
-<td>rise</td>
-<td>rise</td>
+<td align="left">Volatility rises</td>
+<td align="left">rise</td>
+<td align="left">rise</td>
 </tr>
 
 <tr>
-<td>Volatility falls</td>
-<td>fall</td>
-<td>fall</td>
+<td align="left">Volatility falls</td>
+<td align="left">fall</td>
+<td align="left">fall</td>
 </tr>
 
 <tr>
-<td>Time passes</td>
-<td>fall</td>
-<td>fall</td>
+<td align="left">Time passes</td>
+<td align="left">fall</td>
+<td align="left">fall</td>
 </tr>
 </tbody>
 </table>
@@ -971,45 +1000,45 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 <table>
 <thead>
 <tr>
-<th>Interest rate</th>
-<th>Type</th>
-<th>Forward price</th>
-<th>Present value</th>
-<th>Overall</th>
+<th align="left">Interest rate</th>
+<th align="left">Type</th>
+<th align="left">Forward price</th>
+<th align="left">Present value</th>
+<th align="left">Overall</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>rise</td>
-<td>call</td>
-<td>rise</td>
-<td>fall</td>
-<td>rise</td>
+<td align="left">rise</td>
+<td align="left">call</td>
+<td align="left">rise</td>
+<td align="left">fall</td>
+<td align="left">rise</td>
 </tr>
 
 <tr>
-<td>fall</td>
-<td>call</td>
-<td>fall</td>
-<td>raise</td>
-<td>fall</td>
+<td align="left">fall</td>
+<td align="left">call</td>
+<td align="left">fall</td>
+<td align="left">raise</td>
+<td align="left">fall</td>
 </tr>
 
 <tr>
-<td>rise</td>
-<td>put</td>
-<td>fall</td>
-<td>fall</td>
-<td>fall</td>
+<td align="left">rise</td>
+<td align="left">put</td>
+<td align="left">fall</td>
+<td align="left">fall</td>
+<td align="left">fall</td>
 </tr>
 
 <tr>
-<td>fall</td>
-<td>put</td>
-<td>rise</td>
-<td>rise</td>
-<td>rise</td>
+<td align="left">fall</td>
+<td align="left">put</td>
+<td align="left">rise</td>
+<td align="left">rise</td>
+<td align="left">rise</td>
 </tr>
 </tbody>
 </table>
@@ -1423,7 +1452,7 @@ volatility[weekly] = volatility[annual] x (1/52) ^ 0.5
 
 <ul>
 <li><p>At-the-money volatility is proportional to volatility, which is proportional to the square root of time.</p>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>TV[t] = option's theoretical value at time t (in days to expiration)
 TV[t-1] = TV[t] x [(t-1) / t] ^ 0.5
 Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
@@ -1525,7 +1554,7 @@ Theta = TV[t] - TV[t-1] = TV[t] x [1 - [(t-1) / t] ^ 0.5]
 
 <ul>
 <li><p>Lambda measures option&rsquo;s value change in percentage terms for a given percentage change in the underlying price. (Delta measures option&rsquo;s value change for a given point value change in the underlying price.)</p>
-<div style="padding:0.1em 1.5em;background-color:#F0F0F0;">
+<div class="codeblockcls">
 <pre><code>S = underlying price
 TV = theoretical value
 Lambda = Delta x (S / TV)
@@ -1981,6 +2010,9 @@ Lambda = Delta x (S / TV)
 <li><p>The risk that implied volatility changes.</p></li>
 </ul></li>
 </ul>
+
+</body>
+</html>
 
 		</div>
 		<div class="col-right">
