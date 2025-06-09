@@ -152,8 +152,8 @@ function toc_tgl(id) {
 	<div class="row main">
 		<div class="col-left">
 			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#2-probability">2 Probability</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#2-probability_axioms">Axioms</a></li><li class="toc1_li"><a href="#2-probability_probability-rules">Probability Rules</a><button id="toc0.1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0.1_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#probability-rules_marginal-rule-explanation">Marginal Rule Explanation</a></li><li class="toc2_li"><a href="#probability-rules_bayes-rule-explanation">Bayes' Rule Explanation</a></li><li class="toc2_li"><a href="#probability-rules_examples">Examples</a></li></ul></div></ul></div></ul></div>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#axioms">Axioms</a></li><li class="toc1_li"><a href="#probability-rules">Probability Rules</a><button id="toc0.1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.1_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#marginal-rule-explanation">Marginal Rule Explanation</a></li><li class="toc2_li"><a href="#bayes-rule-explanation">Bayes' Rule Explanation</a></li><li class="toc2_li"><a href="#examples">Examples</a></li></ul></div></ul></div></ul></div>
 		</div>
 		<div class="col-middle">
 			<!DOCTYPE html>
@@ -213,7 +213,7 @@ function toc_tgl(id) {
 </tbody>
 </table>
 
-<h2 id="2-probability_axioms">Axioms</h2>
+<h2 id="axioms">Axioms</h2>
 
 <ul>
 <li>0 ≤ p(Eᵢ) ≤ 1, where Eᵢ = Event i (A is often used instead of Eᵢ)</li>
@@ -224,7 +224,7 @@ All outcomes need not be equally likely.
 Hence, if you toss a coin three times, there are 8 possible outcomes.</li>
 </ul>
 
-<h2 id="2-probability_probability-rules">Probability Rules</h2>
+<h2 id="probability-rules">Probability Rules</h2>
 
 <p>Let A and B be two events of interest in a particular experiment.
 Eᵢ means event i.</p>
@@ -284,12 +284,12 @@ Eᵢ means event i.</p>
 </tbody>
 </table>
 
-<h3 id="probability-rules_marginal-rule-explanation">Marginal Rule Explanation</h3>
+<h3 id="marginal-rule-explanation">Marginal Rule Explanation</h3>
 
 <p><span  style="background-color:#FFFF77;">Marginal probability</span> is the probability of some event happening, no matter what happens to other variables.
 It is the overall (total) probability of one variable, averaging over other possibilities.</p>
 
-<h3 id="probability-rules_bayes-rule-explanation">Bayes&rsquo; Rule Explanation</h3>
+<h3 id="bayes-rule-explanation">Bayes&rsquo; Rule Explanation</h3>
 
 <p><span  style="background-color:#FFFF77;">Another way of understanding Bayes&rsquo; rule:</span></p>
 <div class="codeblockcls">
@@ -338,13 +338,13 @@ p(Disease|Positive) ≈ 0.0901 = 9.01%
 You know how likely the test is to be positive if the person has the disease (test accuracy).
 Once you see a positive test (which include true positive and false positive), you can calculate the chance a person actually has the disease.</p>
 
-<h3 id="probability-rules_examples">Examples</h3>
+<h3 id="examples">Examples</h3>
 
 <p><span  style="background-color:#FFFF77;">Other rules are easy, but knowing when to use them is tricky.</span>
 It is especially easy to mix up conditional probability, joint probability, and additive probability.
 Here are some examples that might give you an intuitive feel for the different types of probabilities.</p>
 
-<h4 id="examples_example-1">Example 1</h4>
+<h4 id="example-1">Example 1</h4>
 
 <p>5% of the population dies from heart attacks every year.
 1% of all those aged 20-25 die from heart attacks every year.
@@ -369,7 +369,7 @@ But, if I know their age, a likely better guess is given by the conditional prob
 
 <p><span  style="background-color:#FFFF77;">That is what much of statistics is about: using information about people to better explain or better predict what happens to them.</span></p>
 
-<h4 id="examples_example-2">Example 2</h4>
+<h4 id="example-2">Example 2</h4>
 
 <p>Of those who voted in a recent election, 50% were white females, 35% were white males, 9% were black females, and 6% were black males.</p>
 
@@ -386,7 +386,7 @@ But, if I know their age, a likely better guess is given by the conditional prob
 <li>p(Male) = 0.41</li>
 </ul>
 
-<h4 id="examples_example-3">Example 3</h4>
+<h4 id="example-3">Example 3</h4>
 
 <p>At a boys school, 10% of the students were on the football team and 8% were on the track team.
 Half of the boys who played football were also on the track team.
@@ -400,7 +400,7 @@ Altogether, 13% of the boys were on at least one of the two teams, i.e. they wer
 
 <p>There is one <strong>additive probability</strong>: p(Football∪Track) = 0.13.</p>
 
-<h4 id="examples_example-4">Example 4</h4>
+<h4 id="example-4">Example 4</h4>
 
 <p>A new, less expensive method has been developed for testing for the AIDS virus.
 50% people who test positive have AIDS.

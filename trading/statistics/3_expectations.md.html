@@ -152,8 +152,8 @@ function toc_tgl(id) {
 	<div class="row main">
 		<div class="col-left">
 			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#3-expectations">3 Expectations</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#3-expectations_mean">Mean</a></li><li class="toc1_li"><a href="#3-expectations_expected-value">Expected Value</a></li><li class="toc1_li"><a href="#3-expectations_variance">Variance</a></li><li class="toc1_li"><a href="#3-expectations_standard-deviation">Standard Deviation</a></li><li class="toc1_li"><a href="#3-expectations_covariance">Covariance</a></li><li class="toc1_li"><a href="#3-expectations_correlation">Correlation</a></li><li class="toc1_li"><a href="#3-expectations_autocorrelation">Autocorrelation</a></li><li class="toc1_li"><a href="#3-expectations_expectation-rules">Expectation Rules</a><button id="toc0.7_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0.7_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#expectation-rules_exercises">Exercises</a></li></ul></div><li class="toc1_li"><a href="#3-expectations_summary">Summary</a></li></ul></div></ul></div>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#mean">Mean</a></li><li class="toc1_li"><a href="#expected-value">Expected Value</a></li><li class="toc1_li"><a href="#variance">Variance</a></li><li class="toc1_li"><a href="#standard-deviation">Standard Deviation</a></li><li class="toc1_li"><a href="#covariance">Covariance</a></li><li class="toc1_li"><a href="#correlation">Correlation</a></li><li class="toc1_li"><a href="#autocorrelation">Autocorrelation</a></li><li class="toc1_li"><a href="#expectation-rules">Expectation Rules</a><button id="toc0.7_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.7_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#exercises">Exercises</a></li></ul></div><li class="toc1_li"><a href="#summary">Summary</a></li></ul></div></ul></div>
 		</div>
 		<div class="col-middle">
 			<!DOCTYPE html>
@@ -167,7 +167,7 @@ function toc_tgl(id) {
 
 <h1 id="3-expectations">3 Expectations</h1>
 
-<h2 id="3-expectations_mean">Mean</h2>
+<h2 id="mean">Mean</h2>
 
 <p>The mean is just the <strong>average</strong> value.
 It tells you where the center of your data is.</p>
@@ -177,7 +177,7 @@ It tells you where the center of your data is.</p>
 <pre><code>μ = (1/n) * Σxᵢ
 </code></pre>
 </div>
-<h2 id="3-expectations_expected-value">Expected Value</h2>
+<h2 id="expected-value">Expected Value</h2>
 
 <p>The expected value of a random variable is the arithmetic mean of that variable, i.e. E(X) = µ.</p>
 
@@ -193,7 +193,7 @@ It tells you where the center of your data is.</p>
 </code></pre></div></li>
 </ul>
 
-<h2 id="3-expectations_variance">Variance</h2>
+<h2 id="variance">Variance</h2>
 
 <p>The variance tells you how <strong>spread out</strong> the data is — how far from the mean the values tend to be.</p>
 
@@ -212,7 +212,7 @@ It tells you where the center of your data is.</p>
 <pre><code>V(X) =  Σ(xᵢ-μ)²p(xᵢ)
 </code></pre>
 </div>
-<h2 id="3-expectations_standard-deviation">Standard Deviation</h2>
+<h2 id="standard-deviation">Standard Deviation</h2>
 
 <p>The standard deviation is just the <strong>square root of variance</strong>.
 It is in the <strong>same units</strong> as the original data, easier to interpret.</p>
@@ -220,7 +220,7 @@ It is in the <strong>same units</strong> as the original data, easier to interpr
 <pre><code>StdDev(X) = sqrt(Variance) = σₓ
 </code></pre>
 </div>
-<h2 id="3-expectations_covariance">Covariance</h2>
+<h2 id="covariance">Covariance</h2>
 
 <p>Covariance measures how <strong>two variables move together</strong>.</p>
 
@@ -242,7 +242,7 @@ It is in the <strong>same units</strong> as the original data, easier to interpr
 <li>If one is above and the other is below, negative contribution.</li>
 </ul>
 
-<h2 id="3-expectations_correlation">Correlation</h2>
+<h2 id="correlation">Correlation</h2>
 
 <p>Correlation is a <strong>scaled version of covariance</strong>, it removes the units and normalizes between -1 and +1.</p>
 
@@ -256,7 +256,7 @@ It is in the <strong>same units</strong> as the original data, easier to interpr
 <p>Corr(X, Y) = Cov(X, Y) / (StdDev(X) * StdDev(Y))</p></li>
 </ul>
 
-<h2 id="3-expectations_autocorrelation">Autocorrelation</h2>
+<h2 id="autocorrelation">Autocorrelation</h2>
 
 <p>Autocorrelation (also called serial correlation) measures how a time series is correlated with a lagged version of itself.
 In simple terms, does today&rsquo;s value depend on past values? If yes, autocorrelation exists.</p>
@@ -311,7 +311,7 @@ In simple terms, does today&rsquo;s value depend on past values? If yes, autocor
 </ul></li>
 </ul>
 
-<h2 id="3-expectations_expectation-rules">Expectation Rules</h2>
+<h2 id="expectation-rules">Expectation Rules</h2>
 
 <p>Assume following, <em>a</em> and <em>b</em> are any given constants.
 <em>X</em> and <em>Y</em> are random variables.</p>
@@ -430,9 +430,9 @@ In simple terms, does today&rsquo;s value depend on past values? If yes, autocor
 </tbody>
 </table>
 
-<h3 id="expectation-rules_exercises">Exercises</h3>
+<h3 id="exercises">Exercises</h3>
 
-<h4 id="exercises_exercise-1">Exercise 1</h4>
+<h4 id="exercise-1">Exercise 1</h4>
 <div class="codeblockcls">
 <pre><code>Prove V(X) = E((X - μ)²) = E(X²) - μ²
 
@@ -445,7 +445,7 @@ V(X) = E((X - μ)²)
      = E(X²) - μ²
 </code></pre>
 </div>
-<h4 id="exercises_exercise-2">Exercise 2</h4>
+<h4 id="exercise-2">Exercise 2</h4>
 <div class="codeblockcls">
 <pre><code>Prove V(aX) = a² * V(X)
 
@@ -458,7 +458,7 @@ V(Y) = E(Y²) - E(Y)²              [Rule#10]
      = a²V(X)
 </code></pre>
 </div>
-<h4 id="exercises_exercise-3">Exercise 3</h4>
+<h4 id="exercise-3">Exercise 3</h4>
 <div class="codeblockcls">
 <pre><code>Let Z = (X - µₓ)/σₓ, find E(Z) and V(Z)
 
@@ -471,7 +471,7 @@ V(Z) = V((X - µₓ) / σₓ)           [Rule#13]
      = 1
 </code></pre>
 </div>
-<h4 id="exercises_exercise-4">Exercise 4</h4>
+<h4 id="exercise-4">Exercise 4</h4>
 <div class="codeblockcls">
 <pre><code>Finding the mean and variance for the number of heads obtained in 3 coin tosses.
 
@@ -485,7 +485,7 @@ V(X₁) = V(X₂) = V(X₃) = E(X²) - E(X)² = 0.5 - 0.25 = 0.25    [Rule#10]
 V(X₁ + X₂ + X₃) = V(X₁) + V(X₂) + V(X₃) = 0.75               [Rule#15]
 </code></pre>
 </div>
-<h2 id="3-expectations_summary">Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <table>
 <thead>
