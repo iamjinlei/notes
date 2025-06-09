@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/2_probability.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#2-probability">2 Probability</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#2-probability_axioms">Axioms</a></li><li class="toc1_li"><a href="#2-probability_probability-rules">Probability Rules</a><button id="toc0.1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.1_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#probability-rules_marginal-rule-explanation">Marginal Rule Explanation</a></li><li class="toc2_li"><a href="#probability-rules_bayes-rule-explanation">Bayes' Rule Explanation</a></li><li class="toc2_li"><a href="#probability-rules_examples">Examples</a></li></ul></div></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="2-probability">2 Probability</h1>
+
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Probability</td>
+<td>A number between 0 and 1 that indicates how likely a specific event or set of events will occur.</td>
+</tr>
+
+<tr>
+<td>Simple experiment</td>
+<td>Some well-defined act or process that leads to a single well-defined outcome. For example, a coin toss will yield either a heads or a tails; a birth will yield either a boy or a girl.</td>
+</tr>
+
+<tr>
+<td>Sample space</td>
+<td>The set of all possible distinct outcomes of an experiment. For example, if you toss a coin once, the possible outcomes are H or T; toss it twice, and the possible outcomes are HH, HT, TH, and TT.</td>
+</tr>
+
+<tr>
+<td>Sample point or elementary event</td>
+<td>Any member of the sample space. One possible result of a single trial of the experiment. e.g., getting a Heads when tossing a coin; getting the Ace of Hearts when pulling a card from a deck.</td>
+</tr>
+
+<tr>
+<td>Event or event class</td>
+<td>Some subset of the outcomes of an experiment. Any set of elementary events. e.g. getting a “heart” when you pull a card from a deck is achieved by 13 different elementary events.</td>
+</tr>
+
+<tr>
+<td>Mutually exclusive outcomes</td>
+<td>Any set of events that cannot occur simultaneously. For example, for the variable GENDER, a person cannot be both male and female. Conversely, for ETHNICITY, an individual could claim both European and Asian ethnic heritages.</td>
+</tr>
+
+<tr>
+<td>Independent events</td>
+<td>Events that have nothing to do with each other. The occurrence of one event in no way affects the occurrence of the other. For example, the result of one coin toss does not affect the possible value of the next.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="2-probability_axioms">Axioms</h2>
+
+<ul>
+<li>0 ≤ p(Eᵢ) ≤ 1, where Eᵢ = Event i (A is often used instead of Eᵢ)</li>
+<li>p(S) = 1, where S is the sample Space</li>
+<li>When all sample points are equally likely, p(Eᵢ) = Number of elementary events in Eᵢ / Total number of possible events</li>
+<li>Total number of sample points = n₁ * n₂ * n₃ * &hellip; * nₖ, where nᵢ is number of possible outcomes for the ith variable.
+All outcomes need not be equally likely.
+Hence, if you toss a coin three times, there are 8 possible outcomes.</li>
+</ul>
+
+<h2 id="2-probability_probability-rules">Probability Rules</h2>
+
+<p>Let A and B be two events of interest in a particular experiment.
+Eᵢ means event i.</p>
+
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>General Rule</th>
+<th>Rule for Mutually Exclusive Events</th>
+<th>Rule for Independence</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Complement, prob of no A</td>
+<td>p(Ā)=1-p(A)</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>Conditional, prob of A given B</td>
+<td>p(A|B)=p(A∩B)/p(B)</td>
+<td>p(A|B)=0</td>
+<td>p(A|B)=p(A)</td>
+</tr>
+
+<tr>
+<td>Joint, prob of A and B</td>
+<td>p(A∩B)=p(B)p(A|B)=p(A)p(B|A)</td>
+<td>p(A∩B)=0</td>
+<td>p(A∩B)=p(A)p(B)</td>
+</tr>
+
+<tr>
+<td>Additive, prob of A or B</td>
+<td>p(A∪B)=p(A)+p(B)-p(A∩B)</td>
+<td>p(A∪B)=p(A)+p(B)</td>
+<td>p(A∪B)=p(A)+p(B)-p(A)p(B)</td>
+</tr>
+
+<tr>
+<td>Marginal</td>
+<td>p(A)=∑p(A∩Eᵢ)=∑p(Eᵢ)p(A|Eᵢ)</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>Bayes&rsquo; Rule (conditional probability)</td>
+<td>p(Eᵢ|A)=p(Eᵢ∩A)E/p(A)=p(Eᵢ)p(A|Eᵢ)/∑p(Eⱼ)p(A|Eⱼ)</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="probability-rules_marginal-rule-explanation">Marginal Rule Explanation</h3>
+
+<p><span  style="background-color:#FFFF77;">Marginal probability</span> is the probability of some event happening, no matter what happens to other variables.
+It is the overall (total) probability of one variable, averaging over other possibilities.</p>
+
+<h3 id="probability-rules_bayes-rule-explanation">Bayes&rsquo; Rule Explanation</h3>
+
+<p><span  style="background-color:#FFFF77;">Another way of understanding Bayes&rsquo; rule:</span></p>
+<div class="codeblockcls">
+<pre><code>Joint rule:  p(A∩B) = p(B)p(A|B) = p(A)p(B|A)
+Transformed: p(A|B) = p(A)p(B|A) / p(B)
+</code></pre>
+</div>
+<ul>
+<li>p(A): initial belief about A, called the <strong>Prior</strong>.</li>
+<li>p(B|A): how likely you would see B if A were true, called the <strong>Likelihood</strong>.</li>
+<li>p(B): overall chance of seeing B, called the <strong>Evidence</strong>.</li>
+<li>p(A|B): updated belief about A after seeing B, called the <strong>Posterior</strong>.</li>
+</ul>
+
+<p>The rule reads as: Posterior = (Prior x Likelihood) / Evidence</p>
+
+<p>Medical test example:</p>
+<div class="codeblockcls">
+<pre><code>Let’s say a rare disease affects 1 in 1000 people.
+You take a test that is 99% accurate (both for positive and negative results).
+You get a positive test.
+What is the chance you actually have the disease?
+
+Setup:
+
+p(Disease) = 0.001 (prior)
+p(No Disease) = 0.999
+p(Positive|Disease) = 0.99 (likelihood)
+p(Negative|No Disease) = 0.99
+p(Positive|No Disease) = 0.01 (false positive)
+
+p(Disease|Positive) = p(Disease) x p(Positive|Disease) / p(Positive)
+
+Where:
+
+p(Positive) = p(Positive|Disease) x p(Disease) + p(Positive|No Disease) x p(No Disease)
+            = (0.99 × 0.001) + (0.01 × 0.999)
+            = 0.01098
+
+Finally:
+
+p(Disease|Positive) ≈ 0.0901 = 9.01%
+</code></pre>
+</div>
+<p>Bayes’ rule is about reasoning in reverse.
+You know how likely the test is to be positive if the person has the disease (test accuracy).
+Once you see a positive test (which include true positive and false positive), you can calculate the chance a person actually has the disease.</p>
+
+<h3 id="probability-rules_examples">Examples</h3>
+
+<p><span  style="background-color:#FFFF77;">Other rules are easy, but knowing when to use them is tricky.</span>
+It is especially easy to mix up conditional probability, joint probability, and additive probability.
+Here are some examples that might give you an intuitive feel for the different types of probabilities.</p>
+
+<h4 id="examples_example-1">Example 1</h4>
+
+<p>5% of the population dies from heart attacks every year.
+1% of all those aged 20-25 die from heart attacks every year.
+10% of those aged 80 and above die from heart attacks every year.</p>
+
+<p><img style="width:80%;display:block;margin:auto;" loading="lazy" src="imgs/2_example1.png" alt="example_1" /></p>
+
+<p>The first statement gives the <strong>marginal probability</strong> of dying from a heart attack, i.e. if A = dying
+from heart attack, then p(A) = 0.05.
+Everything not within A represents people who do not die or who die from other causes.</p>
+
+<p>However, as the next two statements show, the probability of dying from a heart attack varies by age.
+These statements give the <strong>conditional probability</strong> of dying from a heart attack given your age.
+Hence, if E₁ = aged 20-25 and E₂ = aged 80 and above, then p(A|E₁) = 0.01 and p(A|E₂) = 0.10.
+Also, E₁ and E₂ are mutually exclusive events.</p>
+
+<p>The areas where the circles overlap reflect their <strong>joint probabilities</strong>, e.g. the probability of dying from a heart attack and being age 80+, or p(A∩E₂).
+If these were drawn perfectly, 1% of E₁ would overlap with A and 10% of E₂ would overlap with A.</p>
+
+<p>If I know nothing about a person and I am asked to predict the probability of their dying in the next year from a heart attack, my best guess is 5%.
+But, if I know their age, a likely better guess is given by the conditional probability of death given age.</p>
+
+<p><span  style="background-color:#FFFF77;">That is what much of statistics is about: using information about people to better explain or better predict what happens to them.</span></p>
+
+<h4 id="examples_example-2">Example 2</h4>
+
+<p>Of those who voted in a recent election, 50% were white females, 35% were white males, 9% were black females, and 6% were black males.</p>
+
+<p><img style="width:80%;display:block;margin:auto;" loading="lazy" src="imgs/2_example2.png" alt="example_2" /></p>
+
+<p>Here, you are given several <strong>joint probabilities</strong>, e.g. the probability of being both white and female = p(white∩female) = 0.50.</p>
+
+<p>From the information given, you could easily determine the <strong>marginal probabilities</strong> for race and gender:</p>
+
+<ul>
+<li>p(White) = p(White∩Female) + p(White∩Male) = 0.85</li>
+<li>p(Black) = 0.15</li>
+<li>p(Female) = 0.59</li>
+<li>p(Male) = 0.41</li>
+</ul>
+
+<h4 id="examples_example-3">Example 3</h4>
+
+<p>At a boys school, 10% of the students were on the football team and 8% were on the track team.
+Half of the boys who played football were also on the track team.
+Altogether, 13% of the boys were on at least one of the two teams, i.e. they were on the football team or the track team or both.</p>
+
+<p><img style="width:80%;display:block;margin:auto;" loading="lazy" src="imgs/2_example3.png" alt="example_3" /></p>
+
+<p>There are two <strong>marginal probabilities</strong> here: p(Football) = 0.10 and p(Track) = 0.08.</p>
+
+<p>There is one <strong>conditional probability</strong> p(Track|Football) = 0.50.</p>
+
+<p>There is one <strong>additive probability</strong>: p(Football∪Track) = 0.13.</p>
+
+<h4 id="examples_example-4">Example 4</h4>
+
+<p>A new, less expensive method has been developed for testing for the AIDS virus.
+50% people who test positive have AIDS.
+5% those who test negative have AIDS.
+20% of the population tests positive.</p>
+
+<ul>
+<li><p>What percentage of the population will receive false positive scores - that is, the
+test will say they have AIDS when they really don&rsquo;t?</p>
+<div class="codeblockcls">
+<pre><code>Joint rule
+p(no AIDS∩positive) = p(no AIDS|positive) x p(positive) = (1 - 50%) x 20% = 10%
+</code></pre></div></li>
+
+<li><p>What percentage of the population will receive false negative scores - that is, the
+test will say they don&rsquo;t have AIDS when they really do?</p>
+<div class="codeblockcls">
+<pre><code>Joint rule
+p(AIDS∩negative) = p(AIDS|negative) x p(negative) = 5% x 80% = 4%
+</code></pre></div></li>
+
+<li><p>What percentage of the population has AIDS?</p>
+<div class="codeblockcls">
+<pre><code>Marginal rule
+p(AIDS) = p(no AIDS∩positive) + p(AIDS∩negative) = 14%
+</code></pre></div></li>
+
+<li><p>What is the probability that someone who has AIDS will test positive?</p>
+<div class="codeblockcls">
+<pre><code>Bayes' rule
+p(positive|AIDS) = p(AIDS|positive) x p(positive) / p(AIDS) = 50% x 20% / 14% = 5/7
+</code></pre></div></li>
+</ul>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/1_definitions.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#1-definitions">1 Definitions</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#1-definitions_key-concepts">Key Concepts</a></li><li class="toc1_li"><a href="#1-definitions_levels-of-measurement">Levels of Measurement</a><button id="toc0.1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.1_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#levels-of-measurement_example">Example</a></li></ul></div><li class="toc1_li"><a href="#1-definitions_measures-of-central-tendency">Measures of Central Tendency</a></li><li class="toc1_li"><a href="#1-definitions_measures-of-dispersion">Measures of Dispersion</a></li><li class="toc1_li"><a href="#1-definitions_shapes-of-distributions">Shapes of Distributions</a></li><li class="toc1_li"><a href="#1-definitions_univariate-statistics">Univariate Statistics</a></li></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="1-definitions">1 Definitions</h1>
+
+<h2 id="1-definitions_key-concepts">Key Concepts</h2>
+
+<ul>
+<li>Population:
+
+<ul>
+<li>The entire set of members in a group. EXAMPLES: All U.S. citizens; all Notre Dame Students.</li>
+<li>All values of a variable in a definable group (e.g. Catholic, Protestant, Jewish)</li>
+<li>The set of all values of interest</li>
+</ul></li>
+<li>Sample:
+
+<ul>
+<li>A subset of a population. We usually analyze samples - samples are supposed to tell us about the population.</li>
+<li>Probability sample - a subset of the population for which all members had a known, non-zero probability of inclusion in the sample.</li>
+<li>Random sample - a subset of the population for which all members had an equal probability of inclusion in the sample.</li>
+</ul></li>
+<li>Population parameters
+
+<ul>
+<li>Numerical characteristics of a population (the mean, median, mode are some of the simpler examples of population parameters)</li>
+</ul></li>
+<li>Sample statistics, or sample parameters
+
+<ul>
+<li>Sample estimates of population parameters.</li>
+</ul></li>
+</ul>
+
+<h2 id="1-definitions_levels-of-measurement">Levels of Measurement</h2>
+
+<p>The way we interpret the numbers we assign to our measurements depends upon the level of measurement that is used.</p>
+
+<ul>
+<li><p>Nominal</p>
+
+<ul>
+<li>Nominal measurement is a classification system.</li>
+<li>Use numbers instead of names to identify things.
+For example, if we wanted to code religion, we might say 1 = Catholic, 2 = Protestant, 3 = Jewish, etc.</li>
+<li>The numbers are arbitrary, and you can&rsquo;t perform mathematical operations.</li>
+<li>Categories should be mutually exclusive and exhaustive.</li>
+</ul></li>
+
+<li><p>Ordinal</p>
+
+<ul>
+<li>Categories are ranked in order of their values on some property.
+Class ranks are an example (highest score, second highest score, etc.).</li>
+<li>The distances between ranks do not have to be the same.
+For example, the highest scoring person may have scored one more point than the 2nd highest, she may have scored 5 more points than the third highest.</li>
+</ul></li>
+
+<li><p>Interval</p>
+
+<ul>
+<li>The distance between each number is the same.
+For example, the distance between 1 and 2 is the same as the distance between 15 and 16.</li>
+<li>We can determine not only that a person ranks higher but how much higher they rank.</li>
+<li>You can do addition and subtraction with interval level measures, but not multiplication and division.</li>
+</ul></li>
+
+<li><p>Ratio</p>
+
+<ul>
+<li>You can do addition, subtraction, and multiplication and division.
+You have an absolute, fixed, and nonarbitrary zero point.</li>
+</ul></li>
+</ul>
+
+<h3 id="levels-of-measurement_example">Example</h3>
+
+<p>Fahrenheit and centigrade scales of temperatures are <em>interval-level</em> measures.
+They are not ratio-level because the zero point is arbitrary.
+For example, in the F scale 32 degrees happens to be the point where water freezes.
+There is no reason you couldn&rsquo;t shift everything down by 32 degrees, and have 0 be the point where water freezes.
+Or, add 68, and have 100 be the freezing point.
+<em>The zero point is arbitrary</em>.
+It is not correct to say that, <em>if it is 70 degrees outside, that it is twice as warm as it would be if it were 35 degrees outside</em>.</p>
+
+<p>Such things as age and income, however, have nonarbitrary zero points.
+If you have zero dollars, that literally means that you have no income.
+If you are 20 years old, that literally means you have been around for 20 years.
+Further, <span class="math inline">\(10,000 is exactly twice as much as \)</span>5,000.
+If you are 20, you are half as old as someone who is 40.</p>
+
+<h2 id="1-definitions_measures-of-central-tendency">Measures of Central Tendency</h2>
+
+<ul>
+<li>Mode
+
+<ul>
+<li>Value that occurs most often.</li>
+<li>Only appropriate measure for nominal data. Other measures make no sense.</li>
+</ul></li>
+<li>Median
+
+<ul>
+<li>Middle value in a set of numbers arranged in order of magnitude.</li>
+<li>Most appropriate for ordinal data (uses only the rank order, ignores distance).</li>
+<li>Is also sometimes good for interval and ratio level data that have some extreme values.</li>
+</ul></li>
+<li>Mean
+
+<ul>
+<li>Arithmetic average of all numbers.</li>
+<li>Uses both rank order and distance between ranks.</li>
+</ul></li>
+</ul>
+
+<p>Note: in a normal distribution, the mean, median and mode are all the same.</p>
+
+<h2 id="1-definitions_measures-of-dispersion">Measures of Dispersion</h2>
+
+<p>We often want to know how much variability, or spread, there is in the numbers.
+For example, suppose the average income is <span class="math inline">\(25,000.
+It could be that most people have incomes ranging from \)</span>24,000 - <span class="math inline">\(26,000, or the range of values could be from \)</span>1,000 to $100,000.</p>
+
+<p>Ideally:</p>
+
+<ul>
+<li>Be independent of the mean. You could add or subtract the same value to all cases, and the measure would not change value.</li>
+<li>Should take into account all observations, rather than just a few selected values.</li>
+<li>Should be convenient to manipulate mathematically.</li>
+</ul>
+
+<p>Candidates:</p>
+
+<ul>
+<li>Range: absolute difference between the highest and lowest values.</li>
+<li>Variance: average squared deviation about the mean.
+The variance meets all three criteria.</li>
+</ul>
+
+<p>For a normal distribution (bell curve) about 68% of all values fall within one standard deviation to either side of the mean, and about 95% fall within 2 standard deviations.</p>
+
+<p>Sample variance uses (N - 1) instead of N in the denominator.
+Estimating the mean eats up 1 degree of freedom - 1 number cannot vary.
+With large Ns, this is trivial.</p>
+
+<h2 id="1-definitions_shapes-of-distributions">Shapes of Distributions</h2>
+
+<ul>
+<li>Unimodal, Bimodal, or Multimodal: can have one or more modes.</li>
+<li>Symmetry: distribution has same shape on both sides.</li>
+<li>Skewed: not symmetric. If most of the values fall to the right of the mode, distribution is skewed positively.
+With positive skew, Mean &gt; Median &gt; Mode.
+We usually only worry about skewness in extreme cases.</li>
+</ul>
+
+<h2 id="1-definitions_univariate-statistics">Univariate Statistics</h2>
+
+<ul>
+<li><p>Population mean</p>
+
+<p><img style="width:20%;display:block;margin:auto;" loading="lazy" src="imgs/1_mean.png" alt="mean"/></p></li>
+
+<li><p>Population mean with a frequency distribution</p>
+
+<p><img style="width:70%;display:block;margin:auto;" loading="lazy" src="imgs/1_mean_freq.png" alt="mean"/></p></li>
+
+<li><p>Population variance</p>
+
+<p><img style="width:50%;display:block;margin:auto;" loading="lazy" src="imgs/1_variance.png" alt="mean"/></p></li>
+
+<li><p>Population variance with a frequency distribution</p>
+
+<p><img style="width:40%;display:block;margin:auto;" loading="lazy" src="imgs/1_variance_freq.png" alt="mean"/></p></li>
+
+<li><p>population standard deviation</p>
+
+<p><img style="width:30%;display:block;margin:auto;" loading="lazy" src="imgs/1_stddev.png" alt="mean"/></p></li>
+</ul>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>

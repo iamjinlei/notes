@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/3_expectations.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#3-expectations">3 Expectations</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#3-expectations_mean">Mean</a></li><li class="toc1_li"><a href="#3-expectations_expected-value">Expected Value</a></li><li class="toc1_li"><a href="#3-expectations_variance">Variance</a></li><li class="toc1_li"><a href="#3-expectations_standard-deviation">Standard Deviation</a></li><li class="toc1_li"><a href="#3-expectations_covariance">Covariance</a></li><li class="toc1_li"><a href="#3-expectations_correlation">Correlation</a></li><li class="toc1_li"><a href="#3-expectations_autocorrelation">Autocorrelation</a></li><li class="toc1_li"><a href="#3-expectations_expectation-rules">Expectation Rules</a><button id="toc0.7_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.7_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#expectation-rules_exercises">Exercises</a></li></ul></div><li class="toc1_li"><a href="#3-expectations_summary">Summary</a></li></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="3-expectations">3 Expectations</h1>
+
+<h2 id="3-expectations_mean">Mean</h2>
+
+<p>The mean is just the <strong>average</strong> value.
+It tells you where the center of your data is.</p>
+
+<p>For n numbers: x₁, x₂, &hellip;, xₙ, the mean μ is:</p>
+<div class="codeblockcls">
+<pre><code>μ = (1/n) * Σxᵢ
+</code></pre>
+</div>
+<h2 id="3-expectations_expected-value">Expected Value</h2>
+
+<p>The expected value of a random variable is the arithmetic mean of that variable, i.e. E(X) = µ.</p>
+
+<ul>
+<li><p>Discrete variable: the expected value of a discrete random variable, X, is found by multiplying each X value by its probability and then summing over all values of the random variable.</p>
+<div class="codeblockcls">
+<pre><code>E(X) = Σxᵢp(xᵢ) = µₓ
+</code></pre></div></li>
+
+<li><p>Continuous variable: for a continuous variable X ranging over all the real numbers, the expectation is defined by integration.</p>
+<div class="codeblockcls">
+<pre><code>E(X) = ∫x𝑓(x)𝑑x = µₓ
+</code></pre></div></li>
+</ul>
+
+<h2 id="3-expectations_variance">Variance</h2>
+
+<p>The variance tells you how <strong>spread out</strong> the data is — how far from the mean the values tend to be.</p>
+
+<ul>
+<li>Big variance: values are spread out.</li>
+<li>Small variance: values are clustered close to the mean.</li>
+</ul>
+
+<p>The variance of a random variable X is defined as the expected squared deviation of the values of this random variable about their mean.</p>
+<div class="codeblockcls">
+<pre><code>V(X) = E((X - μ)²) = E(X²) - μ²
+</code></pre>
+</div>
+<p>In the discrete case, this is equivalent to:</p>
+<div class="codeblockcls">
+<pre><code>V(X) =  Σ(xᵢ-μ)²p(xᵢ)
+</code></pre>
+</div>
+<h2 id="3-expectations_standard-deviation">Standard Deviation</h2>
+
+<p>The standard deviation is just the <strong>square root of variance</strong>.
+It is in the <strong>same units</strong> as the original data, easier to interpret.</p>
+<div class="codeblockcls">
+<pre><code>StdDev(X) = sqrt(Variance) = σₓ
+</code></pre>
+</div>
+<h2 id="3-expectations_covariance">Covariance</h2>
+
+<p>Covariance measures how <strong>two variables move together</strong>.</p>
+
+<ul>
+<li>If they both increase together, covariance is positive.</li>
+<li>If one increases while the other decreases, covariance is negative.</li>
+<li>If they are unrelated, covariance is close to zero.</li>
+</ul>
+
+<p>For two variables X and Y:</p>
+<div class="codeblockcls">
+<pre><code>Cov(X, Y) = E((xᵢ - E(X)) * (yᵢ - E(Y)))
+</code></pre>
+</div>
+<p>Intuition:</p>
+
+<ul>
+<li>If both X and Y are above or below their means at the same time, positive contribution.</li>
+<li>If one is above and the other is below, negative contribution.</li>
+</ul>
+
+<h2 id="3-expectations_correlation">Correlation</h2>
+
+<p>Correlation is a <strong>scaled version of covariance</strong>, it removes the units and normalizes between -1 and +1.</p>
+
+<ul>
+<li><p>+1: perfect positive linear relationship</p></li>
+
+<li><p>-1: perfect negative linear relationship</p></li>
+
+<li><p>0: no linear relationship</p>
+
+<p>Corr(X, Y) = Cov(X, Y) / (StdDev(X) * StdDev(Y))</p></li>
+</ul>
+
+<h2 id="3-expectations_autocorrelation">Autocorrelation</h2>
+
+<p>Autocorrelation (also called serial correlation) measures how a time series is correlated with a lagged version of itself.
+In simple terms, does today&rsquo;s value depend on past values? If yes, autocorrelation exists.</p>
+
+<ul>
+<li>If autocorrelation exists, we can potentially predict future values based on past.</li>
+<li>If not, the series is more like random noise.</li>
+</ul>
+
+<p>For time series Xₜ, lag k:</p>
+<div class="codeblockcls">
+<pre><code>Autocorrelation at lag k = Corr(Xₜ, Xₜ₋ₖ)
+</code></pre>
+</div>
+<p>Interpretation</p>
+
+<table>
+<thead>
+<tr>
+<th>Autocorrelation Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Close to +1</td>
+<td>Strong positive correlation, values repeat trend</td>
+</tr>
+
+<tr>
+<td>Close to -1</td>
+<td>Strong negative correlation, values alternate up/down</td>
+</tr>
+
+<tr>
+<td>Close to 0</td>
+<td>No correlation, no predictable pattern</td>
+</tr>
+</tbody>
+</table>
+<p>Autocorrelation Plot (ACF Plot)</p>
+
+<ul>
+<li>Shows autocorrelation at different lags.</li>
+<li>Helps identify patterns:
+
+<ul>
+<li>Trending series: slow decay of autocorrelation.</li>
+<li>Mean-reverting series: negative autocorrelation at certain lags.</li>
+<li>Random walk: no significant autocorrelation.</li>
+</ul></li>
+</ul>
+
+<h2 id="3-expectations_expectation-rules">Expectation Rules</h2>
+
+<p>Assume following, <em>a</em> and <em>b</em> are any given constants.
+<em>X</em> and <em>Y</em> are random variables.</p>
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Rule</th>
+<th>Note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>E(X) = Σxᵢp(xᵢ) = µₓ</td>
+<td>discrete variable</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>E(g(X)) = Σg(xᵢ)p(xᵢ) = µ₉₍ₓ₎</td>
+<td>discrete variable, g(X) is some function of X</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>E(a) = a</td>
+<td>the expectation of a constant is the constant</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>E(aX) = a * E(X)</td>
+<td>multipling every value by 2, the expectation doubles</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>E(a ± X) = a ± E(X)</td>
+<td>adding 7 to every case, the expectation will increase by 7</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>E(a ± bX) = a ± bE(X)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>E((a ± X) * b) = (a ± E(X)) * b</td>
+<td></td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>E(X + Y) = E(X) + E(Y)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>If X and Y are independent: E(XY) = E(X)E(Y)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>V(X) = E((X - μ)²) = E(X²) - E(X)² = E(X²) - μ² = σₓ²</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>V(a) = 0</td>
+<td>a constant does not vary</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>V(a ± X) = V(X)</td>
+<td>adding a constant to a variable does not change its variance</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>V(a ± bX) = b² * V(X)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>V(X ± Y) = V(X) + V(Y) ± 2COV(X,Y)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>If X and Y are independent, V(X ± Y) = V(X) + V(Y)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>Cov(X,Y) = E((X - E(X)) * (Y - E(Y)) = E(XY) - E(X)E(Y)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>17</td>
+<td>If X and Y are independent, Cov(X,Y) = 0</td>
+<td>Cov(X,Y) = 0 does not necessarily mean X and Y are independent</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="expectation-rules_exercises">Exercises</h3>
+
+<h4 id="exercises_exercise-1">Exercise 1</h4>
+<div class="codeblockcls">
+<pre><code>Prove V(X) = E((X - μ)²) = E(X²) - μ²
+
+Solution:
+V(X) = E((X - μ)²)
+     = E(X² - 2Xμ + μ²)           [expand]
+     = E(X²) - E(2Xμ) + E(μ²)     [Rule#7]
+     = E(X²) - 2μE(X) + μ²        [Rule#7]
+     = E(X²) - 2μ² + μ²
+     = E(X²) - μ²
+</code></pre>
+</div>
+<h4 id="exercises_exercise-2">Exercise 2</h4>
+<div class="codeblockcls">
+<pre><code>Prove V(aX) = a² * V(X)
+
+Solution:
+Let Y = aX
+V(Y) = E(Y²) - E(Y)²              [Rule#10]
+     = E(a²X²) - E(aX)²
+     = a²E(X²) - a²E(X)²          [Rule#4]
+     = a²(E(X²) - E(X)²)
+     = a²V(X)
+</code></pre>
+</div>
+<h4 id="exercises_exercise-3">Exercise 3</h4>
+<div class="codeblockcls">
+<pre><code>Let Z = (X - µₓ)/σₓ, find E(Z) and V(Z)
+
+Solution:
+E(Z) = E((X - µₓ) / σₓ)
+     = (E(X) - µₓ) / σₓ           [Rule#7,Rule#3]
+     = 0
+V(Z) = V((X - µₓ) / σₓ)           [Rule#13]
+     = V(X) / σₓ²                 [Rule#12]
+     = 1
+</code></pre>
+</div>
+<h4 id="exercises_exercise-4">Exercise 4</h4>
+<div class="codeblockcls">
+<pre><code>Finding the mean and variance for the number of heads obtained in 3 coin tosses.
+
+Solution:
+Let Xᵢ = 1 if the ith coin toss comes up heads, 0 otherwise.
+So Xᵢ² = Xᵢ (0² = 0, 1² = 1).
+
+E(X₁) = E(X₂) = E(X₃) = 0.5
+E(X₁ + X₂ + X₃) = E(X₁) + E(X₂) + E(X₃) = 1.5                [Rule#8]
+V(X₁) = V(X₂) = V(X₃) = E(X²) - E(X)² = 0.5 - 0.25 = 0.25    [Rule#10]
+V(X₁ + X₂ + X₃) = V(X₁) + V(X₂) + V(X₃) = 0.75               [Rule#15]
+</code></pre>
+</div>
+<h2 id="3-expectations_summary">Summary</h2>
+
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Mean</td>
+<td>Average — where the data centers</td>
+</tr>
+
+<tr>
+<td>Variance</td>
+<td>How spread out the data is</td>
+</tr>
+
+<tr>
+<td>Std Dev</td>
+<td>Square root of variance — easier to interpret as &ldquo;typical deviation&rdquo;</td>
+</tr>
+
+<tr>
+<td>Covariance</td>
+<td>Measures how two variables move together (units depend on X and Y)</td>
+</tr>
+
+<tr>
+<td>Correlation</td>
+<td>Scaled covariance, unit-free, ranges [-1, +1], easy to interpret</td>
+</tr>
+
+<tr>
+<td>Autocorrelation</td>
+<td>How current value relates to past values. Detect trends, mean reversion, model building</td>
+</tr>
+</tbody>
+</table>
+<p>Why important in time series / trading?</p>
+
+<ul>
+<li>Mean return: is your asset trending up or down?</li>
+<li>Variance / Std Dev: how risky / volatile is this asset?</li>
+<li>Many trading signals depend on moving averages (mean) and volatility (variance)!</li>
+<li>In portfolio construction: want to select assets with low or negative correlation for diversification.</li>
+<li>In pairs trading: look for highly correlated or cointegrated pairs.</li>
+<li>In risk models: correlation matrix used to model portfolio risk.</li>
+<li>Trend following: positive autocorrelation (momentum).</li>
+<li>Mean reversion: negative autocorrelation.</li>
+<li>ARIMA models: built on autocorrelation patterns.</li>
+<li>Strategy testing: check if signals are statistically significant or just noise.</li>
+</ul>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>
