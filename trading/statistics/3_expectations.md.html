@@ -152,9 +152,8 @@ function toc_tgl(id) {
 	<div class="row main">
 		<div class="col-left">
 			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#3-expectations">3 Expectations</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#mean">Mean</a></li><li class="toc1_li"><a href="#variance">Variance</a></li><li class="toc1_li"><a href="#sample-mean-and-variance">Sample Mean and Variance</a></li><li class="toc1_li"><a href="#standard-deviation">Standard Deviation</a></li><li class="toc1_li"><a href="#covariance">Covariance</a></li><li class="toc1_li"><a href="#correlation">Correlation</a></li><li class="toc1_li"><a href="#autocorrelation">Autocorrelation</a></li><li class="toc1_li"><a href="#expectation-rules">Expectation Rules</a><button id="toc0.7_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0.7_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#exercises">Exercises</a></li></ul></div><li class="toc1_li"><a href="#summary">Summary</a></li><li class="toc1_li"><a href="#appendix">Appendix</a><button id="toc0.9_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
-				<div id="toc0.9_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#why-does-sample-variance-have-n-1-in-the-denominator">Why Does Sample Variance Have n - 1 in the Denominator?</a></li></ul></div></ul></div></ul></div>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#mean">Mean</a></li><li class="toc1_li"><a href="#variance">Variance</a></li><li class="toc1_li"><a href="#standard-deviation">Standard Deviation</a></li><li class="toc1_li"><a href="#covariance">Covariance</a></li><li class="toc1_li"><a href="#correlation">Correlation</a></li><li class="toc1_li"><a href="#autocorrelation">Autocorrelation</a></li><li class="toc1_li"><a href="#expectation-rules">Expectation Rules</a><button id="toc0.6_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.6_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#exercises">Exercises</a></li></ul></div><li class="toc1_li"><a href="#summary">Summary</a></li></ul></div></ul></div>
 		</div>
 		<div class="col-middle">
 			<!DOCTYPE html>
@@ -211,69 +210,6 @@ It tells you where the center of your data is.</p>
 <pre><code>V(X) =  Σ(xᵢ - μ)²p(xᵢ) = σ²
 </code></pre>
 </div>
-<h2 id="sample-mean-and-variance">Sample Mean and Variance</h2>
-
-<p>Sample is a subset of the whole population.
-Sample mean is:</p>
-<div class="codeblockcls">
-<pre><code>x̄ = (1/n) * Σxᵢ    where xᵢ is a subset (size of n) of all possible x's
-</code></pre>
-</div>
-<p>Sample variance:</p>
-<div class="codeblockcls">
-<pre><code>s² = (1/(n-1)) * Σ(xᵢ - x̄)²
-   = (1/(n-1)) * E(Σ(xᵢ² - 2xᵢx̄ + x̄²))
-   = (1/(n-1)) * E(Σxᵢ² - Σ2xᵢx̄ + Σx̄²)
-   = (1/(n-1)) * E(Σxᵢ² - 2nx̄² + nx̄²)
-   = (1/(n-1)) * (Σxᵢ² - nx̄²)    where xᵢ is a subset (size of n) of all possible x's
-</code></pre>
-</div>
-<h2 id="mark-hl-notation-clarifications-mark"><span  style="background-color:#FFFF77;">Notation Clarifications</span></h2>
-
-<ul>
-<li>Big X represents a random variable.</li>
-<li>Big Xᵢ represents a random variable whose process is &ldquo;choose a random sample x₁, x₂, &hellip;, xₙ of size n&rdquo; from X.
-
-<ul>
-<li>Small xᵢ represents a single value from population that is collected in a sample x.</li>
-<li>Small x̄ represents the mean of a particular sample, which can contain multiple values from the population.</li>
-</ul></li>
-<li>Big X̄ represents a random variable of means of those random samples Xᵢ.
-
-<ul>
-<li>It is an <a href="1_definitions.md.html#key-concepts">estimator</a> of the population mean.</li>
-<li>X̄ = (X₁ + X₂ + &hellip; + Xₙ) / n</li>
-</ul></li>
-<li>Small s² represents a variance of a sample.</li>
-<li>Big S² represents the estimator, and small s² is a particular value of it.</li>
-<li>E(X) and V(X) meant for the whole population
-
-<ul>
-<li>Sample mean and sample variance only concern values from a sample.</li>
-<li>E(X) and V(X) are for the whole population.
-They do NOT use for sample.
-
-<ul>
-<li>E(Xᵢ) = E(X)</li>
-<li>V(Xᵢ) = V(X)</li>
-</ul></li>
-</ul></li>
-</ul>
-
-<p>Then we further have mean and variance for the mean estimator X̄:</p>
-<div class="codeblockcls">
-<pre><code>E(X̄) = E((X₁ + X₂ + ... + Xₙ) / n)
-     = (E(X₁) + E(X₂) + ... + E(Xₙ)) / n
-     = μ
-
-V(X̄) = V((X₁ + X₂ + ... + Xₙ) / n)
-     = V(X₁ + X₂ + ... + Xₙ) / n²
-     = (V(X₁) + V(X₂) + ... + V(Xₙ)) / n²     [Xᵢ are independent, check rule#15 below]
-     = σ² / n
-</code></pre>
-</div>
-<p>Proof for <a href="3_expectations.md.html#why-does-sample-variance-have-n-1-in-the-denominator">why does sample variance have n - 1 in the denominator</a> is in the appendiex.</p>
-
 <h2 id="standard-deviation">Standard Deviation</h2>
 
 <p>The standard deviation is just the <strong>square root of variance</strong>.
@@ -604,36 +540,6 @@ V(X₁ + X₂ + X₃) = V(X₁) + V(X₂) + V(X₃) = 0.75               [rule#1
 <li>Strategy testing: check if signals are statistically significant or just noise.</li>
 </ul>
 
-<h2 id="appendix">Appendix</h2>
-
-<h3 id="why-does-sample-variance-have-n-1-in-the-denominator">Why Does Sample Variance Have n - 1 in the Denominator?</h3>
-
-<p>The reason we use n-1 rather than n is so that the sample variance will be an <a href="1_definitions.md.html#key-concepts">unbiased estimator</a> of the population variance σ².
-That is:</p>
-<div class="codeblockcls">
-<pre><code>The sample variance is the formula for a particular sample:
-    s² = (1/(n-1)) * (Σxᵢ² - nx̄²)
-Now we define an estimator S² for s² by replacing variables by estimators:
-    S² = (1/(n-1)) * (ΣXᵢ² - nX̄²)
-Xᵢ is an unbiased estimator for population X, thus xᵢ.
-X̄  is an unbiased estimator for mean of population X, thus x̄.
-
-Now need to prove S² is an unbiased estimator of the population variance σ², i.e. E(S²) = σ²
-
-Proof:
-(1) From population variance definition σ² = E(X²) - μ², we have E(X²) = σ² + μ²
-(2) E(Xᵢ²) = E(X²) = σ² + μ²
-(3) E(X̄²) = V(X̄) + E(X̄)²
-          = σ² / n + μ²            [check Notation Clarifications section]
-
-then:
-E(S²) = E((1/(n-1)) * (ΣXᵢ² - nX̄²))
-      = (1/(n-1)) * E(ΣXᵢ² - nX̄²)
-      = (1/(n-1)) * (ΣE(Xᵢ²) - nE(X̄²))
-      = (1/(n-1)) * (n(σ² + μ²) - n(σ² / n + μ²))
-      = σ²
-</code></pre>
-</div>
 </body>
 </html>
 

@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/5_sampling.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#5-sampling">5 Sampling</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#estimation">Estimation</a></li><li class="toc1_li"><a href="#sample-statistics">Sample Statistics</a></li><li class="toc1_li"><a href="#sample-distributions">Sample Distributions</a><button id="toc0.2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.2_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#central-limit-theorem">Central Limit Theorem</a></li><li class="toc2_li"><a href="#why-does-sample-mean-variance-v-x-have-denominator-n">Why Does Sample Mean Variance V(X̄) Have Denominator n?</a></li><li class="toc2_li"><a href="#why-does-sample-variance-s²-have-n-1-in-the-denominator">Why Does Sample Variance S² Have n - 1 in the Denominator?</a></li><li class="toc2_li"><a href="#shape-of-x">Shape of X̄</a></li></ul></div><li class="toc1_li"><a href="#the-t-distribution">The T Distribution</a></li><li class="toc1_li"><a href="#confidence-intervals">Confidence Intervals</a></li></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="5-sampling">5 Sampling</h1>
+
+<p>In reality, the entire population data is not available.
+One must rely on observing a subset (sample) of the population to estimate population parameters.</p>
+
+<h2 id="estimation">Estimation</h2>
+
+<ul>
+<li><a href="1_definitions.md.html#key-concepts">Estimators</a>: as mentioned before, estimators are random variables for estimating population parameters.</li>
+<li>Estimates: specific values of the guessed population parameters.</li>
+<li>Properties of a good estimator:
+
+<ul>
+<li>Unbiased: expected value is the true value of the parameter, i.e. E(θ̂) = θ (θ = population parameter, θ̂ = parameter estimator).</li>
+<li>Efficiency: the most efficient estimator has the smallest variance.</li>
+<li>Consistency: an estimator is said to be consistent if it yields estimates that converge in probability to the population parameter being estimated as N becomes larger.</li>
+</ul></li>
+<li>When samples does not represent the population, we get errors:
+
+<ul>
+<li>Nonsampling errors: studies the wrong population (e.g. exclude a portion of population from the sample). Assuming non-sampling errors are not present.</li>
+<li>Sampling errors: the unavoidable difference between sample estimates and the population parameters.</li>
+</ul></li>
+</ul>
+
+<h2 id="sample-statistics">Sample Statistics</h2>
+
+<p><span  style="background-color:#FFFF77;">When understanding the sampling, it is very important to clearly grasp subtle difference in notations</span>.</p>
+
+<p>Suppose we want to take a sample of n <strong>independent</strong> observations in order to determine the characteristics of a random variable X:</p>
+
+<ul>
+<li><p>n is the sample size, that is the number of observations from X in one sample..</p></li>
+
+<li><p>Big X represents a random variable.</p>
+
+<ul>
+<li>Small x represents a sample (may contain multiple observations/values) from X.</li>
+<li>Small x̄ represents the mean of a particular sample.</li>
+</ul></li>
+
+<li><p>Big Xᵢ represents a random variable whose process is to &ldquo;observe single value samples&rdquo; from X.</p>
+
+<ul>
+<li>The probability distribution of Xᵢ is identical to X.</li>
+<li>Small xᵢ represents a single value sample from Xᵢ.</li>
+<li>Think &ldquo;taking a sample of n observations from X&rdquo; as &ldquo;taking one observation from each Xᵢ&rdquo;</li>
+</ul></li>
+
+<li><p>Big X̄ represents a random variable of means of those random samples Xᵢ.</p>
+
+<ul>
+<li><p>It is an <a href="1_definitions.md.html#key-concepts">estimator</a> of the population mean.</p></li>
+
+<li><p>Formula notation:</p>
+<div class="codeblockcls">
+<pre><code>X̄ = (X₁ + X₂ + ... + Xₙ) / n = μ̂
+</code></pre></div></li>
+
+<li><p>As a comparison, mean of a sample is:</p>
+<div class="codeblockcls">
+<pre><code>x̄ = (1/n) * Σxᵢ    where xᵢ is a subset (size of n) of all possible x's
+</code></pre></div></li>
+</ul></li>
+
+<li><p>Similarly for variance:</p>
+
+<ul>
+<li><p>Big S² represents the estimator:</p>
+<div class="codeblockcls">
+<pre><code>S² = (1/n-1) * Σ(Xᵢ² - X̄)²
+   = (1/(n-1)) * E(Σ(Xᵢ² - 2XᵢX̄ + X̄²))
+   = (1/(n-1)) * E(ΣXᵢ² - Σ2Xᵢx̄ + ΣX̄²)
+   = (1/(n-1)) * E(ΣXᵢ² - 2nX̄² + nX̄²)
+   = (1/n-1) * (ΣXᵢ² - nX̄²)
+   = σ̂²
+</code></pre></div></li>
+
+<li><p>Small s² represents a variance of a sample:</p>
+<div class="codeblockcls">
+<pre><code>s² = (1/(n-1)) * (Σxᵢ² - nx̄²)    where xᵢ is a subset (size of n) of all possible x's
+</code></pre></div></li>
+</ul></li>
+
+<li><p>As a comparison to X̄ and S², E(X) and V(X) represent for the whole population</p>
+
+<ul>
+<li><p>Sample mean and sample variance only concern values from a sample.</p></li>
+
+<li><p>E(X) and V(X) are for the whole population.</p>
+<div class="codeblockcls">
+<pre><code>E(Xᵢ) = E(X) = μ
+V(Xᵢ) = V(X) = σ²
+</code></pre></div></li>
+</ul></li>
+
+<li><p>Note the ^ used for sample mean μ̂ and variance σ̂².
+It is common to use a ^ over a population parameter to represent the corresponding sample estimate.</p></li>
+</ul>
+
+<h2 id="sample-distributions">Sample Distributions</h2>
+
+<p>Obviously, taking different samples yeilds different x̄.
+Therefore X̄ is itself a random variable, which has its own mean and variance:</p>
+<div class="codeblockcls">
+<pre><code>E(X̄) = E((X₁ + X₂ + ... + Xₙ) / n)
+     = (E(X₁) + E(X₂) + ... + E(Xₙ)) / n
+     = μ
+
+V(X̄) = V((X₁ + X₂ + ... + Xₙ) / n)
+     = V(X₁ + X₂ + ... + Xₙ) / n²
+     = (V(X₁) + V(X₂) + ... + V(Xₙ)) / n²     [Xᵢ are independent, check rule#15]
+     = σ² / n
+
+StdDev(X̄) = σ / sqrt(n)    also known as the true standard error of the mean
+</code></pre>
+</div>
+<h3 id="central-limit-theorem">Central Limit Theorem</h3>
+
+<p>The central limit theorem (CLT) is one of the most important results in probability theory.
+It states that, under certain conditions, the sum of a large number of random variables is approximately normally distributed.</p>
+<div class="codeblockcls">
+<pre><code>Suppose the X₁, X₂, ... Xₙ random variables that are independent and identically distributed
+(iid) with expected mean and variance E(Xᵢ) = μ  and V(Xᵢ) = σ².
+
+Then the random variable sample mean X̄ = (X₁ + X₂ + ... + Xₙ) / n is normally distributed with
+E(X̄) = μ and V(X̄) = σ² / n.
+
+Note the original random variables X₁ are not necessarily normally distributed.
+</code></pre>
+</div>
+<h3 id="why-does-sample-mean-variance-v-x-have-denominator-n">Why Does Sample Mean Variance V(X̄) Have Denominator n?</h3>
+
+<p>Intuitively, as more sample size increases (i.e. more observations from one sample), the sample mean would get closer to the true mean.
+As a result the sample means are getting closer.
+Their variance becomes smaller (as n becomes larger).</p>
+
+<h3 id="why-does-sample-variance-s²-have-n-1-in-the-denominator">Why Does Sample Variance S² Have n - 1 in the Denominator?</h3>
+
+<p>The reason we use n-1 rather than n is so that the sample variance will be an <a href="1_definitions.md.html#key-concepts">unbiased estimator</a> of the population variance σ².
+That is:</p>
+<div class="codeblockcls">
+<pre><code>The sample variance is the formula for a particular sample:
+    s² = (1/(n-1)) * (Σxᵢ² - nx̄²)
+Now we define an estimator S² for s² by replacing variables by estimators:
+    S² = (1/(n-1)) * (ΣXᵢ² - nX̄²)
+Xᵢ is an unbiased estimator for population X, thus xᵢ.
+X̄  is an unbiased estimator for mean of population X, thus x̄.
+
+Now need to prove S² is an unbiased estimator of the population variance σ², i.e. E(S²) = σ²
+
+Proof:
+(1) From population variance definition σ² = E(X²) - μ², we have E(X²) = σ² + μ²
+(2) E(Xᵢ²) = E(X²) = σ² + μ²
+(3) E(X̄²) = V(X̄) + E(X̄)²
+          = σ² / n + μ²
+
+then:
+E(S²) = E((1/(n-1)) * (ΣXᵢ² - nX̄²))
+      = (1/(n-1)) * E(ΣXᵢ² - nX̄²)
+      = (1/(n-1)) * (ΣE(Xᵢ²) - nE(X̄²))
+      = (1/(n-1)) * (n(σ² + μ²) - n(σ² / n + μ²))
+      = σ²
+</code></pre>
+</div>
+<h3 id="shape-of-x">Shape of X̄</h3>
+
+<p>If X ~ N(μ, σ²) , then:</p>
+<div class="codeblockcls">
+<pre><code>X̄ ~ N(μ, σ²/n)
+
+Z = (X̄ - μ) / (σ / sqrt(n)) ~ N(0, 1)
+</code></pre>
+</div>
+<p><strong>What if X is not normally distributed?</strong></p>
+
+<p><span  style="background-color:#FFFF77;">According to the <strong>Central Limit Theorem</strong>, regardless of the shape of the parent population, the distribution of X̄ approaches N(μ, σ²/n) if:</span></p>
+
+<ul>
+<li><mark>As long as X has a finite mean μ and variance σ²</mark></li>
+<li><mark>Sample size n approaches infinity</mark></li>
+<li><mark>In practice, 30 is usually a pretty good approximation of infinity</mark></li>
+</ul>
+
+<h2 id="the-t-distribution">The T Distribution</h2>
+
+<p>The Z transformation above requires μ and σ are known.
+In reality, much more common situation is where both are unknown.
+If we use sample variance s to replace σ, then it becomes a T transformation, that produces a variable with a T distribution:</p>
+<div class="codeblockcls">
+<pre><code>T = (X̄ - μ) / (s / sqrt(n)) ~ Tₙ₋₁
+
+σ / sqrt(n) true standard error of the mean
+s / sqrt(n) estimated standard error of the mean
+</code></pre>
+</div>
+<p>Properties:</p>
+
+<ul>
+<li><p>Shape is determined by parameter degrees of freedom: df = n -1</p></li>
+
+<li><p>E(T) = 0</p></li>
+
+<li><p>The T distribution is symmetric</p></li>
+
+<li><p>As n approaches infinity, T ~ N(0, 1). 120 is a pretty good approximation of infinity while 30 is not too bad.</p>
+
+<p><img style="width:60%;display:block;margin:auto;" src="imgs/5_t_dist_shape.png" alt="t_dist_shape" loading="lazy"/></p></li>
+
+<li><p>The T transformation is appropriate whenever the parent population is normally distributed and σ is unknown.
+Even if the parent population is not normally distributed, T will often work ok.</p>
+
+<ul>
+<li>Note: X̄ approaches normally distribution according to <strong>Central Limit Theorem</strong>.</li>
+</ul></li>
+</ul>
+
+<h2 id="confidence-intervals">Confidence Intervals</h2>
+
+<p>Population parameter estimates from samples are not identical to population parameter due to sampling error.
+Because of the estimate inaccuracy, we need to specify a range of values in which the population parameter is likely to be.
+This is when the T distribution comes in handy as normal distribution cannot be used  because population variance σ is unknown.</p>
+
+<p>Definition:</p>
+<div class="codeblockcls">
+<pre><code>α = the probability the population parameter is outside of the confidence interval
+1 - α = the probability the population parameter is inside the confidence interval
+
+The 100(1 - α)% confidence interval will include the true value of the population parameter
+with probability 1 - α.
+
+Example: α = 0.05
+(1) 95% of the time, the 95% confidence interval will include the true population parameter.
+(2) 2.5% of the time, the true population parameter is larger than the 95% confidence
+    interval upper limit.
+(3) 2.5% of the time, the true population parameter is smaller than the 95% confidence
+    interval lower limit.
+</code></pre>
+</div>
+<p>Based on the T transformation, we have the formula for confidence interval:</p>
+
+<p><img style="width:25%;display:block;margin:auto;" src="imgs/5_ci_formula.png" alt="ci_formula" loading="lazy"/></p>
+
+<ul>
+<li>α is the significance level</li>
+<li>s is the sample variance</li>
+<li>n is the sample size</li>
+<li>t𝛼/₂,df is the <strong>critical value</strong>, t-value from t-distribution with 𝛼 and df = n - 1</li>
+</ul>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>
