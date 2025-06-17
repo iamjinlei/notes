@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/6_one_sample_hypothesis_testing.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#6-one-sample-hypothesis-testing">6 One Sample Hypothesis Testing</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#concepts">Concepts</a></li><li class="toc1_li"><a href="#the-testing">The Testing</a></li><li class="toc1_li"><a href="#test-statistics">Test Statistics</a><button id="toc0.2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.2_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#z-test-statistic">Z Test Statistic</a></li><li class="toc2_li"><a href="#t-test-statistic">T Test Statistic</a></li><li class="toc2_li"><a href="#hypothesis-testing-using-confidence-intervals">Hypothesis Testing Using Confidence Intervals</a></li><li class="toc2_li"><a href="#pearson-chi-square-test-statistic">Pearson Chi-square Test Statistic</a></li><li class="toc2_li"><a href="#fisher-s-exact-test">Fisher's Exact Test</a></li></ul></div><li class="toc1_li"><a href="#examples">Examples</a><button id="toc0.3_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.3_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example-1-one-sided-z-statistic-with-one-sample">Example 1 (One-Sided Z-Statistic with One Sample)</a></li><li class="toc2_li"><a href="#example-2-two-sided-z-statistic-with-one-sample">Example 2 (Two-Sided Z-Statistic with One Sample)</a></li><li class="toc2_li"><a href="#example-3-z-statistic-with-multiple-samples">Example 3 (Z-Statistic with Multiple Samples)</a></li><li class="toc2_li"><a href="#example-4-t-statistic">Example 4 (T-Statistic)</a></li><li class="toc2_li"><a href="#example-5-chi-square-statistic-for-goodness-of-fit-test">Example 5 (Chi-square-Statistic for Goodness-of-Fit Test)</a></li><li class="toc2_li"><a href="#example-6-chi-square-statistic-for-test-of-independence">Example 6 (Chi-square-Statistic for Test of Independence)</a></li><li class="toc2_li"><a href="#example-7-chi-square-statistic-for-test-of-homogeneity">Example 7 (Chi-square-Statistic for Test of Homogeneity)</a></li><li class="toc2_li"><a href="#example-8-fisher-s-exact-test">Example 8 (Fisher’s Exact Test)</a></li></ul></div></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="6-one-sample-hypothesis-testing">6 One Sample Hypothesis Testing</h1>
+
+<h2 id="concepts">Concepts</h2>
+
+<ul>
+<li>Population parameters are unknown.
+But we can make hypotheses about their true values.</li>
+<li>The purpose of hypothesis testing is to choose between 2 competing hypotheses about the value of a population parameter.
+
+<ul>
+<li>One hypothesis claims wages of men and women are equal.</li>
+<li>An alternative claims men make more than women.</li>
+</ul></li>
+<li>Null hypothesis: the hypothesis actually to be tested, denoted as H₀.
+
+<ul>
+<li>Null hypothesis is assumed to be true unless there is a strong evidence to the contrary.</li>
+</ul></li>
+<li>Alternative hypothesis: the other hypothesis assumed to be true when null hypothesis is false, denoted as H₁ or HA</li>
+<li>Convenient to have null hypothesis contain an equal sign, e.g. H₀: µ = 100, H₁: µ &gt; 100.</li>
+<li>The true value of the population parameter should be in either H₀ or H₁.
+
+<ul>
+<li>One-sided test: if true value lies entirely above or below the value specified in H₀.</li>
+<li>two-sided test: if true value can lie on either side of the value specified in H₀.</li>
+</ul></li>
+</ul>
+
+<h2 id="the-testing">The Testing</h2>
+
+<ul>
+<li><p>The standard procedure is to assume H₀ is true, and try to determine whether there is sufficient evidence to declare H₀ false.</p></li>
+
+<li><p>Reject H₀ only when chance is small that H₀ is true.</p>
+
+<ul>
+<li><p>Type I error: reject the null hypothesis when the null is true.
+The probability of Type I error = 𝛼.</p>
+<div class="codeblockcls">
+<pre><code>α = Probability of Type I error = p(rejecting H₀ | H₀ is true)
+</code></pre></div></li>
+
+<li><p>Type II error: accept the null hypothesis when it is not true.
+The probability of Type II error = β.</p>
+<div class="codeblockcls">
+<pre><code>β = Probability of Type II error = p(accepting H₀ | H₀ is false)
+</code></pre></div></li>
+
+<li><p>α and β are not independent of each other.
+Increasing sample size n cause both to decrease.</p></li>
+</ul></li>
+
+<li><p>Testing procedure:</p>
+
+<ul>
+<li>Define H₀ and H₁</li>
+<li>Determine the appropriate test statistic.
+A test statistic is a random variable used to determine how close a specific sample result falls to one of the hypotheses being tested.</li>
+<li>Determine the critical region that statisfies required α.
+Reject the null hypothesis if the computed test statistic is in the critical region.
+The opposite of critical region is the acceptance region.</li>
+</ul></li>
+</ul>
+
+<p>Typically, α is set to 0.05 or 0.01.
+If α = 0.05, it would erroneously reject H₀ when H₀ is true 5% of the time.</p>
+
+<h2 id="test-statistics">Test Statistics</h2>
+
+<p>So far, we have covered steps for hypothesis testing.
+Here summarizes the test statistic for different cases.</p>
+
+<h3 id="z-test-statistic">Z Test Statistic</h3>
+
+<h4 id="normal-distribution">Normal Distribution</h4>
+
+<p>Z-statistic can be used to test normal distribution&rsquo;s parameter μ:</p>
+
+<ul>
+<li><p>X is a random variable of normal distribution with known variance σ² and unknown mean μ.</p>
+
+<ul>
+<li>Other types can use normal distribution to approximate with conditions.</li>
+<li><span  style="background-color:#FFFF77;">For example, even X is not normally distributed, its sample mean X̄ is normally distributed with large sample size n</span>.</li>
+</ul></li>
+
+<li><p>The null hypothesis is H₀: E(X) = μ₀</p>
+
+<p><img style="width:32%;display:block;margin:auto;" src="imgs/6_z_statistic_normal.webp" alt="z_statisitc_normal" loading="lazy"/></p></li>
+</ul>
+
+<p>Note:</p>
+
+<ul>
+<li>x̄ is the sampled mean.</li>
+<li>μ₀ is the population mean.</li>
+<li>Z ~ N(0, 1).</li>
+<li>The denominator in the z-statistic is σ / sqrt(n) while the z-score&rsquo;s denominator is σ.
+The reason is z-score is dealing with population variance, which is σ².
+Here the z-statistic is using sample variance as denominator, which is σ²/n.</li>
+</ul>
+
+<h4 id="binomial-distribution">Binomial Distribution</h4>
+
+<p>Z-statistic can be used to test binomial distribution&rsquo;s parameter p:</p>
+
+<ul>
+<li><p>X is random variable of binomial distribution with unknown success rate p.</p></li>
+
+<li><p>According to the <a href="5_sampling.md.html#sample-distributions">properties of sample variable</a>,</p>
+<div class="codeblockcls">
+<pre><code>E(X̄) = μ = p
+V(X̄) = σ² / n = pq
+Where u = p and σ² = npq are mean and variance of the binomial distribution sampled.
+</code></pre></div></li>
+
+<li><p>Based on <strong>Central Limit Theorem</strong>,  X̄ ~ N(μ, σ²/n) = N(μ, pq/n) for large n.</p></li>
+
+<li><p>The null hypothesis is H₀: p = p₀</p>
+
+<p><img style="width:35%;display:block;margin:auto;" src="imgs/6_z_statistic_binomial.png" alt="z_statisitc_binomial" loading="lazy"/></p></li>
+</ul>
+
+<p>Note:</p>
+
+<ul>
+<li>CC represents the correction for continuity because X is a discrete random variable.
+Add 0.5/N if 𝗉̂ &lt; p₀.
+Substract 0.5/N if 𝗉̂ &gt; p₀.
+Do nothing if 𝗉̂ = p₀.</li>
+<li>𝗉̂ is the sampled success rate.</li>
+<li>q₀ = 1 - p₀.</li>
+<li>Z ~ N(0, 1).</li>
+<li>The formula is the same as the normal distribution case, except both numerator and denominator are scaled by N.</li>
+</ul>
+
+<h3 id="t-test-statistic">T Test Statistic</h3>
+
+<p>Z-statistic does not work when variance σ² is unknown.
+Instead, T-statistic can be used to test normal distribution&rsquo;s parameter u:</p>
+
+<ul>
+<li><p>X is a random variable of normal distribution with unknown variance σ² and mean μ.</p></li>
+
+<li><p>Use sampled variance s² to replace population variance σ².</p></li>
+
+<li><p>The null hypothesis is H₀: E(X) = μ₀</p>
+
+<p><img style="width:12%;display:block;margin:auto;" src="imgs/6_t_statistic.png" alt="t_statisitc" loading="lazy"/></p></li>
+</ul>
+
+<p>Note:</p>
+
+<ul>
+<li>x̄ is the sampled mean.</li>
+<li>T ~ t-distribution with 𝛼 and degree of freedoms n - 1
+Note the only difference between Z-statistic and T-statistic is using the true variance σ vs. the sample variance s.</li>
+</ul>
+
+<h3 id="hypothesis-testing-using-confidence-intervals">Hypothesis Testing Using Confidence Intervals</h3>
+
+<p>Confidence intervals use T-transformation to estimate population mean interval from sample mean and variance with 100(1 - α)% probability.
+This is essentially the same as the T-statistic:</p>
+
+<ul>
+<li>Null hypothesis H₀: E(X) = μ₀, alternative two-tailed hypothesis H₁: E(X) ≠ μ₀.</li>
+<li>H₀ will not be rejected at α level of significant if μ₀ falls within the 100(1 - α)% confidence interval.</li>
+<li>H₀ will be rejected at α level of significant if μ₀ does not fall within the 100(1 - α)% confidence interval.</li>
+<li>The use of either confidence intervals or acceptance regions should lead to the same conclusion when testing a two-tailed alternative.
+
+<ul>
+<li>With an acceptance region, you start with a hypothesized value for µ0, and then determine whether sample values fall within that range if µ0 is correct.</li>
+<li>With a confidence interval, you first compute the sample mean, and then determine the estimated range for µ based on sample values.
+If µ0 falls within this range, you accept the null hypothesis.</li>
+</ul></li>
+</ul>
+
+<p><img style="width:95%;display:block;margin:auto;" src="imgs/6_ci_hypothesis.png" alt="ci_hypothesis" loading="lazy"/></p>
+
+<h3 id="pearson-chi-square-test-statistic">Pearson Chi-square Test Statistic</h3>
+
+<p>Z-statistic and T-Statistic are parametric statistics:</p>
+
+<ul>
+<li>Assume some knowledge about the parent population (e.g. normal distribution or binomial distribution).</li>
+<li>Measurements at interval scale.</li>
+</ul>
+
+<p>Chi-square test concerns with <span  style="background-color:#FFFF77;">categorical data</span>:</p>
+
+<table>
+<thead>
+<tr>
+<th>Test Type</th>
+<th>Null Hypothesis</th>
+<th>Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Goodness-of-Fit</td>
+<td>The observed data follows the expected distribution</td>
+<td>Roll a 6-sided die 60 times. H₀: the die is fair, each side has probability <sup>1</sup>&frasl;<sub>6</sub></td>
+</tr>
+
+<tr>
+<td>Test of Independence</td>
+<td>Two variables are independent</td>
+<td>Survey people on gender and voting preference. H₀: gender and voting preference are not associated</td>
+</tr>
+
+<tr>
+<td>Test of Homogeneity</td>
+<td>The distributions of the categorical variable are the same across groups</td>
+<td>Test whether 3 different cities have the same preference distribution for soda brands</td>
+</tr>
+</tbody>
+</table>
+<p>The pearson chi-square statistic:</p>
+
+<p><img style="width:22%;display:block;margin:auto;" src="imgs/6_chisquare_statistic.png" alt="chisquare_statisitc" loading="lazy"/></p>
+
+<p>Note:</p>
+
+<ul>
+<li>Oᵢ is the number of observations of type i.</li>
+<li>Eᵢ = Npᵢ is the expected count of type i, under the null hypothesis that the fraction of type i in the population is pᵢ.</li>
+<li>The smaller 𝒳²(n) the better.</li>
+</ul>
+
+<p>Assumptions required for using the Pearson chi-square test:</p>
+
+<ul>
+<li>Variables should be categorical.
+That is, variables take on values that are names or labels.</li>
+<li>Data should be in frequency form.</li>
+<li>Observations should be independent
+That is, the value of one observation in the dataset does not affect the value of any other observation.</li>
+<li>Expected frequencies should be sufficiently large.
+It’s assumed that the expected value of cells in the contingency table should be 5 or greater in at least 80% of cells and that no cell should have an expected value less than 1.</li>
+</ul>
+
+<h4 id="pearson-chi-square-statistic-follows-chi-square-distribution">Pearson Chi-square Statistic Follows Chi-square Distribution?</h4>
+
+<p>Transform the original statistic</p>
+<div class="codeblockcls">
+<pre><code>𝒳²(n) = ∑((Oᵢ - Eᵢ)²/Eᵢ)    for 1 ≤ i ≤ n
+      = ∑((Oᵢ - Eᵢ)/sqrt(Eᵢ))²
+</code></pre>
+</div>
+<p>Based on chi-square&rsquo;s property, <strong>if we can prove Zᵢ = (Oᵢ - Eᵢ)/sqrt(Eᵢ) ~ N(0, 1), then ∑Zᵢ² follows chi-square distribution</strong>.</p>
+<div class="codeblockcls">
+<pre><code>Key idea: each observed count Oᵢ is a random variable that follows a binomial or multinomial
+distribution under the hypothesis.
+
+Oᵢ is essentially the number of successes in n trials with probability fo success pᵢ.
+For a large enough n, the binomial variable Oᵢ is approximately:
+    Oᵢ ~ N(Npᵢ, Npᵢqᵢ) = N(Eᵢ, Eᵢqᵢ).
+So:
+    (Oᵢ - Eᵢ) / sqrt(Eᵢqᵢ) = Zᵢ / sqrt(qᵢ) ~ N(0, 1)
+
+qᵢ is not necessarily close to 1, how could Zᵢ approximates to standard normal distribution???
+An extreme case is a 2 categorical data with q₀ = 0.99 and q₁ = 0.01.
+Z₀ is close to standard normal distribution, but apparently Z₁ is NOT!
+</code></pre>
+</div>
+<p>To answer the above question, it requires a quite lengthy proof that can be found <a href="./resources/6_pearson_chisquare_proof.pdf">here</a>, a <a href="https://ocw.mit.edu/courses/18-443-statistics-for-applications-fall-2006/pages/lecture-notes/">course material</a> from MIT.</p>
+
+<h3 id="fisher-s-exact-test">Fisher&rsquo;s Exact Test</h3>
+
+<p>When samples are small, the distributions of 𝒳² (and other large-sample based statistics) are not well approximated by the chi-squared distribution.
+Their p-values are not to be trusted.
+In such situations, we can perform inference using an exact distribution (or estimates of exact distributions), but we should keep in mind that p-values based on exact tests can be conservative (i.e, measured to be larger than they really are).</p>
+
+<ul>
+<li>Null hypothesis H₀: columns and rows are independent.</li>
+</ul>
+
+<p>We may use an <strong>exact test</strong> if:</p>
+
+<ul>
+<li>The row totals and the column totals are both fixed by design of the study.</li>
+<li>Have a small sample size n.</li>
+<li>More than 20% of cells have <strong>expected cell counts</strong> less than 5, and no expected cell count is less than 1.
+Note the expected cell count is not the value directly from the table. Instead, it equals to (row sum) * (col sum) / total.</li>
+</ul>
+
+<h4 id="hypergeometric-distribution">Hypergeometric Distribution</h4>
+
+<p>The Fisher&rsquo;s exact test can calculate probability using hypergeometric distribution.
+The table shown maps a problem in question to the corresponding hypergeometric statement, given fixed N, m, n.</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Successes</th>
+<th>Failures</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Sampled</td>
+<td>x = a</td>
+<td>n-x = b</td>
+<td>n</td>
+</tr>
+
+<tr>
+<td>Not Sampled</td>
+<td>m-x = c</td>
+<td>N-m-n+x = d</td>
+<td>N-n</td>
+</tr>
+
+<tr>
+<td>Total</td>
+<td>m</td>
+<td>N-m</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p>Hypergeometric probability gives chance of getting this exact table.
+With a simple transformation, we can get the probabilty of getting the exact table:</p>
+<div class="codeblockcls">
+<pre><code>p(X = x) = ((a+b)! * (c+d)! * (a+c)! * (b+d)!) / (a! * b! * c! * d! * N!)
+</code></pre>
+</div>
+<h4 id="p-value">P-Value</h4>
+
+<p>The p-value is calculated as ∑p(X ≤ x) or ∑p(X ≥ x) depending on the definition of extreme.
+It represents the probability of observing the data if the null hypothesis were true.
+If the alternative hypothesis is really about the &ldquo;Sampled&rdquo; action causes more &ldquo;Successes&rdquo; (hence are associated), then it should use ∑p(X ≥ x).
+A small p-value means, if the null hypothesis were true, the observed data (or more extreme) is unlikely to have occurred by random chance.
+But the table data is observed.
+This leads to the rejection of the null hypothesis and suggests a statistically significant association between variables.</p>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="example-1-one-sided-z-statistic-with-one-sample">Example 1 (One-Sided Z-Statistic with One Sample)</h3>
+<div class="codeblockcls">
+<pre><code>One researcher believes a coin is “fair,” the other believes the coin is biased toward heads.
+The coin is tossed 20 times, yielding 15 heads. Indicate whether or not the first researcher’s
+position is supported by the results. Use α = .05.
+
+Solution:
+If the coin is fair, p = 0.5.
+When n is large, we can use X ~ N(np, npq) = N(10, 5)
+(1) Define hypotheses:
+    H₀: E(X) = 10 heads
+    H₁: E(X) &gt; 10 heads
+(2) Use Z = (number of heads ± 0.5 - 10) / sqrt(5/20) as the test statistic.
+(3) Acceptance region is p(Z ≤ z) = 0.95 = 1 - α.
+    So z = 1.65
+    Reject H₀ if z &gt; 1.65
+(4) z = (15 - 0.5 - 10) / 0.5 = 2.01. H₀ is rejected.
+
+Note: ± 0.5 in step 2 is a correction for continuity since X is not continuous.
+To do this, add 0.5 to x when x &lt; Np, and subtract 0.5 from x when x &gt; Np.
+</code></pre>
+</div>
+<h3 id="example-2-two-sided-z-statistic-with-one-sample">Example 2 (Two-Sided Z-Statistic with One Sample)</h3>
+<div class="codeblockcls">
+<pre><code>Design a decision rule to test the hypothesis that a coin is fair if a sample of 64 tosses of
+the coin is taken with a level of significance of 0.05.
+
+Solution:
+If the coin is fair, p = 0.5.
+When n is large, we can use X ~ N(np, npq) = N(32, 16)
+(1) Define hypotheses:
+    H₀: E(X) = 32 heads
+    H₁: E(X) ≠ 32 heads
+(2) Use Z = (number of heads ± 0.5 - 32) / sqrt(16) as the test statistic.
+(3) Acceptance region is p(-z ≤ Z ≤ z) = 0.95 = 1 - α.
+    So z = 1.96
+    Reject H₀ if z &lt; 1.96 or z &gt; 1.96
+</code></pre>
+</div>
+<p><span  style="background-color:#FFFF77;">Note how the examples above use the Z-statistic without the sqrt(n) in denominator.</span>
+When converting the original n Bernoulli trials into a binomial distribution, all tosses are combined to become one binomial observation of x successes.
+Therefore, sqrt(1) is ignored and the used formula is still a Z-statistic.</p>
+
+<h3 id="example-3-z-statistic-with-multiple-samples">Example 3 (Z-Statistic with Multiple Samples)</h3>
+<div class="codeblockcls">
+<pre><code>A manufacture of steel rods considers that the manufacturing process is working properly if
+the mean length of the rods is 8.6. The standard deviation of these rods always runs about
+0.3 inches. Suppose a random sample of size n = 36 yields an average length of 8.7 inches.
+Should the manufacturer conclude the process is working properly or improperly?
+
+Solution:
+Sample size n is large enough to consider X̄ as a normal distribution.
+Since population μ and σ² are known, Z-statistic can be used.
+(1) Define hypotheses:
+    H₀: E(X) = μ₀ = 8.6
+    H₁: E(X) ≠ 8.6
+(2) Use Z = (X̄ - μ₀) / (σ / sqrt(n)) ~ N(0, 1) as the test statistic
+(3) Acceptance region is p(-z ≤ Z ≤ z) = 0.95 = 1 - 2 * α.
+    So z = 1.96
+    Reject H₀ if z &lt; 1.96 or z &gt; 1.96
+(4) z = (8.7 - 8.6) / (0.3 / sqrt(36)) = 2
+    The null hypothesis H₀ should be rejected with level of significance 0.05.
+</code></pre>
+</div>
+<h3 id="example-4-t-statistic">Example 4 (T-Statistic)</h3>
+<div class="codeblockcls">
+<pre><code>A Bowler claims that she has a 215 average. In her latest performance, she scores 188,
+214, and 204. Would you conclude the bowler is “off her game?”
+
+Solution:
+Sample size n = 3.
+Population variance is unknown. So T-statisic can be used.
+x̄ = (188 + 214 + 204) / 3 = 202
+s² = ((188 - 202)² + (214 -202)² + (204 - 202)²) / (3 - 1)
+   = 172
+(1) Define hypotheses:
+    H₀: E(X) = μ₀ = 215
+    H₁: E(X) ≠ 215
+(2) Use T = (X̄ - μ₀) / (s / sqrt(n)) ~ t-distribution with α and degree of freedoms 2.
+(3) Critical region is p(-t ≤ T ≤ t) = 0.05 = α.
+    So t = 4.303
+    Reject H₀ if t &lt; -4.303 or t &gt; 4.303
+(4) t = (202 - 215) / sqrt(172 / 3) = -1.717
+    The null hypothesis H₀ cannot be rejected with level of significance 0.05.
+</code></pre>
+</div>
+<h3 id="example-5-chi-square-statistic-for-goodness-of-fit-test">Example 5 (Chi-square-Statistic for Goodness-of-Fit Test)</h3>
+<div class="codeblockcls">
+<pre><code>Below are the results of rolling a die 60 times. Do you consider the die fair?
+
+    |  Face | Observed Frequency |
+    | ----- | ------------------ |
+    | 1     | 8                  |
+    | 2     | 9                  |
+    | 3     | 10                 |
+    | 4     | 11                 |
+    | 5     | 12                 |
+    | 6     | 10                 |
+    | Total | 60                 |
+
+Solution:
+H₀: the die is fair, each face has probability 1/6
+H₁: the die is not fair (at least one face has a difference probability)
+
+Under H₀ each face should occur 60 / 6 = 10 times, i.e. Eᵢ = 10
+
+Compute chi-square statistic:
+𝒳²(n) = ∑((Oᵢ - Eᵢ)²/Eᵢ)
+      = (8 - 10)²/10 + (9 - 10)²/10 ... + (10 - 10)²/10
+      = 1.0
+
+Degrees of freedom (df) = number of categories - 1
+                        = 6 - 1
+                        = 5
+
+For 𝛼 = 0.05 and df = 5, 𝑥² = 11.070
+Since 𝒳²(n) ≪ 𝑥², H₀ can NOT be rejected.
+We consider the die is fair.
+</code></pre>
+</div>
+<h3 id="example-6-chi-square-statistic-for-test-of-independence">Example 6 (Chi-square-Statistic for Test of Independence)</h3>
+<div class="codeblockcls">
+<pre><code>Here is a survey of 100 people about their gender and voting preference (Party A or Party B):
+
+    |              | Party A | Party B | Row Total |
+    | ------------ | ------- | ------- | --------- |
+    | Male         | 20      | 30      | 50        |
+    | Female       | 30      | 20      | 50        |
+    | Column Total | 50      | 50      | 100       |
+
+Do you consider gender and voting preference are independent?
+
+Solution:
+H₀: gender and voting preference are independent.
+H₁: gender and voting are associated.
+
+Compute expected counts for each table cell:
+    Eᵢⱼ = (Row Totalᵢ) * (Column Totalⱼ) / Total
+
+    |        |    Party A   |    Party B   |
+    | ------ | ------------ | ------------ |
+    | Male   | 50*50/100=25 | 50*50/100=25 |
+    | Female | 50*50/100=25 | 50*50/100=25 |
+
+Compute chi-square statistic:
+𝒳² = ∑((Oᵢⱼ - Eᵢⱼ)²/Eᵢⱼ)
+   = (20 - 25)²/25 + (30 - 25)²/25 ... + (20 - 25)²/25
+   = 4.0
+
+Degrees of freedom (df) = (rows - 1) * (columns - 1) = 1
+
+For 𝛼 = 0.05 and df = 1, 𝑥² = 3.841
+Since 𝒳²(n) &gt; 𝑥², we can reject H₀ and consider gender and voting are NOT independent.
+</code></pre>
+</div>
+<h3 id="example-7-chi-square-statistic-for-test-of-homogeneity">Example 7 (Chi-square-Statistic for Test of Homogeneity)</h3>
+<div class="codeblockcls">
+<pre><code>Here is a survey of voters in 3 cities about their preferred political party: A, B, or C.
+
+    | City          | Party A | Party B | Party C | Row Total |
+    | ------------- | ------- | ------- | ------- | --------- |
+    | City 1        | 30      | 10      | 10      | 50        |
+    | City 2        | 20      | 20      | 10      | 50        |
+    | City 3        | 10      | 30      | 10      | 50        |
+    | Column Totals | 60      | 60      | 30      | 150       |
+
+Do you consider these 3 cities have the same party preference distribution?
+
+Solution:
+H₀: all cities have the same party preference distribution.
+H₁: at least one city's party preference distribution is different.
+
+Compute expected counts for each table cell:
+    Eᵢⱼ = (Row Totalᵢ) * (Column Totalⱼ) / Total
+
+    | City   |    Party A   |    Party B   |    Party C   |
+    | ------ | ------------ | ------------ | ------------ |
+    | City 1 | 50*60/150=20 | 50*60/150=20 | 50*30/150=10 |
+    | City 2 | 50*60/150=20 | 50*60/150=20 | 50*30/150=10 |
+    | City 3 | 50*60/150=20 | 50*60/150=20 | 50*30/150=10 |
+
+Compute chi-square statistic:
+𝒳² = ∑((Oᵢⱼ - Eᵢⱼ)²/Eᵢⱼ)
+   = (30 - 20)²/20 + (10 - 20)²/20 + (10 - 10)²/10... + (10 - 10)²/25
+   = 20.0
+
+Degrees of freedom (df) = (rows - 1) * (columns - 1) = 4
+
+For 𝛼 = 0.05 and df = 4, 𝑥² = 9.488
+Since 𝒳²(n) &gt; 𝑥², we can reject H₀ and consider not all cities share the same distribution
+of party preference.
+</code></pre>
+</div>
+<h3 id="example-8-fisher-s-exact-test">Example 8 (Fisher’s Exact Test)</h3>
+<div class="codeblockcls">
+<pre><code>Here is a clinical trial tests a vaccine on a small group.
+
+    |         | Infected | Not Infected | Total |
+    | ------- | -------- | ------------ | ----- |
+    | Vaccine | 1        | 9            | 10    |
+    | Placebo | 8        | 2            | 10    |
+    | Total   | 9        | 11           | 20    |
+
+Do you consider infection status is associated with receiving the vaccine?
+
+Solution:
+H₀: Vaccination and infection are independent (vaccine does not reduce infection).
+H₁: Vaccination and infection are associated.
+
+p-value = p(X = 1) + p(X = 0)
+        = 0.0268 + 0.0006
+        = 0.0275
+Since p-value &lt; 0.05, the chance of observing extreme cases should be rare.
+But we observed it.
+H₀ is rejected, i.e. vaccine appears effective in reducing infection.
+</code></pre>
+</div>
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>

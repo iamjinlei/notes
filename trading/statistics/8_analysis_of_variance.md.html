@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/8_analysis_of_variance.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#8-analysis-of-variance-anova">8 Analysis of Variance (ANOVA)</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#one-way-analysis-of-variance">One-Way Analysis of Variance</a><button id="toc0.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#simple-one-factor-model">Simple One-Factor Model</a></li><li class="toc2_li"><a href="#the-test">The Test</a></li><li class="toc2_li"><a href="#example">Example</a></li></ul></div><li class="toc1_li"><a href="#post-hoc-tests">Post Hoc Tests</a></li><li class="toc1_li"><a href="#two-way-analysis-of-variance">Two-Way Analysis of Variance</a><button id="toc0.2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.2_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#two-treatments-model">Two-Treatments Model</a></li><li class="toc2_li"><a href="#tests-of-interest">Tests of Interest</a></li><li class="toc2_li"><a href="#example-1">Example</a></li></ul></div></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="8-analysis-of-variance-anova">8 Analysis of Variance (ANOVA)</h1>
+
+<p>Chapter 7 focuses on comparing two-samples.
+But more than often, we need to test more than two populations.
+For example, we want to compare the average income of blacks, whites, and others.
+We want to compare the educational attainment of Catholics, Protestants, Jews, etc.</p>
+
+<p>Pairwise comparison may not work because by chance some contrasts would be significant.
+For example, 7 groups need ₇C₂ = 21 combinations, with 𝛼 = 0.05, you can expect one of the contrasts to be significant.
+Analysis of Variance (ANOVA) is the tool to solve this sort of problems.</p>
+
+<h2 id="one-way-analysis-of-variance">One-Way Analysis of Variance</h2>
+
+<p>ANOVA is appropriate when:</p>
+
+<ul>
+<li>One dependent, interval level variable</li>
+<li>2 or more populations, the independent variable is categorical.</li>
+</ul>
+
+<p>The ANOVA test is interested in comparing <strong>J</strong> groups, i.e. testing hypotheses about µ₁, µ₂, µ₃ &hellip; µⱼ.</p>
+
+<ul>
+<li>Null hypothesis H₀: µ₁ = µ₂ = µ₃ &hellip; = µⱼ</li>
+<li>Alternative hypothesis H₁: the means are not all equal</li>
+</ul>
+
+<h3 id="simple-one-factor-model">Simple One-Factor Model</h3>
+
+<p>Assume J populations.
+Take j samples, one sample from each population with size Nⱼ.
+Each sample score can be decomposed into 3 components:</p>
+<div class="codeblockcls">
+<pre><code>yᵢⱼ = µ + 𝜏ⱼ + εᵢⱼ
+</code></pre>
+</div>
+<ul>
+<li>µ is the <strong>grand mean</strong> of all populations.</li>
+<li>𝜏ⱼ is the <strong>treatment effect</strong> associated with the corresponding population j.
+It is the deviation of the population mean from the the grand mean.</li>
+<li>εᵢⱼ is the <strong>random error term</strong>, reflecting variability within each population.</li>
+</ul>
+
+<p>An alternative way to write the model is:</p>
+<div class="codeblockcls">
+<pre><code>yᵢⱼ = µⱼ + εᵢⱼ    where µⱼ = µ + 𝜏ⱼ
+</code></pre>
+</div>
+<p>If the null hypothesis is true, µ₁ = µ₂ = µ₃ &hellip; = µⱼ = µ, that means there are no treatment effects.
+<strong>It is equivalent to claim the null hypothesis H₀: 𝜏₁ = 𝜏₂ = 𝜏₃ &hellip; = 𝜏ⱼ = 0</strong></p>
+
+<p>Sample treatment effects can be easily compuated:</p>
+
+<p><img style="width:65%;display:block;margin:auto;" src="imgs/8_one_treatment_effect_est.png" alt="one_treatment_effect_est" loading="lazy"/></p>
+
+<p><strong>Now the problem becomes how we can determine if these differences in treatment effects are significant</strong>.</p>
+
+<h3 id="the-test">The Test</h3>
+
+<p>Rationale behid the test:</p>
+
+<ul>
+<li>The basic idea is to determine if variations in the set of samples are due to random error or difference in means of populations.</li>
+<li>Use mean square to represent the variations.
+
+<ul>
+<li>Mean square within samples is due to random errors.</li>
+<li>Mean square between samples is due to differences between population means.</li>
+</ul></li>
+<li>Calculate the relative value of mean squre between samples to the mean square within samples (by division)
+
+<ul>
+<li>This give a measurement of the population mean variation relative to random error.</li>
+<li>It follows F distribution.</li>
+</ul></li>
+</ul>
+
+<h4 id="step-1">Step 1</h4>
+
+<p>Given the samples, calculate sum of squares (SS):</p>
+
+<p><img style="width:65%;display:block;margin:auto;" src="imgs/8_one_ss.png" alt="one_ss" loading="lazy"/></p>
+
+<ul>
+<li><strong>SS Within</strong> captures variability within each group.
+It is also called SS Errors or SS Residual because it reflects variability that cannot be explained by group membership.
+Each sample has (Nⱼ - 1) degrees of freedom, so the <strong>DF Within</strong> is ∑(Nⱼ - 1)) = N - J.</li>
+<li><strong>SS Between</strong> captures variability between groups.
+It is also called SS Explained because it reflects variability that is explained by group membership.
+There are J samples and 1 grand mean, so <strong>DF Between</strong> is J - 1</li>
+</ul>
+
+<h4 id="step-2">Step 2</h4>
+
+<p>Divide SS by its degrees of freedom, we get mean square (MS):</p>
+
+<p><img style="width:43%;display:block;margin:auto;" src="imgs/8_one_ms.png" alt="one_ms" loading="lazy"/></p>
+
+<h4 id="step-3">Step 3</h4>
+
+<p>Assumption for the random error term εᵢⱼ:</p>
+
+<ul>
+<li>εᵢⱼ ~ N(0, σ²)</li>
+<li>σ² is the same for all samples</li>
+<li>εᵢⱼ are independent</li>
+</ul>
+
+<p>Then if H₀ is true:</p>
+
+<p><img style="width:48%;display:block;margin:auto;" src="imgs/8_one_f.png" alt="one_f" loading="lazy"/></p>
+
+<p>That is, if H₀ is true, the test statistic F follows F distribution with J - 1 and N - J degrees of freedom.</p>
+
+<h4 id="step-4">Step 4</h4>
+
+<p>We determine the critical value of the test statistic for a given value of α.
+If the test statistic is less than the critical value, we accept H₀, if it is greater than the critical value we reject H₀.</p>
+
+<h4 id="summary">Summary</h4>
+
+<p>Below is a summary of procedure for ANOVA:</p>
+
+<p><img style="width:95%;display:block;margin:auto;" src="imgs/8_one_procedure.png" alt="one_procedure" loading="lazy"/></p>
+
+<h3 id="example">Example</h3>
+<div class="codeblockcls">
+<pre><code>A firm wishes to compare four programs for training workers to perform a certain manual
+task. 20 new employees are randomly assigned to the training programs, with 5 in each
+program. At the end of the training period, a test is conducted to see how quickly
+trainees can perform the task. The number of times the task is performed per minute is
+recorded for each trainee, with the following results:
+
+    Program 1: 9, 12, 14, 11, 13
+    Program 2: 10, 6, 9, 9, 10
+    Program 3: 12, 14, 11, 13, 11
+    Program 4: 9, 8, 11, 7, 8
+
+Using α = 0.05, determine whether the treatments differ in their effectiveness.
+
+Solution:
+
+Follow the procedure:
+    Tᴀ₁ = 59
+    Tᴀ₂ = 44
+    Tᴀ₃ = 61
+    Tᴀ₄ = 43
+
+(1) (∑∑yᵢⱼ)² / N = 207² / 20
+                 = 2142.45
+(2) ∑∑yᵢⱼ² = 2239
+(3) ∑(ᴀⱼ²/Nᴀⱼ) = 2197.4
+
+J - 1 = 3
+N - J = 20 - 4 = 16
+
+F = MS Between / MS Within
+  = (SS Between / (J - 1)) / (SS Within / (N - J))
+  = ((3) - (1) / (J - 1)) / ((2) - (3) / (N - J))
+  = ((2197.4 - 2142.45) / 3) / ((2239 - 2197.4) / 16)
+  = 7.04
+
+For α = 0.05, critical value for F(3, 16) is 3.24.
+H₀ is rejected because F &gt; 3.24
+</code></pre>
+</div>
+<h2 id="post-hoc-tests">Post Hoc Tests</h2>
+
+<p>In ANOVA (Analysis of Variance), the F-statistic tests if there is a significant difference between group means.
+But it does not tell you where those differences are, e.g. group 1’s mean might be different than group 2’s mean but not different from group 3’s mean.</p>
+
+<p>Pairwise T-tests can have misleading significance levels.
+With 7 groups, you would expect at least 1 statistically significant difference even if no differences exist.</p>
+
+<p><strong>Post hoc tests</strong> are used to determine which specific group means differ significantly from each other.
+These tests, also known as multiple comparison tests, help to pinpoint where the significant differences lie after the ANOVA has established that a general difference exists.</p>
+
+<h2 id="two-way-analysis-of-variance">Two-Way Analysis of Variance</h2>
+
+<p>Simultaneously examine the effects of two treatments (where both treatments have nominal-level measurement):</p>
+
+<ul>
+<li>The effect of sex and race on wages
+
+<ul>
+<li>Are there differences because of sex alone</li>
+<li>Are there differences because of race alone</li>
+<li>Are there differences attributable to particular combinations of sex and race</li>
+</ul></li>
+<li>The effects of the level of pollution and the level of city services on housing prices</li>
+<li>The effects of religion and region on income</li>
+</ul>
+
+<p>Focus on the special case of balanced designs.
+In a balanced design, all cell frequencies are equal, i.e. the number of observations in each combination of treatments is the same.
+So, for example, there would be 5 white males, 5 black males, 5 white females, and 5 black females.</p>
+
+<h3 id="two-treatments-model">Two-Treatments Model</h3>
+
+<p>When there are 2 treatments, the model can be written as:</p>
+<div class="codeblockcls">
+<pre><code>yᵢⱼₖ = μ + 𝜏ⱼ + λₖ + (𝜏λ)ⱼₖ + εᵢⱼₖ
+
+where
+    μ = the grand mean
+    𝜏ⱼ = the treatment effect for the jth category of the row variable
+    λₖ - the treatment effect for the kth category of the column variable
+    (𝜏λ)ⱼₖ = the interaction effect for the combination of the jth row category and
+             the kth column category.
+</code></pre>
+</div>
+<p>The model can be further expanded:</p>
+
+<p><img style="width:85%;display:block;margin:auto;" src="imgs/8_two_model_components.png" alt="two_model_components" loading="lazy"/></p>
+
+<ul>
+<li>Sum of square (SS) error:</li>
+</ul>
+
+<p><img style="width:42%;display:block;margin:auto;" src="imgs/8_two_ss_error.png" alt="two_model_ss_error" loading="lazy"/></p>
+
+<p>SS Error represents the deviation of individuals from the means of others who have the same value on the row and column variables (e.g. are of the same sex and race); that is, this represents the component of the scores that cannot be accounted for by group membership.
+The degrees of freedom (d.f.) arise from the fact that there are N cases, and J*K means have to be estimated.</p>
+
+<ul>
+<li>SS Rows, SS Columns and SS Interaction:</li>
+</ul>
+
+<p><img style="width:60%;display:block;margin:auto;" src="imgs/8_two_ss_rowcolinter.png" alt="two_model_ss_rowcolinter" loading="lazy"/></p>
+
+<ul>
+<li>SS Main and SS Total:</li>
+</ul>
+
+<p><img style="width:56%;display:block;margin:auto;" src="imgs/8_two_ss_total.png" alt="two_model_ss_total" loading="lazy"/></p>
+
+<p><img style="width:56%;display:block;margin:auto;" src="imgs/8_two_ss_main.png" alt="two_model_ss_main" loading="lazy"/></p>
+
+<p>When all cell frequencies are equal(i.e. the number of observations in each combination of treatments is the same):</p>
+
+<p><img style="width:40%;display:block;margin:auto;" src="imgs/8_two_ss_main2.png" alt="two_model_ss_main2" loading="lazy"/></p>
+
+<ul>
+<li>SS Cells:</li>
+</ul>
+
+<p><img style="width:75%;display:block;margin:auto;" src="imgs/8_two_ss_cell.png" alt="two_model_ss_cell" loading="lazy"/></p>
+
+<p>When all cell frequencies are equal:</p>
+
+<p><img style="width:55%;display:block;margin:auto;" src="imgs/8_two_ss_cell2.png" alt="two_model_ss_cell2" loading="lazy"/></p>
+
+<h3 id="tests-of-interest">Tests of Interest</h3>
+
+<h4 id="1-row-column-interaction">1 Row Column Interaction</h4>
+
+<p>Hypothesis:</p>
+
+<ul>
+<li>H₀: (𝜏λ)ⱼₖ = 0</li>
+<li>H₁: (𝜏λ)ⱼₖ ≠ 0</li>
+</ul>
+
+<p>Test statistic:</p>
+
+<p><img style="width:62%;display:block;margin:auto;" src="imgs/8_two_inter_f.png" alt="8_two_inter_f" loading="lazy"/></p>
+
+<p>If the null hypothesis is true, F ~ F([J - 1][K - 1], N - JK)</p>
+
+<h4 id="2-row-effects">2 Row Effects</h4>
+
+<p>Hypothesis:</p>
+
+<ul>
+<li>H₀: 𝜏₁ = 𝜏₂ = 𝜏₃ &hellip; = 𝜏ⱼ = 0</li>
+<li>H₁: some 𝜏ⱼ ≠ 0</li>
+</ul>
+
+<p>Test statistic:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/8_two_row_f.png" alt="8_two_row_f" loading="lazy"/></p>
+
+<p>If the null hypothesis is true, F ~ F([J - 1], N - JK)</p>
+
+<h4 id="3-column-effects">3 Column Effects</h4>
+
+<p>Hypothesis:</p>
+
+<ul>
+<li>H₀: λ₁ = λ₂ = λ₃ &hellip; = λₖ = 0</li>
+<li>H₁: some λₖ ≠ 0</li>
+</ul>
+
+<p>Test statistic:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/8_two_col_f.png" alt="8_two_col_f" loading="lazy"/></p>
+
+<p>If the null hypothesis is true, F ~ F([K - 1], N - JK)</p>
+
+<p>Note: row and column effects tests are primarily of interest if you conclude that interaction effects are not significant.
+If, on the other hand, you conclude that the interaction effects do not equal zero, then you know both treatments (i.e. the row and column effects) are significant.</p>
+
+<h4 id="4-main-effects">4 Main Effects</h4>
+
+<p>Hypothesis:</p>
+
+<ul>
+<li>H₀: all λ and 𝜏 = 0</li>
+<li>H₁: some λ or 𝜏 ≠ 0</li>
+</ul>
+
+<p>Test statistic:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/8_two_main_f.png" alt="8_two_main_f" loading="lazy"/></p>
+
+<p>If the null hypothesis is true, F ~ F([J + K - 2], N - JK)</p>
+
+<h4 id="5-any-effects">5 Any Effects</h4>
+
+<p>Hypothesis:</p>
+
+<ul>
+<li>H₀: all λ, 𝜏, and (𝜏λ) = 0</li>
+<li>H₁: some λ, 𝜏 or (𝜏λ) ≠ 0</li>
+</ul>
+
+<p>Test statistic:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/8_two_any_f.png" alt="8_two_any_f" loading="lazy"/></p>
+
+<p>If the null hypothesis is true, F ~ F([JK - 1], N - JK)</p>
+
+<h3 id="example-1">Example</h3>
+<div class="codeblockcls">
+<pre><code>A researcher is interested in differences in income by Region (North, South, East, and West)
+and Religion (Catholic, Protestant, Other). She draws a sample of ten people for each
+combination of region and religion. She finds that SS Rows = 200, SS Columns = 170,
+SS Interaction = 100, and s² = 16.81.
+Which effects are significant at the 0.05 level?
+
+Solution:
+We are also told J = 4 (there are 4 regions), K = 3 (3 religions).
+We can deduce that N = J*K*10 = 120.
+
+Recall that s² = MS Total, and that MS Total = SS Total/(n-1), so:
+    SS Total = s² * (N - 1) = 16.81 * 119 = 2000.
+
+SS Main is obtained by adding SS Rows + SS Columns:
+    200 + 170 = 370
+SS Cells is obtained by adding up SS Columns + SS Rows + SS Interactions:
+    200 + 170 + 100 = 470
+SS Error is obtained by computing SS Total - SS Cells:
+    2000 - 470 = 1530
+The remaining quantities in the table are obtained by filling in the appropriate values for
+the formulas.
+
+Hence, we conclude (* = significant at the .05 level):
+    Interaction effects are not significant, other effects are.
+</code></pre>
+</div>
+<p><img style="width:95%;display:block;margin:auto;" src="imgs/8_two_example_anova_table.png" alt="two_example_anova_table" loading="lazy"/></p>
+
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="canonical" href="https://unnote.xyz/trading/statistics/7_two_samples_hypothesis_testing.md.html"/>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title></title>
+<style>
+@media (min-width: 1080px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 960px 1fr;
+		font-size: 1.2em;
+	}
+}
+@media (max-width: 1079px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		font-size: 60%;
+	}
+}
+	.col-middle {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.row.header.nonempty {
+		padding-bottom: 1em;
+	}
+	.row.header.empty {
+		min-height: 6em;
+	}
+	.row.nav.nonempty {
+	}
+	.row.nav.empty {
+	}
+	.row.main {
+  		height: 100%;
+		min-height: 50em;
+		margin-bottom: 5em;
+		padding: 1em;
+	}
+	.row.main .col-middle {
+		border: 1px solid #F0F0F0;
+	}
+	.row.footer {
+	}
+	
+	
+	
+.toc {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	float: right;
+	top: 10em;
+	margin-right: 2em;
+}
+.toc a {
+	text-decoration: none;
+	color: #000000;
+}
+.toc0_ul {
+	list-style-type: none;
+	font-size: 1.2em;
+}
+.toc1_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc2_ul {
+	list-style-type: none;
+	font-size: 0.9em;
+}
+.toc_tgl {
+  	background-color: transparent;
+	font-family: "Menlo", "Lucida Console", "Monaco", "Consolas", monospace;
+	padding-left: 0.8em;
+	font-size: 0.8em;
+	border: none;
+	cursor: pointer;
+}
+
+	
+	
+		table, th, td {
+			border:1px solid #F0F0F0;
+  			border-collapse: collapse;
+			margin:0.2em;
+			padding:0.2em 1em;
+		}
+		th {
+			background-color:#F0F0F0;
+		}
+		.codecls {
+			padding-left:0.3em;
+			padding-right:0.3em;
+			background-color:#F0F0F0;
+	    }
+
+		.codeblockcls {
+			padding:0.1em 1.5em;
+			background-color:#F0F0F0;
+		}
+		
+	
+</style>
+</head>
+<body>
+	<script>
+		
+		
+		
+function toc_tgl(id) {
+	var btn = document.getElementById(id);
+	var c = document.getElementById(id.replace("tgl", "div"));
+	console.log(btn.innerHTML);
+	console.log(id.replace("tgl", "div"));
+	if (btn.innerHTML === "[+]") {
+	   btn.innerHTML = "[-]";
+	   c.style.display = "inline";
+	} else {
+	   btn.innerHTML = "[+]";
+	   c.style.display = "none";
+	}
+}
+
+		
+		
+		
+	</script>
+
+	
+	<div class="row header empty">
+	</div>
+	
+
+	
+	<div class="row nav nonempty">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			<span>🔗</span><span style="margin-left:1em;"><a href="/">Home</a> | <a href="/trading/statistics/note.md.html">Statistics</a></span>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+	
+
+	<div class="row main">
+		<div class="col-left">
+			<div class="toc"><ul class="toc0_ul"><li class="toc0_li"><a href="#7-two-sample-hypothesis-testing">7 Two Sample Hypothesis Testing</a><button id="toc0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0_div" style="display:none;"><ul class="toc1_ul"><li class="toc1_li"><a href="#case-1-variances-are-known">Case 1: Variances Are Known</a><button id="toc0.0_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.0_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example">Example</a></li></ul></div><li class="toc1_li"><a href="#case-2-variances-are-unknown-but-equal">Case 2: Variances Are Unknown But Equal</a><button id="toc0.1_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.1_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example-1">Example</a></li></ul></div><li class="toc1_li"><a href="#case-3-variances-are-unknown-and-unequal">Case 3: Variances Are Unknown and Unequal</a><button id="toc0.2_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.2_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example-2">Example</a></li></ul></div><li class="toc1_li"><a href="#case-4-matched-pairs-with-unknown-variances">Case 4: Matched Pairs with Unknown Variances</a><button id="toc0.3_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.3_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example-3">Example</a></li></ul></div><li class="toc1_li"><a href="#case-5-difference-between-two-proportions">Case 5: Difference Between Two Proportions</a><button id="toc0.4_tgl" class="toc_tgl" onclick="toc_tgl(this.id)" style="display:inline;">[+]</button></li>
+				<div id="toc0.4_div" style="display:none;"><ul class="toc2_ul"><li class="toc2_li"><a href="#example-4">Example</a></li></ul></div></ul></div></ul></div>
+		</div>
+		<div class="col-middle">
+			<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="github.com/gomarkdown/markdown markdown processor for Go">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1 id="7-two-sample-hypothesis-testing">7 Two Sample Hypothesis Testing</h1>
+
+<p>Chapter 6 focuses on one-sample tests.
+It is often interested in comparing two or more groups, i.e. testing hypotheses about µ₁ and µ₂.</p>
+
+<ul>
+<li>Null hypothesis H₀: µ₁ - µ₂ = 0 or µ₁ = µ₂</li>
+<li>Alternative hypothesis H₁:
+
+<ul>
+<li>µ₁ - µ₂ ≠ 0</li>
+<li>µ₁ - µ₂ &gt; 0</li>
+<li>µ₁ - µ₂ &lt; 0</li>
+</ul></li>
+</ul>
+
+<p>Examples:</p>
+
+<ul>
+<li>Do women have lower wages than men?</li>
+<li>Do smokers have higher cancer rates than non-smokers?</li>
+<li>Do students in Catholic shcools learn more than students in public schools?</li>
+</ul>
+
+<p>To test a hypothesis, take independent samples from both populations, and estimate µ₁ - µ₂ by μ̂₁ - μ̂₂.</p>
+<div class="codeblockcls">
+<pre><code>The 2 samples (from different populations) are independent:
+E(μ̂₁ - μ̂₂) = E(μ̂₁) - E(μ̂₂)
+           = µ₁ - µ₂
+V(μ̂₁ - μ̂₂) = V(μ̂₁) + V(μ̂₂)
+           = σ₁²/N₁ - σ₂²/N₂
+True S.E.(μ̂₁ - μ̂₂) = sqrt(V(μ̂₁ - μ̂₂))
+                   = sqrt(σ₁²/N₁ - σ₂²/N₂)
+</code></pre>
+</div>
+<p>To generalize, assume θ is the target parameter (e.g. θ = µ₁ - µ₂).
+θ₀ is the value predicted by the null hypothesis.
+θ̂ is the observed value from samples.
+σ is the true standard error and σ̂ is the estimated standard error.
+Then z or t test can be constructed:</p>
+<div class="codeblockcls">
+<pre><code>Z = (θ̂ - θ₀) / σ
+T = (θ̂ - θ₀) / σ̂
+</code></pre>
+</div>
+<h2 id="case-1-variances-are-known">Case 1: Variances Are Known</h2>
+
+<p>True standard error:</p>
+
+<p><img style="width:25%;display:block;margin:auto;" src="imgs/7_knownvar_true_se.png" alt="knownvar_true_se" loading="lazy"/></p>
+
+<p>Test statistic (simplification when null hypothesis is µ₁ = µ₂):</p>
+
+<p><img style="width:37%;display:block;margin:auto;" src="imgs/7_knownvar_z.png" alt="knownvar_z" loading="lazy"/></p>
+
+<p>Confidence interval:</p>
+
+<p><img style="width:28%;display:block;margin:auto;" src="imgs/7_knownvar_ci.png" alt="knownvar_ci" loading="lazy"/></p>
+
+<p>2-tailed acceptance region:</p>
+
+<p><img style="width:30%;display:block;margin:auto;" src="imgs/7_knownvar_acceptance_region.png" alt="knownvar_acceptance_region" loading="lazy"/></p>
+
+<h3 id="example">Example</h3>
+<div class="codeblockcls">
+<pre><code>Indiana University claims that it has a lower crime rate than Ohio State University. A random
+sample of crime rates for 12 different months is drawn for each school, yielding μ̂₁ = 370 and
+μ̂₂ = 400. It is known that σ₁² = 400 and σ₂² = 800.
+Test Indiana's claim at the 0.02 level of significance.
+
+Solution:
+H₀: µ₁ - µ₂ = 0
+H₁: µ₁ - µ₂ &lt; 0
+
+Population variances are known:
+    z = (μ̂₁ - μ̂₂) / sqrt(σ₁²/N₁ - σ₂²/N₂)
+      = (μ̂₁ - μ̂₂) / sqrt(400/12 + 800/12)
+      = (μ̂₁ - μ̂₂) / 10
+
+The one-sided acceptance region for a negative expected mean at 0.02 level of significance is
+z &gt; -2.05.
+The estimated z is calculated as (370 - 400) / 10 = -3 &lt; -2.05.
+The null hypothesis H₀ is rejected.
+</code></pre>
+</div>
+<h2 id="case-2-variances-are-unknown-but-equal">Case 2: Variances Are Unknown But Equal</h2>
+
+<p>True standard error (σ₁ = σ₂ = σ):</p>
+
+<p><img style="width:75%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_true_se.png" alt="unknown_equal_var_true_se" loading="lazy"/></p>
+
+<p>Since variance is unknown, use sample variance to estimate the standard error.
+First estimate the sample variance s from s₁ and s₂:</p>
+
+<p><img style="width:48%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_est_var.png" alt="unknown_equal_var_est_var" loading="lazy"/></p>
+
+<p>Substituting s² for σ², we get the estimated standard error:</p>
+
+<p><img style="width:60%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_est_se.png" alt="unknown_equal_var_est_se" loading="lazy"/></p>
+
+<p>Test statistic:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_t.png" alt="unknown_equal_var_t" loading="lazy"/></p>
+
+<p>Confidence interval:</p>
+
+<p><img style="width:50%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_ci.png" alt="unknown_equal_var_ci" loading="lazy"/></p>
+
+<p>2-tailed acceptance region:</p>
+
+<p><img style="width:52%;display:block;margin:auto;" src="imgs/7_unknown_equal_var_acceptance_region.png" alt="unknown_equal_var_acceptance_region" loading="lazy"/></p>
+
+<h3 id="example-1">Example</h3>
+<div class="codeblockcls">
+<pre><code>A professor believes that women do better on her exams than men do. A sample of 8 women
+(N₁ = 8) and 10 men (N₂ = 10) yields μ̂₁ = 7, μ̂₂ = 5.5, s₁² = 1 and s₂² = 1.7. Using α = 0.01,
+test whether the female mean is greater than the male mean. Assume that σ₁ = σ₂ = σ.
+
+Solution:
+H₀: µ₁ - µ₂ = 0
+H₁: µ₁ - µ₂ &gt; 0
+
+Population variances are unknown and equal:
+    t = (μ̂₁ - μ̂₂) / 0.56
+
+Degrees of freedom = N₁ + N₂ - 2 = 16
+The one-sided acceptance region for a positive mean at 0.01 level of significance with
+df = 16 is t &lt; 2.583.
+The estimated t = (7 - 5.5) / 0.56
+                = 2.679 &gt; 2.583
+The null hypothesis H₀ is rejected.
+</code></pre>
+</div>
+<h2 id="case-3-variances-are-unknown-and-unequal">Case 3: Variances Are Unknown and Unequal</h2>
+
+<p>This is the more general and common case.</p>
+
+<p>Estimated standard error:</p>
+
+<p><img style="width:22%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_est_se.png" alt="unknown_unequal_var_est_se" loading="lazy"/></p>
+
+<p>Test statistic:</p>
+
+<p><img style="width:25%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_t.png" alt="unknown_unequal_var_t" loading="lazy"/></p>
+
+<p>The tricky part is the degrees of freedom.
+Below is the Satterthwaite&rsquo;s degrees of freedom.
+Note that this does not have to equal an even integer, so round off to the nearest whole number.</p>
+
+<p><img style="width:38%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_satter_df.png" alt="unknown_unequal_var_satter_df" loading="lazy"/></p>
+
+<p>An alternative is Welch&rsquo;s degrees of freedom:</p>
+
+<p><img style="width:42%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_welch_df.png" alt="unknown_unequal_var_welch_df" loading="lazy"/></p>
+
+<p>Confidence interval:</p>
+
+<p><img style="width:30%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_ci.png" alt="unknown_unequal_var_ci" loading="lazy"/></p>
+
+<p>2-tailed acceptance region:</p>
+
+<p><img style="width:32%;display:block;margin:auto;" src="imgs/7_unknown_unequal_var_acceptance_region.png" alt="unknown_unequal_var_acceptance_region" loading="lazy"/></p>
+
+<h3 id="example-2">Example</h3>
+<div class="codeblockcls">
+<pre><code>Rework the previous professor example without assuming σ₁ = σ₂.
+
+Solution:
+H₀: µ₁ - µ₂ = 0
+H₁: µ₁ - µ₂ &gt; 0
+
+Population variances are unknown and not equal:
+    t = (μ̂₁ - μ̂₂) / 0.543
+Degrees of freedom = 15.988 ≈ 16
+The one-sided acceptance region for a positive mean at 0.01 level of significance with
+df = 16 is t &lt; 2.583.
+The estimated t = (7 - 5.5) / 0.543
+                = 2.762 &gt; 2.583
+The null hypothesis H₀ is rejected.
+</code></pre>
+</div>
+<h2 id="case-4-matched-pairs-with-unknown-variances">Case 4: Matched Pairs with Unknown Variances</h2>
+
+<p>Data are sampled in pairs and are not necessarily independent.</p>
+
+<ul>
+<li>Comparing scores of husbands and wives, which are likely similar to each other.</li>
+<li>Comparing a person&rsquo;s health before and after receiving some treatment.</li>
+</ul>
+
+<p>Let D = X₁ - X₂ where X₁ and X₂ are the scores of the first and the second member of the pair.
+X₁ and X₂ are normally distributed and dependent.</p>
+<div class="codeblockcls">
+<pre><code>E(D) = E(X₁ - X₂)
+     = E(X₁) - E(X₂)
+     = µ₁ - µ₂
+V(D) = V(X₁ - X₂)
+     = V(X₁) + V(X₂) - 2Cov(X₁, X₂)
+     = σ₁² + σ₂² - 2σ₁₂
+</code></pre>
+</div>
+<p>Now let D-bar be sample mean of D:</p>
+
+<p><img style="width:23%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d.png" alt="unknown_var_dependent_d" loading="lazy"/></p>
+
+<p>Its mean and variance are:</p>
+
+<p><img style="width:45%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_mean.png" alt="unknown_var_dependent_d_mean" loading="lazy"/></p>
+
+<p><img style="width:58%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_var.png" alt="unknown_var_dependent_d_var" loading="lazy"/></p>
+
+<p>True standard error:</p>
+
+<p><img style="width:43%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_true_se.png" alt="unknown_var_dependent_d_true_se" loading="lazy"/></p>
+
+<p>Estimated standard error:</p>
+
+<p><img style="width:65%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_est_se.png" alt="unknown_var_dependent_d_est_se" loading="lazy"/></p>
+
+<p>Test statistic:</p>
+
+<p><img style="width:34%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_t.png" alt="unknown_var_dependent_d_t" loading="lazy"/></p>
+
+<p>Confidence interval:</p>
+
+<p><img style="width:52%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_ci.png" alt="unknown_var_dependent_d_ci" loading="lazy"/></p>
+
+<p>2-tailed acceptance region:</p>
+
+<p><img style="width:52%;display:block;margin:auto;" src="imgs/7_unknown_var_dependent_d_acceptance_region.png" alt="unknown_var_dependent_d_acceptance_region" loading="lazy"/></p>
+
+<h3 id="example-3">Example</h3>
+<div class="codeblockcls">
+<pre><code>A researcher constructed a scale to measure influence on family decision-making, and collected
+the following data from 8 pairs of husbands and wives:
+
+    |  Pair# | H score | W score |
+    | ------ | ------- | ------- |
+    | 1      | 26      | 30      |
+    | 2      | 28      | 29      |
+    | 3      | 28      | 28      |
+    | 4      | 29      | 27      |
+    | 5      | 30      | 26      |
+    | 6      | 31      | 25      |
+    | 7      | 34      | 24      |
+    | 8      | 37      | 23      |
+    | ------ | ------- | ------- |
+    | Sum    | 243     | 212     |
+
+Test, at the 0.05 level of significance, whether there is any significant difference between
+the average scores of husbands and wives.
+
+Solution:
+Let D = (husband score - wife score), N = 8
+d_bar = ∑Dᵢ / N
+      = 31 / 8
+      = 3.875
+Sd² = 369 - 8 * 3.875²
+    = 35.554
+Sd = sqrt(35.554) = 5.963
+
+H₀: E(D) = 0
+H₁: E(D) ≠ 0
+
+The two-sided acceptance region at 0.05 level of significance with df = 7 is:
+    -2.365 &lt; t &lt; 2.365
+The estimated t = 3.875 / 2.1081
+                = 1.838
+It is within the acceptance region, so we cannot reject H₀
+</code></pre>
+</div>
+<h2 id="case-5-difference-between-two-proportions">Case 5: Difference Between Two Proportions</h2>
+
+<p>We are often interested in comparing how proportions differ between two populations.
+For example, we want to compare the proportion of women who smoke with the proportion of men who smoke.</p>
+
+<p>Let p̂ᵢ = Xᵢ / Nᵢ be the proportion of observed successed in group i.
+Xᵢ is the number of successes in group i.</p>
+
+<p>When N is large, we can approximate p̂ with normal distribution N(p̂, p̂q̂/N).</p>
+
+<p>Mean and variance:</p>
+
+<p><img style="width:80%;display:block;margin:auto;" src="imgs/7_proportion_mean_var.png" alt="proportion_mean_var" loading="lazy"/></p>
+
+<p>Estimation for p:</p>
+
+<p><img style="width:52%;display:block;margin:auto;" src="imgs/7_proportion_p_est.png" alt="proportion_p_est" loading="lazy"/></p>
+
+<p>Variance with p substitution:</p>
+
+<p><img style="width:52%;display:block;margin:auto;" src="imgs/7_proportion_var2.png" alt="proportion_var2" loading="lazy"/></p>
+
+<p>Test statistic for H₀: p₁= p₂</p>
+
+<p><img style="width:80%;display:block;margin:auto;" src="imgs/7_proportion_z.png" alt="proportion_z" loading="lazy"/></p>
+
+<p>Confidence interval:</p>
+
+<p><img style="width:28%;display:block;margin:auto;" src="imgs/7_proportion_ci.png" alt="proportion_ci" loading="lazy"/></p>
+
+<h3 id="example-4">Example</h3>
+<div class="codeblockcls">
+<pre><code>Two groups, A and B, each consist of 100 randomly assigned people who have a disease. One
+serum is given to Group A and a different serum is given to Group B; otherwise, the two
+groups are treated identically. It is found that in groups A and B, 75 and 65 people recover
+from the disease respectively.
+Test the hypothesis that the serums differ in their effectiveness using α = 0.05.
+
+Solution:
+H₀: p₁ - p₂ = 0
+H₁: p₁ - p₂ ≠ 0
+
+The acceptance region for 0.05 significance of a normal distribution is:
+    -1.96 &lt; z &lt; 1.96
+The estimated z = 1.543
+So H₀ cannot be rejected.
+</code></pre>
+</div>
+</body>
+</html>
+
+		</div>
+		<div class="col-right">
+			
+		</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col-left">
+		</div>
+		<div class="col-middle">
+			
+	<div style="max-width:fit-content;margin-inline:auto;">
+		<span style="font-size: 0.8em;">Generated from markdown by
+		<a href="https://github.com/iamjinlei/proteus">proteus</a>
+		</span>
+		</div>
+	</div>
+		</div>
+		<div class="col-right">
+		</div>
+	</div>
+</body>
+</html>
