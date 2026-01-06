@@ -250,6 +250,17 @@ set expandtab
 set viminfo='20,&lt;1000
 </code></pre>
 </div>
+<h2 id="fix-slow-vim-auto-save">Fix Slow VIM Auto-Save</h2>
+
+<p>This is most likely caused by malfunctioning <span class="codecls"><code>gopls</code></span> server.
+Try delete gopls index and restart its server:</p>
+<div class="codeblockcls">
+<pre><code>rm -rf ~/Library/Caches/gopls/*
+killall gopls
+</code></pre>
+</div>
+<p>Opening a new .go file should start gopls server automatically.</p>
+
 <h1 id="ssh">.ssh</h1>
 
 <p>It is ok to copy over .ssh folders with existing private and public keys</p>
